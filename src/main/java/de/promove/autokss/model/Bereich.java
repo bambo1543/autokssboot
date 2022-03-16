@@ -1,5 +1,9 @@
 package de.promove.autokss.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -7,6 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class Bereich extends AbstractBaseEntity implements NamedEntity {
 
     private String name;
@@ -14,8 +21,6 @@ public class Bereich extends AbstractBaseEntity implements NamedEntity {
 
     @OneToMany(mappedBy = "bereich", cascade = CascadeType.ALL)
     private Set<Maschine> maschinen = new HashSet<>();
-
-    public Bereich() {}
 
     public Bereich(String name) {
         this.name = name;
@@ -26,29 +31,4 @@ public class Bereich extends AbstractBaseEntity implements NamedEntity {
         this.description = description;
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Maschine> getMaschinen() {
-        return maschinen;
-    }
-
-    public void setMaschinen(Set<Maschine> maschinen) {
-        this.maschinen = maschinen;
-    }
 }

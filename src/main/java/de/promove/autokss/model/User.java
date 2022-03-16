@@ -1,7 +1,9 @@
 package de.promove.autokss.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -12,11 +14,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends AbstractBaseEntity implements NamedEntity {
 
     @NotNull(message = "{validation.NotNull.message}")
-    @Length
-    @Column
     private String firstName;
     @NotNull
     private String lastName;
@@ -25,16 +27,6 @@ public class User extends AbstractBaseEntity implements NamedEntity {
     @Email
     private String email;
     private String comment;
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email, String comment) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.comment = comment;
-    }
 
     @Override
     public String getName() {
