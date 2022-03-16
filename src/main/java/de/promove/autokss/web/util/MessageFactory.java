@@ -35,18 +35,18 @@ public class MessageFactory {
 		}
 	}
 
-	public static String getMessage(String key, String... params) {
+	public static String getMessage(String key, Object... params) {
 		String message = getMessage(key);
 		return MessageFormat.format(message, params);
 	}
 
-	public static FacesMessage getFacesMessage(String key, String... params) {
+	public static FacesMessage getFacesMessage(String key, Object... params) {
 		String message = getMessage(key);
 		MessageFormat.format(message, params);
 		return new FacesMessage(message);
 	}
 
-	public static FacesMessage getFacesMessage(FacesMessage.Severity severity, String key, String... params) {
+	public static FacesMessage getFacesMessage(FacesMessage.Severity severity, String key, Object... params) {
 		String message = getMessage(key);
 		MessageFormat.format(message, params);
 		FacesMessage ret = new FacesMessage(message);

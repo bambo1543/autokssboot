@@ -12,6 +12,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
@@ -25,7 +26,6 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	protected GenericService genericService;
 
 	protected Class<T> clazz;
-	protected final String entityName;
 
 	protected LazyDataModel<T> dataModel;
 	protected T selectedItem;
@@ -43,7 +43,6 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public AbstractCrudBean(Class<T> clazz, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
 		this.clazz = clazz;
-		entityName = MessageFactory.getMessage("entity." + clazz.getSimpleName() + ".singular");
 		this.itemsQueryFetch = itemsQueryFetch;
 		this.editItemQueryFetch = editItemQueryFetch;
 	}
@@ -90,7 +89,7 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	}
 
 	public String getEntityName() {
-		return entityName;
+		return MessageFactory.getMessage("entity." + clazz.getSimpleName() + ".singular");
 	}
 
 	public LazyDataModel<T> getDataModel() {
@@ -116,12 +115,12 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	public void save() {
 		if(editItem.equals(selectedItem)) {
 			genericService.merge(editItem);
-			GrowlMessenger.publish(MessageFactory.getMessage("action.edit.growl.summary", entityName),
-					MessageFactory.getMessage("action.edit.growl.detail", entityName, editItem.getName()));
+			GrowlMessenger.publish(MessageFactory.getMessage("action.edit.growl.summary", getEntityName()),
+					MessageFactory.getMessage("action.edit.growl.detail", getEntityName(), editItem.getName()));
 		} else {
 			genericService.persist(editItem);
-			GrowlMessenger.publish(MessageFactory.getMessage("action.add.growl.summary", entityName),
-					MessageFactory.getMessage("action.add.growl.detail", entityName, editItem.getName()));
+			GrowlMessenger.publish(MessageFactory.getMessage("action.add.growl.summary", getEntityName()),
+					MessageFactory.getMessage("action.add.growl.detail", getEntityName(), editItem.getName()));
 		}
 		resetOnEditOrAddFinished();
 	}
@@ -137,8 +136,8 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	public void delete() {
 		T item = selectedItem;
 		genericService.remove(item);
-		GrowlMessenger.publish(MessageFactory.getMessage("action.delete.growl.summary", entityName),
-				MessageFactory.getMessage("action.delete.growl.detail", entityName, item.getName()));
+		GrowlMessenger.publish(MessageFactory.getMessage("action.delete.growl.summary", getEntityName()),
+				MessageFactory.getMessage("action.delete.growl.detail", getEntityName(), item.getName()));
 		resetOnDeleteFinished();
 	}
 
