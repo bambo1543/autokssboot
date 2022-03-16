@@ -108,9 +108,11 @@ class AutoKssApplicationTests {
 
 		me2.setPh(15.0);
 		me2.setNitrit(5.0);
-		genericDao.persist(me2);
 
-		genericDao.flushClear();
+		try {
+			genericDao.persist(me2);
+			Assert.isTrue(false, "Exception expected");
+		} catch (TransactionSystemException ignore) {}
 	}
 
 }

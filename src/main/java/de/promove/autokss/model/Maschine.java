@@ -1,16 +1,16 @@
 package de.promove.autokss.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
+
+
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @NoArgsConstructor
 public class Maschine extends AbstractBaseEntity implements NamedEntity {
 

@@ -1,8 +1,6 @@
 package de.promove.autokss.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +9,8 @@ import javax.validation.constraints.Max;
 import java.util.Date;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @NoArgsConstructor
 public class Messung extends AbstractBaseEntity implements LockedEntity {
 
