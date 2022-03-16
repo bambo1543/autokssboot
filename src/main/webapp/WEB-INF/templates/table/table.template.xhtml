@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"
+	 xmlns:b="http://java.sun.com/jsf/composite/component">
+
+	<p:dataTable id="#{tableId}"
+				 var="item" value="#{bean.dataModel}"
+				 selection="#{bean.selectedItem}" selectionMode="single"
+				 paginator="true" rows="10" paginatorPosition="bottom"
+				 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				 rowsPerPageTemplate="5,10,15"
+                 lazy="true">
+
+		<ui:insert name="tableHeader">
+			<f:facet name="header">
+				<h:panelGrid columns="2" columnClasses="textLeft,textRight">
+					<h:outputText value="#{headerMessage}" style="font-size: x-large;"/>
+					<h:panelGroup>
+						<ui:insert name="actionBar">
+							<ui:include src="table.actionbar.xhtml"/>
+						</ui:insert>
+					</h:panelGroup>
+				</h:panelGrid>
+			</f:facet>
+		</ui:insert>
+
+		<p:ajax event="rowSelect" update="@form :frmConfirmDelete" />
+		<p:ajax event="rowUnselect" update="@form :frmConfirmDelete" />
+
+		<ui:insert name="columns"/>
+
+	</p:dataTable>
+
+	<ui:insert name="dialogs" />
+</div>

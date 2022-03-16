@@ -1,0 +1,79 @@
+/*Text and divs alignments*/
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.textLeft {
+    text-align: left;
+}
+
+/*Some Containers*/
+.btnPanel {
+    height: 50px;
+}
+
+.simpleMargin {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.simpleMarginTop {
+    margin-top: 10px;
+}
+
+.simpleMarginBottom {
+    margin-bottom: 10px;
+}
+
+.formContainer {
+    width: 330px;
+}
+
+.contentPanel {
+    padding: 0; 
+    margin: 10px;
+}
+
+/* Form */
+.frmLabel {
+    margin-right: 10px;
+    width: 90px;
+}
+
+.frmInput {
+    width: 200px;
+}
+
+.frmInputRule {
+    width: 400px;
+}
+
+/*Override JQuery/Primefaces styles*/
+div.ui-panel-titlebar {
+    height: 25px;
+    padding: 0;
+    margin: 0;
+}
+
+div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-active.ui-state-disabled {
+	opacity: 1.0;
+}
+
+select.selectOneMenuFilter.ui-column-filter{
+	width: 80px;
+}
+

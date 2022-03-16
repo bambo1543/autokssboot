@@ -1,0 +1,26 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+		<h:outputLabel for="firstName" value="#{msgs['entity.User.firstName']}" />
+		<p:inputText id="firstName" value="#{item.firstName}" />
+		<h:message for="firstName"/>
+
+		<h:outputLabel for="lastName" value="#{msgs['entity.User.lastName']}" />
+		<p:inputText id="lastName" value="#{item.lastName}" />
+		<h:message for="lastName" />
+
+		<h:outputLabel for="email" value="#{msgs['entity.User.email']}" />
+		<p:inputText id="email" value="#{item.email}" />
+		<h:message for="email" />
+
+		<h:outputLabel for="comment" value="#{msgs['entity.User.comment']}" />
+		<p:inputText id="comment" value="#{item.comment}" />
+		<h:message for="comment" />
+
+	</h:panelGrid>
+
+</div>

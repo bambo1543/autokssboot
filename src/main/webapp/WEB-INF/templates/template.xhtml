@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:b="http://java.sun.com/jsf/composite/component">
+
+<f:view contentType="text/html">
+	<f:loadBundle basename="messages" var="msgs"/>
+
+	<h:head>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="EmulateIE8"/>
+			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+			<title>AutoKSS</title>
+			<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/promove.png"/>
+		</f:facet>
+
+		<h:outputStylesheet library="css" name="theme.css"/>
+		<h:outputStylesheet library="css" name="myStyle.css"/>
+		<h:outputStylesheet library="css" name="grid.css"/>
+		<h:outputStylesheet library="css" name="famfamfam.css"/>
+		<h:outputStylesheet library="primefaces" name="primeicons/primeicons.css"  />
+
+		<ui:insert name="head"/>
+	</h:head>
+
+	<h:body>
+			<p:growl id="growl" showDetail="true"/>
+
+<!--			<div class="container showgrid">-->
+			<div class="container">
+				<div class="span-26 last">
+					<h:form id="formHeader">
+						<div class="ui-widget ui-widget-header ui-corner-top" style="height: 50px;">
+							<h:panelGrid columns="2" columnClasses="textLeft,textRight" style="width: 100%">
+								<h:outputText value="AutoKSS" style="font-size: xx-large;"/>
+								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
+									<f:selectItems value="#{themeSwitcherBean.themes}" />
+									<p:ajax event="change"/>
+									<p:column>
+										<span class="ui-theme ui-theme-#{t}" style="width: 30px; height: 20px"/>
+									</p:column>
+									<p:column>
+										<h:outputText value="#{t}"/>
+									</p:column>
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</div>
+						<ui:include src="menu.xhtml" />
+					</h:form>
+				</div>
+				<div class="span-26 last">
+					<ui:insert name="center"/>
+				</div>
+				<div class="span-26 last">
+					<ui:include src="footer.xhtml"/>
+				</div>
+			</div>
+	</h:body>
+
+</f:view>
+</html>

@@ -1,0 +1,13 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+    <p:commandButton id="btnAdd" value="#{msgs['btn.add']}" icon="pi pi-plus-circle" action="#{bean.add}" update="@form"/>
+    <p:commandButton id="btnEdit" value="#{msgs['btn.edit']}" icon="pi pi-pencil" action="#{bean.edit}" update="@form" disabled="#{empty bean.selectedItem}" />
+    <p:commandButton id="btnDelete" value="#{msgs['btn.delete']}" icon="pi pi-trash" action="#{bean.delete}" update="@form growl" disabled="#{empty bean.selectedItem}" >
+        <p:confirm header="Confirm deletion" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+    </p:commandButton>
+
+</div>

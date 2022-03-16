@@ -1,0 +1,26 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:p="http://primefaces.org/ui">
+
+    <p:menubar>
+        <p:submenu label="Daten">
+            <p:menuitem value="Maschinen" />
+            <p:menuitem value="Bereich" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
+            <p:menuitem value="Messungen" />
+            <p:menuitem value="Benutzer" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>
+            <p:menuitem value="MIN MAX Werte" />
+        </p:submenu>
+        <p:submenu label="Workflow">
+            <p:menuitem value="1. Messung anlegen"/>
+            <p:menuitem value="2. Messung anlegen"/>
+        </p:submenu>
+        <p:submenu label="Berichte">
+            <p:menuitem value="Werte Bericht öffnen"/>
+            <p:menuitem value="Verbrauchtsbericht öffnen"/>
+            <p:menuitem value="Bericht per Email senden"/>
+        </p:submenu>
+    </p:menubar>
+    
+</div>
