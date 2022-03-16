@@ -16,6 +16,8 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -102,8 +104,8 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public void add() {
 		try {
-			editItem = clazz.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
+			editItem = clazz.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			throw new RuntimeException(e);
 		}
 	}
