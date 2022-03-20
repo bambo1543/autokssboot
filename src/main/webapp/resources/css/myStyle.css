@@ -63,17 +63,17 @@
 }
 
 /*Override JQuery/Primefaces styles*/
-div.ui-panel-titlebar {
-    height: 25px;
-    padding: 0;
-    margin: 0;
-}
+/*div.ui-panel-titlebar {*/
+/*    height: 25px;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
 
-div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-active.ui-state-disabled {
-	opacity: 1.0;
-}
-
-select.selectOneMenuFilter.ui-column-filter{
-	width: 80px;
-}
+/*div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-active.ui-state-disabled {*/
+/*	opacity: 1.0;*/
+/*}*/
+/**/
+/*select.selectOneMenuFilter.ui-column-filter{*/
+/*	width: 80px;*/
+/*}*/
 

@@ -26,8 +26,9 @@ public class AutoKssApplication {
 		//spring boot only works if this is set
 		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
 		servletContext.setInitParameter("javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());
-//		servletContext.setInitParameter("javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
+		servletContext.setInitParameter("javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
 		servletContext.setInitParameter("primefaces.THEME", "#{themeSwitcherBean.currentTheme}");
+
 		//registration
 		ServletRegistrationBean<FacesServlet> srb = new ServletRegistrationBean<>(new FacesServlet(), "*.xhtml");
 		srb.setLoadOnStartup(1);

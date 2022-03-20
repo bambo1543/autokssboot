@@ -15,7 +15,8 @@
 			<meta http-equiv="X-UA-Compatible" content="EmulateIE8"/>
 			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
 			<title>AutoKSS</title>
-			<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/promove.png"/>
+<!--			<link rel="shortcut icon"  href="#{request.contextPath}/resources/images/shortcutIcon.png"/>-->
+<!--			<link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/favicon-32x32.png"/>-->
 		</f:facet>
 
 		<h:outputStylesheet library="css" name="theme.css"/>
@@ -49,13 +50,14 @@
 								</p:selectOneMenu>
 							</h:panelGrid>
 						</div>
-						<ui:include src="menu.xhtml" />
 					</h:form>
+					<ui:include src="menu.xhtml" />
 				</div>
 				<div class="span-26 last">
 					<ui:insert name="center"/>
 				</div>
 				<div class="span-26 last">
+					<h:outputText value="#{sessionScope['username'] }" />
 					<ui:include src="footer.xhtml"/>
 				</div>
 			</div>

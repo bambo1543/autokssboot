@@ -1,15 +1,16 @@
 package de.promove.autokss.web.theme;
 
-import de.promove.autokss.web.SessionBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.SessionScope;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,8 +23,7 @@ import java.util.List;
 @SessionScope
 public class ThemeSwitcherBean implements Serializable {
 
-    @Autowired
-    private SessionBean sessionBean;
+    private static final long serialVersionUID = 1234567L;
 
     private List<String> themes;
 

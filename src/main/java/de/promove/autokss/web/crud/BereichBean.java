@@ -1,4 +1,4 @@
-package de.promove.autokss.web;
+package de.promove.autokss.web.crud;
 
 import de.promove.autokss.model.Bereich;
 import de.promove.autokss.web.common.crud.AbstractCrudBean;

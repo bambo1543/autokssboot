@@ -3,24 +3,32 @@
      xmlns:h="http://java.sun.com/jsf/html"
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
+    <div class="card">
+    <h:form id="formMenu">
+        <p:menubar>
+            <p:submenu label="Daten">
+                <p:menuitem value="Maschinen" />
+                <p:menuitem value="#{msgs['entity.Bereich.plural']}" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
+                <p:menuitem value="Messungen" />
+                <p:menuitem value="#{msgs['entity.User.plural']}" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>
+                <p:menuitem value="MIN MAX Werte" />
+            </p:submenu>
+            <p:submenu label="Workflow">
+                <p:menuitem value="1. Messung anlegen"/>
+                <p:menuitem value="2. Messung anlegen"/>
+            </p:submenu>
+            <p:submenu label="Berichte">
+                <p:menuitem value="Werte Bericht öffnen"/>
+                <p:menuitem value="Verbrauchtsbericht öffnen"/>
+                <p:menuitem value="Bericht per Email senden"/>
+            </p:submenu>
 
-    <p:menubar>
-        <p:submenu label="Daten">
-            <p:menuitem value="Maschinen" />
-            <p:menuitem value="Bereich" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
-            <p:menuitem value="Messungen" />
-            <p:menuitem value="Benutzer" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>
-            <p:menuitem value="MIN MAX Werte" />
-        </p:submenu>
-        <p:submenu label="Workflow">
-            <p:menuitem value="1. Messung anlegen"/>
-            <p:menuitem value="2. Messung anlegen"/>
-        </p:submenu>
-        <p:submenu label="Berichte">
-            <p:menuitem value="Werte Bericht öffnen"/>
-            <p:menuitem value="Verbrauchtsbericht öffnen"/>
-            <p:menuitem value="Bericht per Email senden"/>
-        </p:submenu>
-    </p:menubar>
-    
+            <p:divider layout="vertical"/>
+
+            <p:menuitem value="#{msgs['btn.login']}" url="#{request.contextPath}/login.xhtml" rendered="#{not securityBean.loggedIn}"/>
+            <p:menuitem value="#{msgs['btn.logout']}" url="#{request.contextPath}/logout" rendered="#{securityBean.loggedIn}"/>
+
+        </p:menubar>
+    </h:form>
+    </div>
 </div>

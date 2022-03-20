@@ -6,11 +6,18 @@
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component">
 
-	<ui:define name="head">
-	</ui:define>
+	<ui:define name="center">
+		<h:form prependId="false">
+			<h:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
+				<p:outputLabel value="Login failed!" styleClass="red"
+							   rendered="${!empty param['error']}" />
 
-	<ui:define name="main">
-		Hello test
+				<p:inputText id="username" placeholder="User name" />
+				<p:password id="password" placeholder="Password" />
+
+				<p:commandButton value="Login" ajax="false" />
+			</h:panelGrid>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
