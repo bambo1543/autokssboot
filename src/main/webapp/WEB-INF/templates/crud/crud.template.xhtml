@@ -7,7 +7,7 @@
 
 	<h:form id="frmCrud">
 		<h:panelGroup id="pnlTable" rendered="#{empty bean.editItem}">
-			<ui:include src="/ui/#{name}/#{name}.table.columns.xhtml">
+			<ui:include src="/ui/#{name}/#{name}.table.xhtml">
 				<ui:param name="tableId" value="tbl#{name}"/>
 			</ui:include>
 		</h:panelGroup>

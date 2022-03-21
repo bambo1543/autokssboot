@@ -7,6 +7,7 @@ import de.promove.autokss.model.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
@@ -14,16 +15,25 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class AutoKssApplicationTests {
 
 	@Autowired
 	GenericDao genericDao;
 
+	private static User createMarkus() {
+		return new User("mvogel@promove-gmbh.de", "password", "Markus", "Vogel", "");
+	}
+
+	private static User createAndreas() {
+		return new User("andreas.bga@gmail.com", "password", "Andreas", "Baumgartner", "");
+	}
+
 	@Test
 	public void testUser() {
-		User u1 = new User("Andreas", "Baumgartner", "andreas.bga@gmail.com", "");
+		User u1 = createAndreas();
 		genericDao.persist(u1);
-		User u2 = new User("Markus", "Vogel", "mvogel@promove-gmbh.de", "");
+		User u2 = createMarkus();
 		genericDao.persist(u2);
 
 		List<User> users = genericDao.list(User.class, QueryParameter.with(User_.firstName, QueryParameterEntry.Operator.STARTS, "Andre") );
@@ -44,7 +54,8 @@ class AutoKssApplicationTests {
 
 	@Test
 	public void testUserInvalidEmail() {
-		User u1 = new User(null, "Baumgartner", "andreas@bga@gmail.com", "");
+		User u1 = createAndreas();
+		u1.setEmail("Invalid@Email@Format");
 		try {
 			genericDao.persist(u1);
 			Assert.isTrue(false, "Exception expected");
@@ -84,9 +95,9 @@ class AutoKssApplicationTests {
 		Assert.isTrue(b3.equals(byId.getBereich()));
 		Assert.isTrue(byId.getLetzterEmulsionswechsel().before(new Date()));
 
-		User u1 = new User("Andreas", "Baumgartner", "andreas.bga@gmail.com", "");
+		User u1 = createAndreas();
 		genericDao.persist(u1);
-		User u2 = new User("Markus", "Vogel", "mvogel@promove-gmbh.de", "");
+		User u2 = createMarkus();
 		genericDao.persist(u2);
 
 		Messung me1 = new Messung(new Date(), u1, m1);
@@ -110,5 +121,6 @@ class AutoKssApplicationTests {
 			Assert.isTrue(false, "Exception expected");
 		} catch (TransactionSystemException ignore) {}
 	}
+
 
 }

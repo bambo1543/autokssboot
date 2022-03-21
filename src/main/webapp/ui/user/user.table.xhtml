@@ -7,6 +7,11 @@
 				xmlns:b="http://java.sun.com/jsf/composite/component"
 				xmlns:c="http://bambo.it/jsf">
 
+	<ui:define name="extraActions">
+		<p:commandButton id="btnPassword" icon="pi pi-plus-circle" action="#{bean.editPassword}" update="@form"/>
+
+	</ui:define>
+
 	<ui:define name="columns">
 		<p:column field="firstName" headerText="#{msgs['entity.User.firstName']}" />
 		<p:column field="lastName" headerText="#{msgs['entity.User.lastName']}" />

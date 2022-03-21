@@ -75,6 +75,9 @@ public class GenericDao {
 	public <T> Long count(Class<T> clazz, QueryParameter queryParameter, QueryFetch... queryFetches) {
 		return createCountCriteriaQuery(clazz, queryParameter, queryFetches);
 	}
+	public <T> Long count(Class<T> clazz) {
+		return createCountCriteriaQuery(clazz, null,  null);
+	}
 
 	// find Methods; returns T
 

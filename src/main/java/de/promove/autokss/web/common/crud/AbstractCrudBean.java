@@ -12,19 +12,11 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.net.http.HttpRequest;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class AbstractCrudBean<T extends NamedEntity> implements Serializable {
 
@@ -121,15 +113,23 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public void save() {
 		if(editItem.equals(selectedItem)) {
-			genericService.merge(editItem);
+			mergeEditItem(editItem);
 			GrowlMessenger.publish(MessageFactory.getMessage("action.edit.growl.summary", getEntityName()),
 					MessageFactory.getMessage("action.edit.growl.detail", getEntityName(), editItem.getName()));
 		} else {
-			genericService.persist(editItem);
+			persistEditItem(editItem);
 			GrowlMessenger.publish(MessageFactory.getMessage("action.add.growl.summary", getEntityName()),
 					MessageFactory.getMessage("action.add.growl.detail", getEntityName(), editItem.getName()));
 		}
 		resetOnEditOrAddFinished();
+	}
+
+	protected void mergeEditItem(T editItem) {
+		genericService.merge(editItem);
+	}
+
+	protected void persistEditItem(T editItem) {
+		genericService.persist(editItem);
 	}
 
 	public void cancel() {
