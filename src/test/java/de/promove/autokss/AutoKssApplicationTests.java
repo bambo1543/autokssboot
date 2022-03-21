@@ -20,17 +20,13 @@ class AutoKssApplicationTests {
 	GenericDao genericDao;
 
 	@Test
-	void contextLoads() {
-	}
-
-	@Test
 	public void testUser() {
 		User u1 = new User("Andreas", "Baumgartner", "andreas.bga@gmail.com", "");
 		genericDao.persist(u1);
 		User u2 = new User("Markus", "Vogel", "mvogel@promove-gmbh.de", "");
 		genericDao.persist(u2);
 
-		List<User> users = genericDao.list(User.class, QueryParameter.with("firstName", QueryParameterEntry.Operator.STARTS, "Andre") );
+		List<User> users = genericDao.list(User.class, QueryParameter.with(User_.firstName, QueryParameterEntry.Operator.STARTS, "Andre") );
 		Assert.isTrue(users.size() == 1);
 
 		users = genericDao.listAll(User.class);
