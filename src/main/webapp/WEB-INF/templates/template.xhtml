@@ -53,13 +53,13 @@
 					</h:form>
 					<ui:include src="menu.xhtml" />
 				</div>
-				<div class="span-26 last">
+				<h:panelGroup id="pnlCenter" class="span-26 last">
 					<ui:insert name="center"/>
-				</div>
-				<div class="span-26 last">
+				</h:panelGroup>
+				<h:panelGroup id="pnlFooter" class="span-26 last">
 					<h:outputText value="#{sessionScope['username'] }" />
 					<ui:include src="footer.xhtml"/>
-				</div>
+				</h:panelGroup>
 			</div>
 	</h:body>
 

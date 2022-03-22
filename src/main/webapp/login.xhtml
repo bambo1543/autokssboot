@@ -9,11 +9,11 @@
 	<ui:define name="center">
 		<h:form prependId="false">
 			<h:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-				<p:outputLabel value="Login failed!" styleClass="red"
-							   rendered="${!empty param['error']}" />
+				<p:outputLabel value="Login failed!" styleClass="red" rendered="${!empty param['error']}" />
+				<p:outputLabel value="Logout successful!" rendered="${!empty param['logout']}" />
 
-				<p:inputText id="username" placeholder="User name" />
-				<p:password id="password" placeholder="Password" />
+				<p:inputText id="username" placeholder="#{msgs['login.username']}" />
+				<p:password id="password" placeholder="#{msgs['login.password']}" />
 
 				<p:commandButton value="Login" ajax="false" />
 			</h:panelGrid>

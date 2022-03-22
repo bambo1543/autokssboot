@@ -10,13 +10,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
+import javax.el.MethodExpression;
 import javax.faces.view.ViewScoped;
 
 @Controller
 @ViewScoped
 public class UserBean extends AbstractCrudBean<User> {
-
-    private User passwordUser;
 
     @Autowired
     private UserService userService;
@@ -39,10 +38,24 @@ public class UserBean extends AbstractCrudBean<User> {
     }
 
     public void editPassword() {
-        this.passwordUser = editItem;
+        this.editItem = selectedItem;
+
+        this.visibleSection = "password";
     }
 
-    public User getPasswordUser() {
-        return passwordUser;
+    public void savePassword() {
+        String encoded = passwordEncoder.encode(editItem.getPassword());
+        editItem.setPassword(encoded);
+        userService.merge(editItem);
+        editItem = null;
+
+        this.visibleSection = "table";
     }
+
+    public void cancelPassword() {
+        editItem = null;
+
+        this.visibleSection = "table";
+    }
+
 }

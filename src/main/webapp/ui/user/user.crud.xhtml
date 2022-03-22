@@ -5,12 +5,31 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:n="http://java.sun.com/jsf/composite/component">
 
-	<ui:define name="center">
-		<ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
-			<ui:param name="bean" value="#{userBean}"/>
-			<ui:param name="name" value="user"/>
-			<ui:param name="headerMessage" value="#{msgs['entity.User.plural']}"/>
-		</ui:include>
-	</ui:define>
+    <ui:define name="center">
+        <ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
+            <ui:param name="bean" value="#{userBean}"/>
+            <ui:param name="name" value="user"/>
+            <ui:param name="headerMessage" value="#{msgs['entity.User.plural']}"/>
+        </ui:include>
+
+        <h:form id="frmPassword">
+            <h:panelGroup id="pnlPassword" rendered="#{userBean.visibleSection eq 'password'}">
+                    <div class="span-26 last">
+                        <h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+                            <h:outputLabel for="password" value="#{msgs['entity.User.password']}"/>
+                            <p:password id="password" value="#{userBean.editItem.password}"/>
+                            <h:message for="password"/>
+                        </h:panelGrid>
+                    </div>
+
+                    <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                        <p:commandButton value="#{msgs['btn.save']}" action="#{userBean.savePassword}"
+                                         update="pnlCenter growl"/>
+                        <p:commandButton value="#{msgs['btn.cancel']}" action="#{userBean.cancelPassword}"
+                                         update="pnlCenter growl" immediate="true"/>
+                    </div>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
 
 </ui:composition>

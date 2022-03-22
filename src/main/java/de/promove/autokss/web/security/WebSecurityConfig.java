@@ -32,22 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // error
         http.exceptionHandling().accessDeniedPage("/error.xhtml");
         // logout
-        http.logout().logoutSuccessUrl("/login.xhtml");
+        http.logout().logoutSuccessUrl("/login.xhtml?logout=true").deleteCookies("remember-me").permitAll();
         // not needed as JSF 2.2 is implicitly protected against CSRF
         http.csrf().disable();
     }
-
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws Exception {

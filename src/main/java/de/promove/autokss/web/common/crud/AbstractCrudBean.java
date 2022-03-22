@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -25,6 +26,8 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	protected GenericService genericService;
 
 	protected Class<T> clazz;
+
+	protected String visibleSection = "";
 
 	protected LazyDataModel<T> dataModel;
 	protected T selectedItem;
@@ -48,6 +51,8 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	@PostConstruct
 	public void init() {
+		visibleSection = "table";
+
 		dataModel = new LazyIdEntityDataModel<>() {
 			@Override
 			public int count(Map<String, FilterMeta> map) {
@@ -62,6 +67,10 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 			}
 
 		};
+	}
+
+	public String getVisibleSection() {
+		return visibleSection;
 	}
 
 	protected List<T> loadItems(int first, int pageSize, Map<String, SortMeta> sortMap, Map<String, FilterMeta> filterMap) {
@@ -102,6 +111,7 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	public void add() {
 		try {
 			editItem = clazz.getConstructor().newInstance();
+			visibleSection = "form";
 		} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 			throw new RuntimeException(e);
 		}
@@ -109,6 +119,7 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public void edit() {
 		editItem = genericService.findById(clazz, selectedItem.getId(), editItemQueryFetch);
+		visibleSection = "form";
 	}
 
 	public void save() {
@@ -138,6 +149,7 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	protected void resetOnEditOrAddFinished() {
 		editItem = null;
+		visibleSection = "table";
 	}
 
 	public void delete() {
@@ -151,7 +163,6 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	protected void resetOnDeleteFinished() {
 		selectedItem = null;
 	}
-
 
 	public T getSelectedItem() {
 		return selectedItem;

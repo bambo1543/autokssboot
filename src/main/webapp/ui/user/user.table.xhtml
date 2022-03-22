@@ -8,8 +8,8 @@
 				xmlns:c="http://bambo.it/jsf">
 
 	<ui:define name="extraActions">
-		<p:commandButton id="btnPassword" icon="pi pi-plus-circle" action="#{bean.editPassword}" update="@form"/>
-
+		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{bean.editPassword}" update="pnlCenter" disabled="#{empty bean.selectedItem}"/>
+		<p:tooltip id="btnPasswordTooltip" for="btnPassword" value="#{msgs['btn.password.tooltip']}"/>
 	</ui:define>
 
 	<ui:define name="columns">

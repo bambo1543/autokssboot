@@ -50,7 +50,7 @@ public class UserService extends EntityService<User> {
 
     @Override
     public User merge(User editItem) {
-        encodeEditItem(editItem);
+//        encodeEditItem(editItem);
         return super.merge(editItem);
     }
 
