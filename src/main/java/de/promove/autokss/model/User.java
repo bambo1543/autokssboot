@@ -27,11 +27,8 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
     @NotNull
     private String password;
 
-    @NotNull(message = "{validation.NotNull.message}")
     private String firstName;
-    @NotNull
     private String lastName;
-
     private String comment;
 
     @Override

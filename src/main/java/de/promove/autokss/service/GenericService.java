@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +65,12 @@ public class GenericService {
 
 	public void persist(Object entity) {
 		genericDao.persist(entity);
+	}
+
+	public void persistAll(Collection<?> entities) {
+		for (Object entity : entities) {
+			persist(entity);
+		}
 	}
 
 	public <T> T merge(T entity) {

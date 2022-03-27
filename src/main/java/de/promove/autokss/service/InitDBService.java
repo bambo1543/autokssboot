@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
-@Service
-@Transactional
+//@Service
+//@Transactional
 public class InitDBService {
 
     Logger logger = LoggerFactory.getLogger(InitDBService.class);
