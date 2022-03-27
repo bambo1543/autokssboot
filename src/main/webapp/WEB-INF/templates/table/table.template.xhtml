@@ -5,7 +5,7 @@
 	 xmlns:p="http://primefaces.org/ui"
 	 xmlns:b="http://java.sun.com/jsf/composite/component">
 
-	<p:dataTable id="#{tableId}"
+	<p:dataTable id="#{tableId}" widgetVar="#{tableId}"
 				 var="item" value="#{bean.dataModel}"
 				 selection="#{bean.selectedItem}" selectionMode="single"
 				 paginator="true" rows="10" paginatorPosition="bottom"

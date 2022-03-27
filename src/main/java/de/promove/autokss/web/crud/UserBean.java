@@ -8,12 +8,15 @@ import de.promove.autokss.web.util.MessageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import javax.el.MethodExpression;
+import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-@Controller
+@Component
+@ManagedBean
 @ViewScoped
 public class UserBean extends AbstractCrudBean<User> {
 

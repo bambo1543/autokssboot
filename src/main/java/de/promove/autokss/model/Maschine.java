@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 
@@ -14,13 +15,18 @@ import java.util.Date;
 @NoArgsConstructor
 public class Maschine extends AbstractBaseEntity implements NamedEntity {
 
+    @NotNull
     private String name;
-    private String produktBezeichnung;
+    @NotNull
     private String description;
 
+    @NotNull
     private double tankVolumenLiter;
+    @NotNull
     private double wasserstandMaxCm;
+    @NotNull
     private double wasserstandMinCm;
+    @NotNull
     private double cmEntsprichtLiter;
 
     private Date letzterEmulsionswechsel;
@@ -28,11 +34,12 @@ public class Maschine extends AbstractBaseEntity implements NamedEntity {
     @ManyToOne(optional = false)
     private Bereich bereich;
 
-    @ManyToOne(optional = false)
-    private Einsatzkonzentration einsatzkonzentration;
+//    @ManyToOne(optional = false)
+//    private Einsatzkonzentration einsatzkonzentration;
 
-    public Maschine(String name, Bereich bereich) {
+    public Maschine(String name, String description, Bereich bereich) {
         this.name = name;
+        this.description = description;
         this.bereich = bereich;
     }
 

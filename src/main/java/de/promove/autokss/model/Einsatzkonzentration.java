@@ -18,8 +18,8 @@ public class Einsatzkonzentration extends AbstractBaseEntity {
     private double max;
     private double soll;
 
-    @OneToMany(mappedBy = "einsatzkonzentration", cascade = CascadeType.ALL)
-    private Set<Maschine> maschinen = new HashSet<>();
+//    @OneToMany(mappedBy = "einsatzkonzentration", cascade = CascadeType.ALL)
+//    private Set<Maschine> maschinen = new HashSet<>();
 
     public Einsatzkonzentration(double min, double max, double soll) {
         this.min = min;

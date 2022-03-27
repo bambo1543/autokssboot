@@ -1,0 +1,43 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+		<h:outputLabel for="name" value="#{msgs['entity.Maschine.name']}" />
+		<p:inputText id="name" value="#{item.name}" />
+		<h:message for="name"/>
+		
+		<h:outputLabel for="description" value="#{msgs['entity.Maschine.description']}" />
+		<p:inputText id="description" value="#{item.description}" />
+		<h:message for="description"/>
+		
+		<h:outputLabel for="tankVolumenLiter" value="#{msgs['entity.Maschine.tankVolumenLiter']}" />
+		<p:inputText id="tankVolumenLiter" value="#{item.tankVolumenLiter}" />
+		<h:message for="tankVolumenLiter"/>
+
+		<h:outputLabel for="wasserstandMaxCm" value="#{msgs['entity.Maschine.wasserstandMaxCm']}" />
+		<p:inputText id="wasserstandMaxCm" value="#{item.wasserstandMaxCm}" />
+		<h:message for="wasserstandMaxCm"/>
+
+		<h:outputLabel for="wasserstandMinCm" value="#{msgs['entity.Maschine.wasserstandMinCm']}" />
+		<p:inputText id="wasserstandMinCm" value="#{item.wasserstandMinCm}" />
+		<h:message for="wasserstandMinCm"/>
+
+		<h:outputLabel for="cmEntsprichtLiter" value="#{msgs['entity.Maschine.cmEntsprichtLiter']}" />
+		<p:inputText id="cmEntsprichtLiter" value="#{item.cmEntsprichtLiter}" />
+		<h:message for="cmEntsprichtLiter"/>
+
+		<h:outputLabel for="letzterEmulsionswechsel" value="#{msgs['entity.Maschine.letzterEmulsionswechsel']}" />
+		<p:datePicker id="letzterEmulsionswechsel" value="#{item.letzterEmulsionswechsel}" />
+		<h:message for="letzterEmulsionswechsel"/>
+
+		<h:outputLabel for="bereich" value="#{msgs['entity.Maschine.bereich']}" />
+		<p:selectOneMenu id="bereich" value="#{item.bereich}" converter="#{bereichConverter}">
+			<f:selectItems value="#{selectItemsBean.bereiche}" var="i" itemLabel="#{i.name}" />
+		</p:selectOneMenu>
+		<h:message for="bereich"/>
+    </h:panelGrid>
+
+</div>

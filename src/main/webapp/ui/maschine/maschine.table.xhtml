@@ -1,0 +1,33 @@
+<ui:composition template="/WEB-INF/templates/table/table.template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:b="http://java.sun.com/jsf/composite/component"
+				xmlns:c="http://bambo.it/jsf">
+
+	<ui:define name="columns">
+		<p:column field="name" headerText="#{msgs['entity.Maschine.name.headerText']}" />
+		<p:column field="description" headerText="#{msgs['entity.Maschine.description.headerText']}" />
+		<p:column field="tankVolumenLiter" headerText="#{msgs['entity.Maschine.tankVolumenLiter.headerText']}" />
+		<p:column field="wasserstandMaxCm" headerText="#{msgs['entity.Maschine.wasserstandMaxCm.headerText']}" />
+		<p:column field="wasserstandMinCm" headerText="#{msgs['entity.Maschine.wasserstandMinCm.headerText']}" />
+		<p:column field="cmEntsprichtLiter" headerText="#{msgs['entity.Maschine.cmEntsprichtLiter.headerText']}" />
+		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.Maschine.letzterEmulsionswechsel.headerText']}" />
+
+		<p:column field="bereich" headerText="#{msgs['entity.Maschine.bereich.headerText']}" filterMatchMode="exact"
+				  sortBy="#{item.bereich.name}">
+			<f:facet name="filter">
+				<p:selectOneMenu onchange="PF('tblmaschine').filter()" styleClass="custom-filter" converter="#{bereichConverter}">
+					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{selectItemsBean.bereiche}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+				</p:selectOneMenu>
+			</f:facet>
+
+			<h:outputText value="#{item.bereich.name}" />
+		</p:column>
+		<!--		<p:column field="einsatzkonzentration" headerText="#{msgs['entity.Maschine.einsatzkonzentration.headerText']}" />-->
+	</ui:define>
+
+</ui:composition>

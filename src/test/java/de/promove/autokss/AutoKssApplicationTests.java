@@ -77,15 +77,15 @@ class AutoKssApplicationTests {
 		Einsatzkonzentration e2 = new Einsatzkonzentration(7.0, 8.0, 7.5);
 		genericDao.persist(e2);
 
-		Maschine m1 = new Maschine("CTX 310", b3);
+		Maschine m1 = new Maschine("CTX 310", "test", b3);
 		m1.setLetzterEmulsionswechsel(new Date());
-		m1.setEinsatzkonzentration(e1);
+//		m1.setEinsatzkonzentration(e1);
 		genericDao.persist(m1);
-		Maschine m2 = new Maschine("DMC 64 V", b2);
-		m2.setEinsatzkonzentration(e1);
+		Maschine m2 = new Maschine("DMC 64 V","test", b2);
+//		m2.setEinsatzkonzentration(e1);
 		genericDao.persist(m2);
-		Maschine m3 = new Maschine("Meba Bandsäge", b1);
-		m3.setEinsatzkonzentration(e2);
+		Maschine m3 = new Maschine("Meba Bandsäge", "test", b1);
+//		m3.setEinsatzkonzentration(e2);
 		genericDao.persist(m3);
 
 		List<Maschine> maschinen = genericDao.listAll(Maschine.class);

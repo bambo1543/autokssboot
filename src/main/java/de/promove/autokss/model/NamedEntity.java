@@ -7,9 +7,4 @@ public interface NamedEntity extends IdEntity {
 
     String getName();
 
-//    void setName(String name);
-
-    String getDescription();
-
-//    void setDescription(String desc);
 }

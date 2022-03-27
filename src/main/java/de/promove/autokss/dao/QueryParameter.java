@@ -1,5 +1,6 @@
 package de.promove.autokss.dao;
 
+import de.promove.autokss.model.IdEntity;
 import org.primefaces.model.FilterMeta;
 
 import javax.persistence.metamodel.SingularAttribute;
@@ -21,12 +22,19 @@ public class QueryParameter {
 	public QueryParameter(Map<String, FilterMeta> filters) {
 		this.parameters = new ArrayList<>();
 		for (String filterName : filters.keySet()) {
-			String filterValue = filters.get(filterName).getFilterValue().toString();
-			if(!filterValue.startsWith("*") && !filterValue.endsWith("*")) {
-				this.parameters.add(new QueryParameterEntry(filterName, filterValue, QueryParameterEntry.Operator.STARTS));
-			} else if(filterValue.startsWith("*")) {
-				this.parameters.add(new QueryParameterEntry(filterName, filterValue.substring(1, filterValue.length()), QueryParameterEntry.Operator.ENDS));
-			}
+            FilterMeta filterMeta = filters.get(filterName);
+
+            Object filterValue = filterMeta.getFilterValue();
+            if(filterValue instanceof String) {
+                String filterString = (String) filterValue;
+                if(!filterString.startsWith("*") && !filterString.endsWith("*")) {
+                    this.parameters.add(new QueryParameterEntry(filterName, filterValue, QueryParameterEntry.Operator.STARTS));
+                } else if(filterString.startsWith("*")) {
+                    this.parameters.add(new QueryParameterEntry(filterName, filterString.substring(1), QueryParameterEntry.Operator.ENDS));
+                }
+            } else {
+                this.parameters.add(new QueryParameterEntry(filterName, filterValue));
+            }
 		}
 	}
 

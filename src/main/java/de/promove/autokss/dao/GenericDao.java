@@ -57,6 +57,10 @@ public class GenericDao {
 		return list(clazz, null, null, queryFetches);
 	}
 
+	public <T> List<T> listAll(Class<T> clazz, QueryOrder queryOrder, QueryFetch... queryFetches) {
+		return list(clazz, null, queryOrder, queryFetches);
+	}
+
 	public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
 		CriteriaQuery<T> query = createCriteriaQuery(clazz, queryParameter, queryOrder, queryFetches);
 		return listCriteriaQueryResult(query);

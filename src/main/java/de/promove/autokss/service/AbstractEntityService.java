@@ -15,18 +15,14 @@ import java.util.Map;
 /**
  * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
  */
-@Service
-@Transactional
-public class EntityService<T extends IdEntity> {
+public abstract class AbstractEntityService<T extends IdEntity> {
 
 	@Autowired
 	private GenericDao genericDao;
 
 	private Class<T> clazz;
 
-	public EntityService() {}
-
-	public EntityService(Class<T> clazz) {
+	public AbstractEntityService(Class<T> clazz) {
 		this.clazz = clazz;
 	}
 

@@ -7,7 +7,7 @@
     <h:form id="formMenu">
         <p:menubar>
             <p:submenu label="Daten">
-                <p:menuitem value="Maschinen" />
+                <p:menuitem value="#{msgs['entity.Maschine.plural']}" url="#{request.contextPath}/ui/maschine/maschine.crud.xhtml" />
                 <p:menuitem value="#{msgs['entity.Bereich.plural']}" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
                 <p:menuitem value="Messungen" />
                 <p:menuitem value="#{msgs['entity.User.plural']}" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>

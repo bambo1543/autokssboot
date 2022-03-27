@@ -40,11 +40,6 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
     }
 
     @Override
-    public String getDescription() {
-        return getComment();
-    }
-
-    @Override
     public String getUsername() {
         return getEmail();
     }
