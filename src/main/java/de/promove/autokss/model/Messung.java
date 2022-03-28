@@ -21,7 +21,7 @@ public class Messung extends AbstractBaseEntity implements LockedEntity {
     private Date timestamp;
 
     private double refraktometerKonzProz;
-//    @Max(value = 14)
+    @Max(value = 14)
     private double ph;
     private double nitrit;
 
@@ -30,7 +30,7 @@ public class Messung extends AbstractBaseEntity implements LockedEntity {
     private double oelNachgefuellt;
 
     private double refraktometerKonzProz2;
-//    @Max(value = 14)
+    @Max(value = 14)
     private double ph2;
     private double nitrit2;
 
