@@ -38,6 +38,12 @@
 			<f:selectItems value="#{selectItemsBean.bereiche}" var="i" itemLabel="#{i.name}" />
 		</p:selectOneMenu>
 		<h:message for="bereich"/>
+
+		<h:outputLabel for="einsatzkonzentration" value="#{msgs['entity.Maschine.einsatzkonzentration']}" />
+		<p:selectOneMenu id="einsatzkonzentration" value="#{item.einsatzkonzentration}" converter="#{einsatzkonzentrationConverter}">
+			<f:selectItems value="#{selectItemsBean.einsatzkonzentrationen}" var="i" itemLabel="min:#{i.min}/max:#{i.max}/soll:#{i.soll}" />
+		</p:selectOneMenu>
+		<h:message for="einsatzkonzentration"/>
     </h:panelGrid>
 
 </div>
