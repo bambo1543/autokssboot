@@ -94,15 +94,26 @@ public class MariaImportTest {
         });
         genericService.persistAll(maschinen);
 
-//        List<Messung> messungen = jdbcTemplate.query("select * from neutblMessung", new RowMapper<Messung>() {
-//            @Override
-//            public Messung mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                Messung m = new Messung(rs.getDate("Prüfdatum"), usersMap.get(rs.getInt("Prüfer")),
-//                        maschinenMap.get(rs.getInt("Maschine")));
-//                m.setTimestamp(rs.getDate("Timestamp"));
-////                m.setRefraktometerKonzProz();
-//                return m;
-//            }
-//        });
+        List<Messung> messungen = jdbcTemplate.query("select * from neutblMessung", new RowMapper<Messung>() {
+            @Override
+            public Messung mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Messung m = new Messung(rs.getDate("Prüfdatum"), usersMap.get(rs.getInt("Prüfer")),
+                        maschinenMap.get(rs.getInt("Maschine")));
+                m.setTimestamp(rs.getDate("Timestamp"));
+                m.setRefraktometerKonzProz(rs.getDouble("RefraktometerKonzProz"));
+                m.setRefraktometerKonzProz2(rs.getDouble("RefraktometerKonz%Mess2"));
+                m.setNitrit(rs.getDouble("Nitrit"));
+                m.setNitrit2(rs.getDouble("NitritMess2"));
+                m.setPh(rs.getDouble("pHWert"));
+                m.setPh2(rs.getDouble("pHWertMess2"));
+                m.setOelNachgefuellt(rs.getDouble("ÖlNachgefüllt"));
+                m.setWasserNachgefuellt(rs.getDouble("WasserNachgefüllt"));
+                m.setWasserstandCm(rs.getDouble("Wasserstandcm"));
+                m.setLocked(rs.getBoolean("gesperrt"));
+                m.setBemerkung(rs.getString("Bemerkung"));
+                return m;
+            }
+        });
+        genericService.persistAll(messungen);
     }
 }
