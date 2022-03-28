@@ -4,7 +4,10 @@ import de.promove.autokss.model.IdEntity;
 import org.primefaces.model.FilterMeta;
 
 import javax.persistence.metamodel.SingularAttribute;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +35,28 @@ public class QueryParameter {
                 } else if(filterString.startsWith("*")) {
                     this.parameters.add(new QueryParameterEntry(filterName, filterString.substring(1), QueryParameterEntry.Operator.ENDS));
                 }
+            } else if(filterValue instanceof List) {
+                List filterList = (List) filterValue;
+                if(filterList.size() == 2 && filterList.get(0) instanceof LocalDate && filterList.get(1) instanceof LocalDate) {
+                    this.parameters.add(new QueryParameterEntry(filterName, localDateToDateConversion((LocalDate) filterList.get(0)), QueryParameterEntry.Operator.GE));
+                    this.parameters.add(new QueryParameterEntry(filterName, localDateToDateConversion((LocalDate) filterList.get(1)), QueryParameterEntry.Operator.LE));
+                }
+            } else if(filterValue instanceof LocalDate) {
+                LocalDate localDate = (LocalDate) filterValue;
+                this.parameters.add(new QueryParameterEntry(filterName, localDateToDateConversion(localDate)));
             } else {
                 this.parameters.add(new QueryParameterEntry(filterName, filterValue));
             }
 		}
 	}
+
+	private Date localDateToDateConversion(LocalDate localDate) {
+        //default time zone
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+
+        //local date + atStartOfDay() + default time zone + toInstant() = Date
+        return Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+    }
 
     private QueryParameter(SingularAttribute name, Object value) {
         this.parameters = new ArrayList<>();

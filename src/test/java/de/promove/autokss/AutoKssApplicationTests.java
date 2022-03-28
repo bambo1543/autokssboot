@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles({"test"})
 class AutoKssApplicationTests {
 
 	@Autowired

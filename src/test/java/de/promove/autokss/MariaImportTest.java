@@ -6,6 +6,7 @@ import de.promove.autokss.service.GenericService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles({"dbimport"})
 public class MariaImportTest {
 
     @Autowired
