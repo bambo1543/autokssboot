@@ -3,6 +3,7 @@ package de.promove.autokss.web.common.crud;
 import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.dao.QueryParameter;
+import de.promove.autokss.model.IdEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.GrowlMessenger;

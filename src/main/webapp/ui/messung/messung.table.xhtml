@@ -1,0 +1,54 @@
+<ui:composition template="/WEB-INF/templates/table/table.template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:b="http://java.sun.com/jsf/composite/component"
+				xmlns:c="http://bambo.it/jsf">
+
+	<ui:define name="columns">
+		<p:column field="pruefDatum" headerText="#{msgs['entity.Messung.pruefDatum.headerText']}">
+			<p:outputLabel value="#{item.pruefDatum}">
+				<f:convertDateTime dateStyle="medium" />
+			</p:outputLabel>
+		</p:column>
+		<p:column field="locked" headerText="#{msgs['entity.Messung.locked.headerText']}"  style="text-align: center;">
+			<p:selectBooleanCheckbox value="#{item.locked}" disabled="true" />
+		</p:column>
+		<p:column field="pruefer" headerText="#{msgs['entity.Messung.pruefer.headerText']}" filterMatchMode="exact"
+				  sortBy="#{item.pruefer.email}">
+			<f:facet name="filter">
+				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{userConverter}">
+					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
+				</p:selectOneMenu>
+			</f:facet>
+
+			<h:outputText value="#{item.pruefer.email}" />
+		</p:column>
+		<p:column field="maschine" headerText="#{msgs['entity.Messung.maschine.headerText']}" filterMatchMode="exact"
+				  sortBy="#{item.maschine.name}">
+			<f:facet name="filter">
+				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{maschineConverter}">
+					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+				</p:selectOneMenu>
+			</f:facet>
+
+			<h:outputText value="#{item.maschine.name}" />
+		</p:column>
+
+		<p:column field="refraktometerKonzProz" headerText="#{msgs['entity.Messung.refraktometerKonzProz.headerText']}"/>
+		<p:column field="ph" headerText="#{msgs['entity.Messung.ph.headerText']}" />
+		<p:column field="nitrit" headerText="#{msgs['entity.Messung.nitrit.headerText']}"/>
+
+		<p:column field="refraktometerKonzProz2" headerText="#{msgs['entity.Messung.refraktometerKonzProz2.headerText']}"/>
+		<p:column field="ph2" headerText="#{msgs['entity.Messung.ph2.headerText']}"/>
+		<p:column field="nitrit2" headerText="#{msgs['entity.Messung.nitrit2.headerText']}"/>
+
+		<p:column field="bemerkung" />
+
+	</ui:define>
+
+</ui:composition>

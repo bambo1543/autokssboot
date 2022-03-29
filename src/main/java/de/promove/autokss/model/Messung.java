@@ -6,13 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Messung extends AbstractBaseEntity implements LockedEntity {
+public class Messung extends AbstractBaseEntity implements LockedEntity, NamedEntity {
 
     @Column(nullable = false)
     private Date pruefDatum;
@@ -25,8 +26,8 @@ public class Messung extends AbstractBaseEntity implements LockedEntity {
     private double ph;
     private double nitrit;
 
-    private double wasserNachgefuellt;
     private double wasserstandCm;
+    private double wasserNachgefuellt;
     private double oelNachgefuellt;
 
     private double refraktometerKonzProz2;
@@ -47,6 +48,11 @@ public class Messung extends AbstractBaseEntity implements LockedEntity {
         this.pruefDatum = pruefDatum;
         this.pruefer = pruefer;
         this.maschine = maschine;
+    }
+
+    public String getName() {
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        return sdf.format(pruefDatum) + " " + maschine.getName() + " " + pruefer.getEmail();
     }
 
 }
