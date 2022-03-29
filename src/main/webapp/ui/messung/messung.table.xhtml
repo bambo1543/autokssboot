@@ -8,18 +8,18 @@
 				xmlns:c="http://bambo.it/jsf">
 
 	<ui:define name="columns">
-		<p:column field="pruefDatum" headerText="#{msgs['entity.Messung.pruefDatum.headerText']}">
+		<p:column field="pruefDatum" headerText="#{msgs['entity.Messung.pruefDatum.headerText']}" sortOrder="desc">
+			<f:facet name="filter">
+				<p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblmessung').filter()" showButtonBar="true"/>
+			</f:facet>
 			<p:outputLabel value="#{item.pruefDatum}">
 				<f:convertDateTime dateStyle="medium" />
 			</p:outputLabel>
 		</p:column>
-		<p:column field="locked" headerText="#{msgs['entity.Messung.locked.headerText']}"  style="text-align: center;">
-			<p:selectBooleanCheckbox value="#{item.locked}" disabled="true" />
-		</p:column>
 		<p:column field="pruefer" headerText="#{msgs['entity.Messung.pruefer.headerText']}" filterMatchMode="exact"
 				  sortBy="#{item.pruefer.email}">
 			<f:facet name="filter">
-				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{userConverter}">
+				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
 					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
 					<f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
 				</p:selectOneMenu>
@@ -30,13 +30,13 @@
 		<p:column field="maschine" headerText="#{msgs['entity.Messung.maschine.headerText']}" filterMatchMode="exact"
 				  sortBy="#{item.maschine.name}">
 			<f:facet name="filter">
-				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{maschineConverter}">
+				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{maschineConverter}" style="width: auto">
 					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
 					<f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
 				</p:selectOneMenu>
 			</f:facet>
 
-			<h:outputText value="#{item.maschine.name}" />
+			<h:outputText value="#{item.maschine.name}"/>
 		</p:column>
 
 		<p:column field="refraktometerKonzProz" headerText="#{msgs['entity.Messung.refraktometerKonzProz.headerText']}"/>
@@ -48,6 +48,13 @@
 		<p:column field="nitrit2" headerText="#{msgs['entity.Messung.nitrit2.headerText']}"/>
 
 		<p:column field="bemerkung" />
+		<p:column field="locked" headerText="#{msgs['entity.Messung.locked.headerText']}"  style="text-align: center;">
+			<f:facet name="filter">
+				<p:triStateCheckbox onchange="PF('tblmessung').filter()">
+				</p:triStateCheckbox>
+			</f:facet>
+			<p:selectBooleanCheckbox value="#{item.locked}" disabled="true" />
+		</p:column>
 
 	</ui:define>
 

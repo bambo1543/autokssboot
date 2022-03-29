@@ -39,15 +39,6 @@
     margin-bottom: 10px;
 }
 
-.formContainer {
-    width: 330px;
-}
-
-.contentPanel {
-    padding: 0; 
-    margin: 10px;
-}
-
 /* Form */
 .frmLabel {
     margin-right: 10px;
@@ -56,10 +47,6 @@
 
 .frmInput {
     width: 200px;
-}
-
-.frmInputRule {
-    width: 400px;
 }
 
 /*Override JQuery/Primefaces styles*/
@@ -76,4 +63,3 @@
 /*select.selectOneMenuFilter.ui-column-filter{*/
 /*	width: 80px;*/
 /*}*/
-

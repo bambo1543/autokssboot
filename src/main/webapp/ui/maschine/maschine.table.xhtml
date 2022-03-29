@@ -15,14 +15,8 @@
 		<p:column field="wasserstandMinCm" headerText="#{msgs['entity.Maschine.wasserstandMinCm.headerText']}" />
 		<p:column field="cmEntsprichtLiter" headerText="#{msgs['entity.Maschine.cmEntsprichtLiter.headerText']}" />
 		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.Maschine.letzterEmulsionswechsel.headerText']}">
-<!--			<f:facet name="filter">-->
-<!--				<p:calendar id="cal1" pattern="yyyy-MM-dd" selectionMode="range">-->
-<!--					<p:ajax event="dateSelect" oncomplete="PF('tblmaschine').filter()" update="tblmaschine" />-->
-<!--					<p:ajax event="change" execute="@this" oncomplete="PF('tblmaschine').filter()" update="tblmaschine"/>-->
-<!--				</p:calendar>-->
-<!--			</f:facet>-->
 			<f:facet name="filter">
-				<p:datePicker selectionMode="range" onchange="PF('tblmaschine').filter()"  />
+				<p:datePicker id="emulsionsDatePicker" selectionMode="range" onchange="PF('tblmaschine').filter()" showButtonBar="true" />
 			</f:facet>
 			<p:outputLabel value="#{item.letzterEmulsionswechsel}">
 				<f:convertDateTime dateStyle="medium" />

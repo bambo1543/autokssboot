@@ -11,7 +11,11 @@
 				 paginator="true" rows="10" paginatorPosition="bottom"
 				 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				 rowsPerPageTemplate="5,10,15,20,50,100"
-                 lazy="true" size="small">
+                 lazy="true" size="small" resizableColumns="true">
+
+		<ui:define name="header">
+
+		</ui:define>
 
 		<ui:insert name="tableHeader">
 			<f:facet name="header">

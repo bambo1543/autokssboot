@@ -4,6 +4,7 @@ import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.IdEntity;
+import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.GrowlMessenger;
@@ -94,7 +95,7 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {
-		return new QueryParameter(filters);
+		return new QueryParameter(clazz, filters);
 	}
 
 	public String getEntityName() {
@@ -171,6 +172,29 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public void setSelectedItem(T selectedItem) {
 		this.selectedItem = selectedItem;
+	}
+
+	public boolean isAddable() {
+		return true;
+	}
+
+	public boolean isEditable() {
+		return isModifyable();
+	}
+
+	public boolean isDeleteable() {
+		return isModifyable();
+	}
+
+	private boolean isModifyable() {
+		if (selectedItem != null) {
+			if (selectedItem instanceof LockedEntity) {
+				LockedEntity lockedEntity = (LockedEntity) selectedItem;
+				return !lockedEntity.isLocked();
+			}
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -5,6 +5,14 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:n="http://java.sun.com/jsf/composite/component">
 
+	<ui:define name="head">
+		<style>
+			input[id='frmCrud:tblmaschine:emulsionsDatePicker_input'] {
+				width: 90%;
+			}
+		</style>
+	</ui:define>
+
 	<ui:define name="center">
 		<ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
 			<ui:param name="bean" value="#{maschineBean}"/>

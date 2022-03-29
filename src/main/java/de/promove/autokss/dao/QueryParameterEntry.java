@@ -10,7 +10,27 @@ import javax.persistence.metamodel.SingularAttribute;
 public class QueryParameterEntry<X, T> {
 
     public enum Operator {
-        EQ, GT, GE, LT, LE, STARTS, CONTAINS, ENDS
+        GE(">="), LE("<="), GT(">"),  LT("<"), EQ("="), STARTS("*"), CONTAINS("*"), ENDS("*");
+
+        private String operator;
+
+        Operator(String operator) {
+            this.operator = operator;
+
+        }
+
+        public String getOperator() {
+            return operator;
+        }
+
+        public static Operator getOperator(String operator) {
+            for (Operator o : values()) {
+                if(operator.startsWith(o.operator) && operator.length() >= o.operator.length()) {
+                    return o;
+                }
+            }
+            return null;
+        }
     }
 
     private SingularAttribute<X, T> attribute;

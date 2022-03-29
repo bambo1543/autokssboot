@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserService extends AbstractEntityService<User> {
 
-    Logger logger = LoggerFactory.getLogger(UserService.class);
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService() {
         super(User.class);

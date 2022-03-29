@@ -5,11 +5,24 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:n="http://java.sun.com/jsf/composite/component">
 
+	<ui:define name="head">
+		<style>
+			input[id='frmCrud:tblmessung:pruefDatePicker_input'] {
+				width: 90%;
+			}
+			span.shortenText {
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</ui:define>
+
 	<ui:define name="center">
 		<ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
 			<ui:param name="bean" value="#{messungBean}"/>
 			<ui:param name="name" value="messung"/>
-			<ui:param name="headerMessage" value="#{msgs['entity.Maschine.plural']}"/>
+			<ui:param name="headerMessage" value="#{msgs['entity.Messung.plural']}"/>
 		</ui:include>
 	</ui:define>
 
