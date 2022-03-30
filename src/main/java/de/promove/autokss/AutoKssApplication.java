@@ -29,6 +29,7 @@ public class AutoKssApplication extends SpringBootServletInitializer {
 		servletContext.setInitParameter("javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());
 //		servletContext.setInitParameter("javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
 		servletContext.setInitParameter("primefaces.THEME", "#{themeSwitcherBean.currentTheme}");
+		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
 
 		//registration
 		ServletRegistrationBean<FacesServlet> srb = new ServletRegistrationBean<>(new FacesServlet(), "*.xhtml");
