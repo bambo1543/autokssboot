@@ -1,7 +1,7 @@
 package de.promove.autokss.dao;
 
-import javax.persistence.criteria.JoinType;
-import javax.persistence.metamodel.Attribute;
+import jakarta.persistence.criteria.JoinType;
+import jakarta.persistence.metamodel.Attribute;
 
 /**
  * @author <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>

@@ -1,6 +1,6 @@
 package de.promove.autokss.web.common;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

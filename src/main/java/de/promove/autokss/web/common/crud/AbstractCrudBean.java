@@ -15,8 +15,8 @@ import org.primefaces.model.SortMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

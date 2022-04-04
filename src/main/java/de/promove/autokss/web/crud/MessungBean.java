@@ -5,8 +5,8 @@ import de.promove.autokss.model.Messung;
 import de.promove.autokss.web.common.crud.AbstractCrudBean;
 import org.springframework.stereotype.Component;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.view.ViewScoped;
 
 @Component
 @ManagedBean

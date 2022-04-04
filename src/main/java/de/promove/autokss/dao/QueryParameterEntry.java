@@ -1,6 +1,6 @@
 package de.promove.autokss.dao;
 
-import javax.persistence.metamodel.SingularAttribute;
+import jakarta.persistence.metamodel.SingularAttribute;
 
 /**
  * Date: 23.09.2010

@@ -2,8 +2,8 @@ package de.promove.autokss.model;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;

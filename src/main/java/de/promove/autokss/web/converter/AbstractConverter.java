@@ -6,9 +6,9 @@ import de.promove.autokss.service.AbstractEntityService;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
 
 public abstract class AbstractConverter<T extends IdEntity> implements Converter {
 

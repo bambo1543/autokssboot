@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
+import jakarta.faces.webapp.FacesServlet;
+import jakarta.servlet.ServletContext;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -26,10 +26,10 @@ public class AutoKssApplication extends SpringBootServletInitializer {
 	ServletRegistrationBean jsfServletRegistration(ServletContext servletContext) {
 		//spring boot only works if this is set
 		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-		servletContext.setInitParameter("javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());
-//		servletContext.setInitParameter("javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
+		servletContext.setInitParameter("jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());
+//		servletContext.setInitParameter("jakarta.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
 		servletContext.setInitParameter("primefaces.THEME", "#{themeSwitcherBean.currentTheme}");
-		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
+//		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
 
 		//registration
 		ServletRegistrationBean<FacesServlet> srb = new ServletRegistrationBean<>(new FacesServlet(), "*.xhtml");
