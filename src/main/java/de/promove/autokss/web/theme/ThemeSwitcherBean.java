@@ -11,6 +11,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.event.ActionEvent;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,6 +33,18 @@ public class ThemeSwitcherBean implements Serializable {
     @PostConstruct
     public void init() {
         themes = new ArrayList<>();
+
+        themes.add("arya");
+        themes.add("luna-amber");
+        themes.add("luna-blue");
+        themes.add("luna-green");
+        themes.add("luna-pink");
+        themes.add("nova-colored");
+        themes.add("nova-dark");
+        themes.add("nova-light");
+        themes.add("saga");
+        themes.add("vela");
+
         themes.add("afterdark");
         themes.add("afternoon");
         themes.add("afterwork");
@@ -70,7 +83,8 @@ public class ThemeSwitcherBean implements Serializable {
         themes.add("ui-lightness");
         themes.add("vader");
 
-        currentTheme = themes.get(1);
+        currentTheme = "afterwork";
+//        currentTheme = themes.get(0);
     }
 
     public List<String> getThemes() {
