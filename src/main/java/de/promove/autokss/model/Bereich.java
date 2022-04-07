@@ -1,5 +1,6 @@
 package de.promove.autokss.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import jakarta.persistence.CascadeType;
@@ -14,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Bereich extends AbstractBaseEntity implements NamedEntity {
 
+    @NotNull
     private String name;
     private String description;
 

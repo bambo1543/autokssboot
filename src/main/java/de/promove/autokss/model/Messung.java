@@ -1,5 +1,6 @@
 package de.promove.autokss.model;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import jakarta.persistence.Column;
@@ -15,25 +16,25 @@ import java.util.Date;
 @NoArgsConstructor
 public class Messung extends AbstractBaseEntity implements LockedEntity, NamedEntity {
 
-    @Column(nullable = false)
+    @NotNull
     private Date pruefDatum;
 
-    @Column(nullable = false)
+    @NotNull
     private Date timestamp;
 
-    private double refraktometerKonzProz;
+    private Double refraktometerKonzProz;
     @Max(value = 14)
-    private double ph;
-    private double nitrit;
+    private Double ph;
+    private Double nitrit;
 
-    private double wasserstandCm;
-    private double wasserNachgefuellt;
-    private double oelNachgefuellt;
+    private Double wasserstandCm;
+    private Double wasserNachgefuellt;
+    private Double oelNachgefuellt;
 
-    private double refraktometerKonzProz2;
+    private Double refraktometerKonzProz2;
     @Max(value = 14)
-    private double ph2;
-    private double nitrit2;
+    private Double ph2;
+    private Double nitrit2;
 
     private String bemerkung;
     private boolean locked;

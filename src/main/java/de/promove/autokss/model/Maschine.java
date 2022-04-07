@@ -21,13 +21,13 @@ public class Maschine extends AbstractBaseEntity implements NamedEntity {
     private String description;
 
     @NotNull
-    private double tankVolumenLiter;
+    private Double tankVolumenLiter;
     @NotNull
-    private double wasserstandMaxCm;
+    private Double wasserstandMaxCm;
     @NotNull
-    private double wasserstandMinCm;
+    private Double wasserstandMinCm;
     @NotNull
-    private double cmEntsprichtLiter;
+    private Double cmEntsprichtLiter;
 
     private Date letzterEmulsionswechsel;
 

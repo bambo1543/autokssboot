@@ -17,16 +17,16 @@ public class Kuehlschmierstoff extends AbstractBaseEntity implements NamedEntity
     private String name;
     private String hersteller;
     @NotNull
-    private double phMin;
+    private Double phMin;
     @NotNull
-    private double phMax;
+    private Double phMax;
     @NotNull
-    private double nitrat;
+    private Double refraktometer;
     @NotNull
-    private double nitrit;
+    private Double nitrat;
     @NotNull
-    private double refraktometer;
-
-
+    private Double nitrit;
+    @NotNull
+    private Double wasserhaerte;
 
 }

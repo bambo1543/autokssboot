@@ -13,7 +13,6 @@ import jakarta.faces.view.ViewScoped;
 import java.util.List;
 
 @Component
-@ManagedBean
 @RequestScope
 public class SelectItemsBean {
 

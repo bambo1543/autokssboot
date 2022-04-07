@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
+import org.springframework.context.annotation.Scope;
+
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;

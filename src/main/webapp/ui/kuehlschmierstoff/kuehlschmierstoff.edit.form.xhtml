@@ -1,0 +1,42 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+		<h:outputLabel for="name" value="#{msgs['entity.Kuehlschmierstoff.name']}" />
+		<p:inputText id="name" value="#{item.name}" />
+		<h:message for="name"/>
+
+		<h:outputLabel for="hersteller" value="#{msgs['entity.Kuehlschmierstoff.hersteller']}" />
+		<p:inputText id="hersteller" value="#{item.hersteller}" />
+		<h:message for="hersteller"/>
+
+		<h:outputLabel for="phMin" value="#{msgs['entity.Kuehlschmierstoff.phMin']}" />
+		<p:inputNumber id="phMin" value="#{item.phMin}" />
+		<h:message for="phMin"/>
+
+		<h:outputLabel for="phMax" value="#{msgs['entity.Kuehlschmierstoff.phMax']}" />
+		<p:inputNumber id="phMax" value="#{item.phMax}" />
+		<h:message for="phMax"/>
+
+		<h:outputLabel for="refraktometer" value="#{msgs['entity.Kuehlschmierstoff.refraktometer']}" />
+		<p:inputNumber id="refraktometer" value="#{item.refraktometer}" />
+		<h:message for="refraktometer"/>
+
+		<h:outputLabel for="nitrat" value="#{msgs['entity.Kuehlschmierstoff.nitrat']}" />
+		<p:inputNumber id="nitrat" value="#{item.nitrat}" />
+		<h:message for="nitrat"/>
+
+		<h:outputLabel for="nitrit" value="#{msgs['entity.Kuehlschmierstoff.nitrit']}" />
+		<p:inputNumber id="nitrit" value="#{item.nitrit}" />
+		<h:message for="nitrit"/>
+
+		<h:outputLabel for="wasserhaerte" value="#{msgs['entity.Kuehlschmierstoff.wasserhaerte']}" />
+		<p:inputNumber id="wasserhaerte" value="#{item.wasserhaerte}" />
+		<h:message for="wasserhaerte"/>
+
+	</h:panelGrid>
+
+</div>

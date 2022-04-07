@@ -10,8 +10,7 @@ import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 
 @Component
-@ManagedBean
-@ViewScoped
+@Scope("view")
 public class BereichBean extends AbstractCrudBean<Bereich> {
 
     public BereichBean() {

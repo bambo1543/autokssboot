@@ -3,7 +3,9 @@ package de.promove.autokss.web.crud;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.common.crud.AbstractCrudBean;
+import jakarta.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +13,7 @@ import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 
 @Component
-@ManagedBean
-@ViewScoped
+@Scope("view")
 public class UserBean extends AbstractCrudBean<User> {
 
     @Autowired
@@ -54,6 +55,10 @@ public class UserBean extends AbstractCrudBean<User> {
         editItem = null;
 
         this.visibleSection = "table";
+    }
+
+    public String getLocale() {
+        return FacesContext.getCurrentInstance().getViewRoot().getLocale().getCountry();
     }
 
 }

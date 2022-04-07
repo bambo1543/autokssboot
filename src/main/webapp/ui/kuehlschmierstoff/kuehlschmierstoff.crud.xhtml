@@ -1,0 +1,16 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:n="http://java.sun.com/jsf/composite/component">
+
+	<ui:define name="center">
+		<ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
+			<ui:param name="bean" value="#{kuehlschmierstoffBean}"/>
+			<ui:param name="name" value="kuehlschmierstoff"/>
+			<ui:param name="headerMessage" value="#{msgs['entity.Kuehlschmierstoff.plural']}"/>
+		</ui:include>
+	</ui:define>
+
+</ui:composition>
