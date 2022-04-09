@@ -37,7 +37,7 @@
 					<h:form id="formHeader">
 						<div class="ui-widget ui-widget-header ui-corner-top" style="height: 50px;">
 							<h:panelGrid columns="2" columnClasses="textLeft,textRight" style="width: 100%">
-								<h:outputText value="AutoKSS" style="font-size: xx-large;"/>
+								<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
 								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
 									<f:selectItems value="#{themeSwitcherBean.themes}" />
 									<p:ajax event="change"/>
