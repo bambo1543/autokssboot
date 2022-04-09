@@ -4,39 +4,54 @@
 	 xmlns:f="http://java.sun.com/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
 
-	<h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
-		<h:outputLabel for="name" value="#{msgs['entity.Kuehlschmierstoff.name']}" />
+	<p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+		<p:outputLabel for="name" value="#{msgs['entity.Kuehlschmierstoff.name']}" />
 		<p:inputText id="name" value="#{item.name}" />
-		<h:message for="name"/>
+		<p:message for="name"/>
 
-		<h:outputLabel for="hersteller" value="#{msgs['entity.Kuehlschmierstoff.hersteller']}" />
+		<p:outputLabel for="hersteller" value="#{msgs['entity.Kuehlschmierstoff.hersteller']}" />
 		<p:inputText id="hersteller" value="#{item.hersteller}" />
-		<h:message for="hersteller"/>
+		<p:message for="hersteller"/>
 
-		<h:outputLabel for="phMin" value="#{msgs['entity.Kuehlschmierstoff.phMin']}" />
+		<p:outputLabel for="phMin" value="#{msgs['entity.Kuehlschmierstoff.phMin']}" />
 		<p:inputNumber id="phMin" value="#{item.phMin}" />
-		<h:message for="phMin"/>
+		<p:message for="phMin"/>
 
-		<h:outputLabel for="phMax" value="#{msgs['entity.Kuehlschmierstoff.phMax']}" />
+		<p:outputLabel for="phMax" value="#{msgs['entity.Kuehlschmierstoff.phMax']}" />
 		<p:inputNumber id="phMax" value="#{item.phMax}" />
-		<h:message for="phMax"/>
+		<p:message for="phMax"/>
 
-		<h:outputLabel for="refraktometer" value="#{msgs['entity.Kuehlschmierstoff.refraktometer']}" />
+		<p:outputLabel for="refraktometer" value="#{msgs['entity.Kuehlschmierstoff.refraktometer']}" />
 		<p:inputNumber id="refraktometer" value="#{item.refraktometer}" />
-		<h:message for="refraktometer"/>
+		<p:message for="refraktometer"/>
 
-		<h:outputLabel for="nitrat" value="#{msgs['entity.Kuehlschmierstoff.nitrat']}" />
+		<p:outputLabel for="nitrat" value="#{msgs['entity.Kuehlschmierstoff.nitrat']}" />
 		<p:inputNumber id="nitrat" value="#{item.nitrat}" />
-		<h:message for="nitrat"/>
+		<p:message for="nitrat"/>
 
-		<h:outputLabel for="nitrit" value="#{msgs['entity.Kuehlschmierstoff.nitrit']}" />
+		<p:outputLabel for="nitrit" value="#{msgs['entity.Kuehlschmierstoff.nitrit']}" />
 		<p:inputNumber id="nitrit" value="#{item.nitrit}" />
-		<h:message for="nitrit"/>
+		<p:message for="nitrit"/>
 
-		<h:outputLabel for="wasserhaerte" value="#{msgs['entity.Kuehlschmierstoff.wasserhaerte']}" />
+		<p:outputLabel for="wasserhaerte" value="#{msgs['entity.Kuehlschmierstoff.wasserhaerte']}" />
 		<p:inputNumber id="wasserhaerte" value="#{item.wasserhaerte}" />
-		<h:message for="wasserhaerte"/>
+		<p:message for="wasserhaerte"/>
 
-	</h:panelGrid>
+		<p:outputLabel for="datenblattName" value="#{msgs['entity.Kuehlschmierstoff.datenblattName']}" />
+		<h:outputText id="datenblattName" value="#{item.datanblattName}"  />
+		<h:panelGroup>
+			<p:commandButton ajax="true" icon="pi pi-trash" styleClass="ui-button-outlined" update="datenblattName download" action="#{kuehlschmierstoffBean.removeDatenblatt}" disabled="#{item.datanblattName eq null}"/>
+			<p:commandButton id="download" ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined" disabled="#{item.datanblattName eq null}">
+				<p:fileDownload value="#{kuehlschmierstoffBean.datenblattFile}"/>
+			</p:commandButton>
+		</h:panelGroup>
 
+		<f:facet name = "footer">
+			<h:panelGroup style = "display:block; text-align:left">
+				<p:fileUpload id="datenblatt" listener="#{bean.handleFileUpload}" label="#{msgs['entity.Kuehlschmierstoff.datenblatt']}"
+							  mode="advanced" update="datenblattName growl" />
+			</h:panelGroup>
+		</f:facet>
+
+	</p:panelGrid>
 </div>

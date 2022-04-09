@@ -1,11 +1,14 @@
 package de.promove.autokss.model;
 
+import jakarta.persistence.Lob;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
+
+import java.sql.Blob;
 
 @Entity
 @Getter
@@ -29,4 +32,8 @@ public class Kuehlschmierstoff extends AbstractBaseEntity implements NamedEntity
     @NotNull
     private Double wasserhaerte;
 
+    private String datanblattName;
+
+    @Lob
+    private Blob datenblatt;
 }

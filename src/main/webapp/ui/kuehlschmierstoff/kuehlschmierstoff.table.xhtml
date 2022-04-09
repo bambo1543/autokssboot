@@ -16,6 +16,13 @@
 		<my:numberColumn value="#{item.nitrat}" headerText="#{msgs['entity.Kuehlschmierstoff.nitrat']}"/>
 		<my:numberColumn value="#{item.nitrit}" headerText="#{msgs['entity.Kuehlschmierstoff.nitrit']}"/>
 		<my:numberColumn value="#{item.wasserhaerte}" headerText="#{msgs['entity.Kuehlschmierstoff.wasserhaerte']}"/>
+<!--		<p:column field="datanblattName" headerText="#{msgs['entity.Kuehlschmierstoff.datenblattName']}" />-->
+		<p:column exportable="false" headerText="#{msgs['entity.Kuehlschmierstoff.datenblatt']}" style="text-align: center">
+			<p:commandButton ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined" disabled="#{item.datanblattName eq null}">
+				<f:setPropertyActionListener value="#{item}" target="#{kuehlschmierstoffBean.editItem}"/>
+				<p:fileDownload value="#{kuehlschmierstoffBean.datenblattFile}"/>
+			</p:commandButton>
+		</p:column>
 	</ui:define>
 
 </ui:composition>

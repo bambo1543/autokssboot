@@ -3,7 +3,10 @@ package de.promove.autokss;
 
 import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
+import de.promove.autokss.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
@@ -24,6 +27,8 @@ import java.util.Map;
 @SpringBootTest
 @ActiveProfiles({"dbimport"})
 public class MariaImportTest {
+
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private GenericService genericService;
@@ -53,6 +58,7 @@ public class MariaImportTest {
             }
         });
         genericService.persistAll(bereiche);
+        logger.info("Persisted Bereiche");
 
         List<User> users = jdbcTemplate.query("select * from neutblPrüfer", new RowMapper<User>() {
             @Override
@@ -65,6 +71,7 @@ public class MariaImportTest {
             }
         });
         genericService.persistAll(users);
+        logger.info("Persisted Users");
 
         List<Einsatzkonzentration> einsatzkonzentrationen = jdbcTemplate.query("select * from neutblEinsatzkonzentration", new RowMapper<Einsatzkonzentration>() {
             @Override
@@ -75,6 +82,7 @@ public class MariaImportTest {
             }
         });
         genericService.persistAll(einsatzkonzentrationen);
+        logger.info("Persisted Einsatzkonzentration");
 
         List<Maschine> maschinen = jdbcTemplate.query("select * from neutblMaschine", new RowMapper<Maschine>() {
             @Override
@@ -93,6 +101,7 @@ public class MariaImportTest {
             }
         });
         genericService.persistAll(maschinen);
+        logger.info("Persisted Maschine");
 
         List<Messung> messungen = jdbcTemplate.query("select * from neutblMessung", new RowMapper<Messung>() {
             @Override
@@ -115,5 +124,6 @@ public class MariaImportTest {
             }
         });
         genericService.persistAll(messungen);
+        logger.info("Persisted Messung");
     }
 }

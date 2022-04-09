@@ -9,9 +9,12 @@ import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
+import jakarta.faces.application.FacesMessage;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
+import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -19,11 +22,17 @@ import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
 import org.springframework.context.annotation.Scope;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public abstract class AbstractCrudBean<T extends NamedEntity> implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 1234560L;
+
+	private UploadedFile uploadedFile;
 
 	@Autowired
 	@Qualifier(value = "genericService")
@@ -110,6 +119,10 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 
 	public T getEditItem() {
 		return editItem;
+	}
+
+	public void setEditItem(T editItem) {
+		this.editItem = editItem;
 	}
 
 	public void add() {
@@ -199,4 +212,19 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 		return false;
 	}
 
+	public void upload() {
+		if (uploadedFile != null) {
+			FacesMessage message = new FacesMessage("Successful", uploadedFile.getFileName() + " is uploaded.");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
 }
+

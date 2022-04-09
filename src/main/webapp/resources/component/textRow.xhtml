@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:composite="http://java.sun.com/jsf/composite"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<composite:interface>
+		<composite:attribute name="entity" />
+		<composite:attribute name="name" />
+		<composite:attribute name="value" />
+	</composite:interface>
+
+	<composite:implementation>
+		<p:row>
+			<p:column>
+				<h:outputLabel for="#{cc.attrs.name}" value="#{msgs['entity.'.concat(cc.attrs.entity).concat('.').concat(cc.attrs.name)]}" />
+			</p:column>
+			<p:column>
+				<p:inputText id="#{cc.attrs.name}" value="#{cc.attrs.value}" />
+			</p:column>
+			<p:column>
+				<h:message for="#{cc.attrs.name}"/>
+			</p:column>
+		</p:row>
+	</composite:implementation>
+
+</html>
