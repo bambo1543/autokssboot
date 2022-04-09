@@ -71,24 +71,24 @@ class GenericDaoTests {
 		Bereich b3 = new Bereich("Drehen");
 		genericDao.persist(b3);
 
-		Einsatzkonzentration e1 = new Einsatzkonzentration(5.0, 8.0, 6.5);
+		Einsatzkonzentration e1 = new Einsatzkonzentration("Stufe1", 5.0, 8.0, 6.5);
 		genericDao.persist(e1);
 
-		Einsatzkonzentration e2 = new Einsatzkonzentration(7.0, 8.0, 7.5);
+		Einsatzkonzentration e2 = new Einsatzkonzentration("Stufe2", 7.0, 8.0, 7.5);
 		genericDao.persist(e2);
 
 		Maschine m1 = new Maschine("CTX 310", "test", b3);
 		applyNotNullAttributes(m1);
 		m1.setLetzterEmulsionswechsel(new Date(new Date().getTime() - 1000));
-//		m1.setEinsatzkonzentration(e1);
+		m1.setEinsatzkonzentration(e1);
 		genericDao.persist(m1);
 		Maschine m2 = new Maschine("DMC 64 V","test", b2);
 		applyNotNullAttributes(m2);
-//		m2.setEinsatzkonzentration(e1);
+		m2.setEinsatzkonzentration(e1);
 		genericDao.persist(m2);
 		Maschine m3 = new Maschine("Meba Bandsäge", "test", b1);
 		applyNotNullAttributes(m3);
-//		m3.setEinsatzkonzentration(e2);
+		m3.setEinsatzkonzentration(e2);
 		genericDao.persist(m3);
 
 		List<Maschine> maschinen = genericDao.listAll(Maschine.class);

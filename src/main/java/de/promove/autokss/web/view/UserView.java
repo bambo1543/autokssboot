@@ -1,5 +1,6 @@
 package de.promove.autokss.web.view;
 
+import de.promove.autokss.configuration.JsfConfiguration;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
@@ -10,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("view")
+@Scope(JsfConfiguration.VIEW_SCOPE)
 public class UserView extends AbstractCrudView<User> {
 
     @Autowired

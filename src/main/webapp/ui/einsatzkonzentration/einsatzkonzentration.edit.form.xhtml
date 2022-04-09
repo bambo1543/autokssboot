@@ -1,0 +1,25 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:h="http://java.sun.com/jsf/html"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+		<p:outputLabel for="name" value="#{msgs['entity.einsatzkonzentration.name']}" />
+		<p:inputText id="name" value="#{item.name}" />
+		<p:message for="name"/>
+
+		<p:outputLabel for="min" value="#{msgs['entity.einsatzkonzentration.min']}" />
+		<p:inputNumber id="min" value="#{item.min}" />
+		<p:message for="min"/>
+		
+		<p:outputLabel for="max" value="#{msgs['entity.einsatzkonzentration.max']}" />
+		<p:inputNumber id="max" value="#{item.max}" />
+		<p:message for="max"/>
+		
+		<p:outputLabel for="soll" value="#{msgs['entity.einsatzkonzentration.soll']}" />
+		<p:inputNumber id="soll" value="#{item.soll}" />
+		<p:message for="soll"/>
+	</p:panelGrid>
+
+</div>

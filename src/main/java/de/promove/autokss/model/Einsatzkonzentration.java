@@ -1,5 +1,6 @@
 package de.promove.autokss.model;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -13,8 +14,11 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Einsatzkonzentration extends AbstractBaseEntity {
+public class Einsatzkonzentration extends AbstractBaseEntity implements NamedEntity {
 
+    @NotNull
+    @Column(unique = true)
+    private String name;
     @NotNull
     private Double min;
     @NotNull
@@ -25,7 +29,8 @@ public class Einsatzkonzentration extends AbstractBaseEntity {
     @OneToMany(mappedBy = "einsatzkonzentration", cascade = CascadeType.ALL)
     private Set<Maschine> maschinen = new HashSet<>();
 
-    public Einsatzkonzentration(double min, double max, double soll) {
+    public Einsatzkonzentration(String name, double min, double max, double soll) {
+        this.name = name;
         this.min = min;
         this.max = max;
         this.soll = soll;

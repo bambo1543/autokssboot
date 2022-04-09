@@ -8,14 +8,15 @@
         <p:menubar>
             <p:submenu label="Daten">
                 <p:menuitem value="#{msgs['entity.maschine.plural']}" url="#{request.contextPath}/ui/maschine/maschine.crud.xhtml" />
+                <p:menuitem value="#{msgs['entity.einsatzkonzentration.plural']}" url="#{request.contextPath}/ui/einsatzkonzentration/einsatzkonzentration.crud.xhtml" />
                 <p:menuitem value="#{msgs['entity.bereich.plural']}" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
                 <p:menuitem value="#{msgs['entity.messung.plural']}" url="#{request.contextPath}/ui/messung/messung.crud.xhtml"/>
                 <p:menuitem value="#{msgs['entity.user.plural']}" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>
-                <p:menuitem value="MIN MAX Werte" url="#{request.contextPath}/ui/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
+                <p:menuitem value="#{msgs['entity.kuehlschmierstoff.plural']}" url="#{request.contextPath}/ui/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
             </p:submenu>
             <p:submenu label="Workflow">
-                <p:menuitem value="1. Messung anlegen"/>
-                <p:menuitem value="2. Messung anlegen"/>
+                <p:menuitem value="#{msgs['workflow.firstMessung']}" url="#{request.contextPath}/ui/messung/messung.edit.form.first.xhtml"/>
+                <p:menuitem value="#{msgs['workflow.secondMessung']}" url="#{request.contextPath}/ui/messung/messung.edit.form.second.xhtml"/>
             </p:submenu>
             <p:submenu label="Berichte">
                 <p:menuitem value="Werte Bericht öffnen"/>

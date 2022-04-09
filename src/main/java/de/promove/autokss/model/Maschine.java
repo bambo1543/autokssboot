@@ -34,7 +34,7 @@ public class Maschine extends AbstractBaseEntity implements NamedEntity {
     @ManyToOne(optional = false)
     private Bereich bereich;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Einsatzkonzentration einsatzkonzentration;
 
     public Maschine(String name, String description, Bereich bereich) {

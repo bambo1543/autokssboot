@@ -107,7 +107,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	public String getEntityName() {
-		return MessageFactory.getMessage("entity." + clazz.getSimpleName() + ".singular");
+		return MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + ".singular");
 	}
 
 	public LazyDataModel<T> getDataModel() {
@@ -198,7 +198,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 		return isModifyable();
 	}
 
-	private boolean isModifyable() {
+	protected boolean isModifyable() {
 		if (selectedItem != null) {
 			if (selectedItem instanceof LockedEntity) {
 				LockedEntity lockedEntity = (LockedEntity) selectedItem;

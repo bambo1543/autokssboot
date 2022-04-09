@@ -1,0 +1,17 @@
+<ui:composition template="/WEB-INF/templates/table/table.template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:b="http://java.sun.com/jsf/composite/component"
+				xmlns:c="http://bambo.it/my">
+
+	<ui:define name="columns">
+		<p:column field="name" headerText="#{msgs['entity.einsatzkonzentration.name']}" />
+		<p:column field="min" headerText="#{msgs['entity.einsatzkonzentration.min']}" />
+		<p:column field="max" headerText="#{msgs['entity.einsatzkonzentration.max']}" />
+		<p:column field="soll" headerText="#{msgs['entity.einsatzkonzentration.soll']}" />
+	</ui:define>
+
+</ui:composition>

@@ -76,7 +76,7 @@ public class MariaImportTest {
         List<Einsatzkonzentration> einsatzkonzentrationen = jdbcTemplate.query("select * from neutblEinsatzkonzentration", new RowMapper<Einsatzkonzentration>() {
             @Override
             public Einsatzkonzentration mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Einsatzkonzentration e = new Einsatzkonzentration(rs.getInt("Min"), rs.getInt("Max"), rs.getDouble("Soll"));
+                Einsatzkonzentration e = new Einsatzkonzentration(String.valueOf(rowNum), rs.getInt("Min"), rs.getInt("Max"), rs.getDouble("Soll"));
                 einsatzkonzentrationMap.put(rs.getInt("ID"), e);
                 return e;
             }
