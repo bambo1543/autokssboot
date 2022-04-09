@@ -5,8 +5,9 @@ import de.promove.autokss.model.Maschine;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-@Component
+@Controller
 @Scope(JsfConfiguration.VIEW_SCOPE)
 public class MaschineView extends AbstractCrudView<Maschine> {
 

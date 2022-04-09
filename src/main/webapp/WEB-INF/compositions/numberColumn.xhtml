@@ -6,12 +6,12 @@
                 xmlns:cc="http://java.sun.com/jsf/composite"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <p:column sortBy="#{value}" filterBy="#{value}" style="#{style}">
+    <p:column sortBy="#{value}" filterBy="#{value}" style="text-align: right; #{style}">
         <f:facet name="header">
             <h:outputText value="#{headerText}"/>
         </f:facet>
         <h:outputText value="#{value}">
-            <f:convertNumber />
+            <f:convertNumber minFractionDigits="2"/>
         </h:outputText>
     </p:column>
 </ui:composition>

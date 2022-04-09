@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:cc="http://java.sun.com/jsf/composite"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <p:column field="#{field}" headerText="#{headerText}" sortBy="#{value}" filterMatchMode="exact">
+        <f:facet name="filter">
+            <p:selectOneMenu onchange="#{onchange}" converter="#{converter}" styleClass="custom-filter">
+                <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{selectItems}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+            </p:selectOneMenu>
+        </f:facet>
+        <h:outputText value="#{value}" />
+    </p:column>
+
+</ui:composition>

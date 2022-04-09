@@ -7,11 +7,7 @@
         <source>numberColumn.xhtml</source>
     </tag>
     <tag>
-        <tag-name>textColumn</tag-name>
-        <source>textColumn.xhtml</source>
-    </tag>
-    <tag>
-        <tag-name>test</tag-name>
-        <source>test.xhtml</source>
+        <tag-name>entityColumn</tag-name>
+        <source>entityColumn.xhtml</source>
     </tag>
 </facelet-taglib>

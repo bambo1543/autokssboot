@@ -41,7 +41,7 @@
 
 		<p:outputLabel for="einsatzkonzentration" value="#{msgs['entity.maschine.einsatzkonzentration']}" />
 		<p:selectOneMenu id="einsatzkonzentration" value="#{item.einsatzkonzentration}" converter="#{einsatzkonzentrationConverter}">
-			<f:selectItems value="#{selectItemsBean.einsatzkonzentrationen}" var="i" itemLabel="min:#{i.min}/max:#{i.max}/soll:#{i.soll}" />
+			<f:selectItems value="#{selectItemsBean.einsatzkonzentrationen}" var="i" itemLabel="#{i.name}/min:#{i.min}/max:#{i.max}/soll:#{i.soll}" />
 		</p:selectOneMenu>
 		<p:message for="einsatzkonzentration"/>
     </p:panelGrid>

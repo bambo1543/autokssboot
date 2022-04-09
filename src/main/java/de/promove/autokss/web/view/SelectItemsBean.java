@@ -5,11 +5,12 @@ import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
-@Component
+@Controller
 @RequestScope
 public class SelectItemsBean {
 
