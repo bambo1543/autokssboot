@@ -19,7 +19,7 @@
 		<ui:insert name="tableHeader">
 			<f:facet name="header">
 				<h:panelGrid columns="2" columnClasses="textLeft,textRight">
-					<h:outputText value="#{headerMessage}" style="font-size: x-large;"/>
+					<h:outputText value="#{msgs['entity.'.concat(name).concat('.plural')]}" style="font-size: x-large;"/>
 					<h:panelGroup>
 						<ui:insert name="actionBar">
 							<ui:include src="table.actionbar.xhtml"/>
@@ -31,7 +31,7 @@
 
 		<p:ajax event="rowSelect" update="@form :frmConfirmDelete" />
 		<p:ajax event="rowUnselect" update="@form :frmConfirmDelete" />
-		<p:ajax event="rowDblselect" listener="#{view.edit}" update="@form :frmConfirmDelete" />
+		<p:ajax event="rowDblselect" listener="#{view.edit}" update="@form :frmConfirmDelete" disabled="#{!view.editable}"/>
 
 		<ui:insert name="columns"/>
 
