@@ -77,6 +77,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -86,9 +90,15 @@
 		</dependency>
 
 		<!-- DB -->
+<!--		<dependency>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.6.1</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -167,7 +177,7 @@
 		<profile>
 			<id>EMBEDDED</id>
 			<properties>
-<!--				<spring.profiles.active>h2db</spring.profiles.active>-->
+<!--				<spring.profiles.active>hsqldb</spring.profiles.active>-->
 				<spring.profiles.active>mariadb</spring.profiles.active>
 			</properties>
 			<dependencies>

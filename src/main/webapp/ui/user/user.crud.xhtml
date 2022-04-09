@@ -7,25 +7,25 @@
 
     <ui:define name="center">
         <ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
-            <ui:param name="bean" value="#{userBean}"/>
+            <ui:param name="view" value="#{userView}"/>
             <ui:param name="name" value="user"/>
-            <ui:param name="headerMessage" value="#{msgs['entity.User.plural']}"/>
+            <ui:param name="headerMessage" value="#{msgs['entity.user.plural']}"/>
         </ui:include>
 
         <h:form id="frmPassword">
-            <h:panelGroup id="pnlPassword" rendered="#{userBean.visibleSection eq 'password'}">
+            <h:panelGroup id="pnlPassword" rendered="#{userView.visibleSection eq 'password'}">
                     <div class="span-26 last">
                         <h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
-                            <h:outputLabel for="password" value="#{msgs['entity.User.password']}"/>
-                            <p:password id="password" value="#{userBean.editItem.password}"/>
+                            <h:outputLabel for="password" value="#{msgs['entity.user.password']}"/>
+                            <p:password id="password" value="#{userView.editItem.password}"/>
                             <h:message for="password"/>
                         </h:panelGrid>
                     </div>
 
                     <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
-                        <p:commandButton value="#{msgs['btn.save']}" action="#{userBean.savePassword}"
+                        <p:commandButton value="#{msgs['btn.save']}" action="#{userView.savePassword}"
                                          update="pnlCenter growl"/>
-                        <p:commandButton value="#{msgs['btn.cancel']}" action="#{userBean.cancelPassword}"
+                        <p:commandButton value="#{msgs['btn.cancel']}" action="#{userView.cancelPassword}"
                                          update="pnlCenter growl" immediate="true"/>
                     </div>
             </h:panelGroup>

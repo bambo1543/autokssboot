@@ -1,20 +1,15 @@
-package de.promove.autokss.web.crud;
+package de.promove.autokss.web.view;
 
-import de.promove.autokss.model.Bereich;
 import de.promove.autokss.model.Kuehlschmierstoff;
-import de.promove.autokss.service.InitDBService;
-import de.promove.autokss.web.common.crud.AbstractCrudBean;
+import de.promove.autokss.web.common.crud.AbstractCrudView;
 import de.promove.autokss.web.util.MessageFactory;
 import jakarta.faces.application.FacesMessage;
-import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
-import org.primefaces.util.SerializableConsumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
@@ -25,11 +20,11 @@ import java.sql.SQLException;
 
 @Component
 @Scope("view")
-public class KuehlschmierstoffBean extends AbstractCrudBean<Kuehlschmierstoff> {
+public class KuehlschmierstoffView extends AbstractCrudView<Kuehlschmierstoff> {
 
-    Logger logger = LoggerFactory.getLogger(KuehlschmierstoffBean.class);
+    Logger logger = LoggerFactory.getLogger(KuehlschmierstoffView.class);
 
-    public KuehlschmierstoffBean() {
+    public KuehlschmierstoffView() {
         super(Kuehlschmierstoff.class);
     }
 

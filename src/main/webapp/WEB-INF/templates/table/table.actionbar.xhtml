@@ -4,20 +4,20 @@
      xmlns:f="http://java.sun.com/jsf/core"
      xmlns:p="http://primefaces.org/ui">
 
-    <p:commandButton id="btnAdd" icon="pi pi-plus-circle" action="#{bean.add}" update="@form" disabled="#{!bean.addable}"/>
+    <p:commandButton id="btnAdd" icon="pi pi-plus-circle" action="#{view.add}" update="@form" disabled="#{!view.addable}"/>
     <p:tooltip id="btnAddTooltip" for="btnAdd" value="#{msgs['btn.add.tooltip']}"/>
 
-    <p:commandButton id="btnEdit" icon="pi pi-pencil" action="#{bean.edit}" update="@form" disabled="#{!bean.editable}" />
+    <p:commandButton id="btnEdit" icon="pi pi-pencil" action="#{view.edit}" update="@form" disabled="#{!view.editable}" />
     <p:tooltip id="btnEditTooltip" for="btnEdit" value="#{msgs['btn.edit.tooltip']}"/>
 
-    <p:commandButton id="btnDelete" icon="pi pi-trash" action="#{bean.delete}" update="@form growl" disabled="#{!bean.deleteable}" >
+    <p:commandButton id="btnDelete" icon="pi pi-trash" action="#{view.delete}" update="@form growl" disabled="#{!view.deleteable}" >
         <p:confirm header="Confirm deletion" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
     </p:commandButton>
     <p:tooltip id="btnDeleteTooltip" for="btnDelete" value="#{msgs['btn.delete.tooltip']}"/>
 
+    <ui:insert name="extraActions"/>
+
     <p:commandButton id="toggler" type="button" value="#{msgs['table.column.toggler']}" icon="pi pi-align-justify" style="margin-left: 5px"/>
     <p:columnToggler datasource="#{tableId}" trigger="toggler"/>
-
-    <ui:insert name="extraActions"/>
 
 </div>

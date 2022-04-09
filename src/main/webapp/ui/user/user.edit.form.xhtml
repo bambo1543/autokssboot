@@ -5,23 +5,23 @@
 	 xmlns:p="http://primefaces.org/ui">
 
 	<p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
-		<p:outputLabel for="firstName" value="#{msgs['entity.User.firstName']}" />
-		<p:inputText id="firstName" value="#{item.firstName}" />
-		<p:message for="firstName"/>
-
-		<p:outputLabel for="lastName" value="#{msgs['entity.User.lastName']}" />
-		<p:inputText id="lastName" value="#{item.lastName}" />
-		<p:message for="lastName" />
-
-		<p:outputLabel for="password" value="#{msgs['entity.User.password']}" rendered="#{item.password eq null}"/>
-		<p:password id="password" value="#{item.password}" rendered="#{item.password eq null}"/>
-		<p:message for="password" rendered="#{item.password eq null}"/>
-
-		<p:outputLabel for="email" value="#{msgs['entity.User.email']}" />
+		<p:outputLabel for="email" value="#{msgs['entity.user.email']}" />
 		<p:inputText id="email" value="#{item.email}" />
 		<p:message for="email" />
 
-		<p:outputLabel for="comment" value="#{msgs['entity.User.comment']}" />
+		<p:outputLabel for="password" value="#{msgs['entity.user.password']}" rendered="#{item.password eq null}"/>
+		<p:password id="password" value="#{item.password}" rendered="#{item.password eq null}"/>
+		<p:message for="password" rendered="#{item.password eq null}"/>
+
+		<p:outputLabel for="firstName" value="#{msgs['entity.user.firstName']}" />
+		<p:inputText id="firstName" value="#{item.firstName}" />
+		<p:message for="firstName"/>
+
+		<p:outputLabel for="lastName" value="#{msgs['entity.user.lastName']}" />
+		<p:inputText id="lastName" value="#{item.lastName}" />
+		<p:message for="lastName" />
+
+		<p:outputLabel for="comment" value="#{msgs['entity.user.comment']}" />
 		<p:inputText id="comment" value="#{item.comment}" />
 		<p:message for="comment" />
 

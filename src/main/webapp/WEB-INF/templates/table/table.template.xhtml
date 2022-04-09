@@ -6,8 +6,8 @@
 	 xmlns:b="http://java.sun.com/jsf/composite/component">
 
 	<p:dataTable id="#{tableId}" widgetVar="#{tableId}"
-				 var="item" value="#{bean.dataModel}"
-				 selection="#{bean.selectedItem}" selectionMode="single"
+				 var="item" value="#{view.dataModel}"
+				 selection="#{view.selectedItem}" selectionMode="single"
 				 paginator="true" rows="10" paginatorPosition="top"
 				 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				 rowsPerPageTemplate="5,10,15,20,50,100" rowKey="#{item.id}"
@@ -31,7 +31,7 @@
 
 		<p:ajax event="rowSelect" update="@form :frmConfirmDelete" />
 		<p:ajax event="rowUnselect" update="@form :frmConfirmDelete" />
-		<p:ajax event="rowDblselect" listener="#{bean.edit}" update="@form :frmConfirmDelete" />
+		<p:ajax event="rowDblselect" listener="#{view.edit}" update="@form :frmConfirmDelete" />
 
 		<ui:insert name="columns"/>
 

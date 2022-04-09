@@ -5,18 +5,18 @@
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component"
-				xmlns:c="http://bambo.it/jsf">
+				xmlns:c="http://bambo.it/my">
 
 	<ui:define name="extraActions">
-		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{bean.editPassword}" update="pnlCenter" disabled="#{empty bean.selectedItem}"/>
+		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{view.editPassword}" update="pnlCenter" disabled="#{empty view.selectedItem}"/>
 		<p:tooltip id="btnPasswordTooltip" for="btnPassword" value="#{msgs['btn.password.tooltip']}"/>
 	</ui:define>
 
 	<ui:define name="columns">
-		<p:column field="firstName" headerText="#{msgs['entity.User.firstName']}" />
-		<p:column field="lastName" headerText="#{msgs['entity.User.lastName']}" />
-		<p:column field="email" headerText="#{msgs['entity.User.email']}" />
-		<p:column field="comment" headerText="#{msgs['entity.User.comment']}" />
+		<p:column field="firstName" headerText="#{msgs['entity.user.firstName']}" />
+		<p:column field="lastName" headerText="#{msgs['entity.user.lastName']}" />
+		<p:column field="email" headerText="#{msgs['entity.user.email']}" />
+		<p:column field="comment" headerText="#{msgs['entity.user.comment']}" />
 	</ui:define>
 
 </ui:composition>

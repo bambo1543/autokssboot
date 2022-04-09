@@ -8,19 +8,20 @@
 				xmlns:my="http://bambo.it/my">
 
 	<ui:define name="columns">
-		<p:column field="name" headerText="#{msgs['entity.Kuehlschmierstoff.name']}" />
-		<p:column field="hersteller" headerText="#{msgs['entity.Kuehlschmierstoff.hersteller']}" />
-		<my:numberColumn value="#{item.phMin}" headerText="#{msgs['entity.Kuehlschmierstoff.phMin']}"/>
-		<my:numberColumn value="#{item.phMax}" headerText="#{msgs['entity.Kuehlschmierstoff.phMax']}"/>
-		<my:numberColumn value="#{item.refraktometer}" headerText="#{msgs['entity.Kuehlschmierstoff.refraktometer']}"/>
-		<my:numberColumn value="#{item.nitrat}" headerText="#{msgs['entity.Kuehlschmierstoff.nitrat']}"/>
-		<my:numberColumn value="#{item.nitrit}" headerText="#{msgs['entity.Kuehlschmierstoff.nitrit']}"/>
-		<my:numberColumn value="#{item.wasserhaerte}" headerText="#{msgs['entity.Kuehlschmierstoff.wasserhaerte']}"/>
-<!--		<p:column field="datanblattName" headerText="#{msgs['entity.Kuehlschmierstoff.datenblattName']}" />-->
-		<p:column exportable="false" headerText="#{msgs['entity.Kuehlschmierstoff.datenblatt']}" style="text-align: center">
+		<p:column field="name" headerText="#{msgs['entity.kuehlschmierstoff.name']}" />
+		<p:column field="hersteller" headerText="#{msgs['entity.kuehlschmierstoff.hersteller']}" />
+		<my:numberColumn value="#{item.phMin}" headerText="#{msgs['entity.kuehlschmierstoff.phMin']}"/>
+		<my:numberColumn value="#{item.phMax}" headerText="#{msgs['entity.kuehlschmierstoff.phMax']}"/>
+		<my:numberColumn value="#{item.refraktometer}" headerText="#{msgs['entity.kuehlschmierstoff.refraktometer']}"/>
+		<my:numberColumn value="#{item.nitrat}" headerText="#{msgs['entity.kuehlschmierstoff.nitrat']}"/>
+		<my:numberColumn value="#{item.nitrit}" headerText="#{msgs['entity.kuehlschmierstoff.nitrit']}"/>
+		<my:numberColumn value="#{item.wasserhaerte}" headerText="#{msgs['entity.kuehlschmierstoff.wasserhaerte']}"/>
+
+<!--		<p:column field="datanblattName" headerText="#{msgs['entity.kuehlschmierstoff.datenblattName']}" />-->
+		<p:column exportable="false" headerText="#{msgs['entity.kuehlschmierstoff.datenblatt']}" style="text-align: center">
 			<p:commandButton ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined" disabled="#{item.datanblattName eq null}">
-				<f:setPropertyActionListener value="#{item}" target="#{kuehlschmierstoffBean.editItem}"/>
-				<p:fileDownload value="#{kuehlschmierstoffBean.datenblattFile}"/>
+				<f:setPropertyActionListener value="#{item}" target="#{kuehlschmierstoffView.editItem}"/>
+				<p:fileDownload value="#{kuehlschmierstoffView.datenblattFile}"/>
 			</p:commandButton>
 		</p:column>
 	</ui:define>

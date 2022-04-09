@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest
 @ActiveProfiles({"test"})
-class AutoKssApplicationTests {
+class GenericDaoTests {
 
 	@Autowired
 	GenericDao genericDao;
@@ -78,13 +78,16 @@ class AutoKssApplicationTests {
 		genericDao.persist(e2);
 
 		Maschine m1 = new Maschine("CTX 310", "test", b3);
-		m1.setLetzterEmulsionswechsel(new Date());
+		applyNotNullAttributes(m1);
+		m1.setLetzterEmulsionswechsel(new Date(new Date().getTime() - 1000));
 //		m1.setEinsatzkonzentration(e1);
 		genericDao.persist(m1);
 		Maschine m2 = new Maschine("DMC 64 V","test", b2);
+		applyNotNullAttributes(m2);
 //		m2.setEinsatzkonzentration(e1);
 		genericDao.persist(m2);
 		Maschine m3 = new Maschine("Meba Bandsäge", "test", b1);
+		applyNotNullAttributes(m3);
 //		m3.setEinsatzkonzentration(e2);
 		genericDao.persist(m3);
 
@@ -120,6 +123,13 @@ class AutoKssApplicationTests {
 			genericDao.persist(me2);
 			Assert.isTrue(false, "Exception expected");
 		} catch (TransactionSystemException ignore) {}
+	}
+
+	private void applyNotNullAttributes(Maschine maschine) {
+		maschine.setCmEntsprichtLiter(1.0);
+		maschine.setTankVolumenLiter(1.0);
+		maschine.setWasserstandMinCm(1.0);
+		maschine.setWasserstandMaxCm(1.0);
 	}
 
 

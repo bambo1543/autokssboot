@@ -5,16 +5,16 @@
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component"
-				xmlns:c="http://bambo.it/jsf">
+				xmlns:c="http://bambo.it/my">
 
 	<ui:define name="columns">
-		<p:column field="name" headerText="#{msgs['entity.Maschine.name.headerText']}" />
-		<p:column field="description" headerText="#{msgs['entity.Maschine.description.headerText']}" />
-		<p:column field="tankVolumenLiter" headerText="#{msgs['entity.Maschine.tankVolumenLiter.headerText']}" />
-		<p:column field="wasserstandMaxCm" headerText="#{msgs['entity.Maschine.wasserstandMaxCm.headerText']}" />
-		<p:column field="wasserstandMinCm" headerText="#{msgs['entity.Maschine.wasserstandMinCm.headerText']}" />
-		<p:column field="cmEntsprichtLiter" headerText="#{msgs['entity.Maschine.cmEntsprichtLiter.headerText']}" />
-		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.Maschine.letzterEmulsionswechsel.headerText']}">
+		<p:column field="name" headerText="#{msgs['entity.maschine.name.headerText']}" />
+		<p:column field="description" headerText="#{msgs['entity.maschine.description.headerText']}" />
+		<p:column field="tankVolumenLiter" headerText="#{msgs['entity.maschine.tankVolumenLiter.headerText']}" />
+		<p:column field="wasserstandMaxCm" headerText="#{msgs['entity.maschine.wasserstandMaxCm.headerText']}" />
+		<p:column field="wasserstandMinCm" headerText="#{msgs['entity.maschine.wasserstandMinCm.headerText']}" />
+		<p:column field="cmEntsprichtLiter" headerText="#{msgs['entity.maschine.cmEntsprichtLiter.headerText']}" />
+		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.maschine.letzterEmulsionswechsel.headerText']}">
 			<f:facet name="filter">
 				<p:datePicker id="emulsionsDatePicker" selectionMode="range" onchange="PF('tblmaschine').filter()" showButtonBar="true" />
 			</f:facet>
@@ -23,7 +23,7 @@
 			</p:outputLabel>
 		</p:column>
 
-		<p:column field="bereich" headerText="#{msgs['entity.Maschine.bereich.headerText']}" filterMatchMode="exact"
+		<p:column field="bereich" headerText="#{msgs['entity.maschine.bereich.headerText']}" filterMatchMode="exact"
 				  sortBy="#{item.bereich.name}">
 			<f:facet name="filter">
 				<p:selectOneMenu onchange="PF('tblmaschine').filter()" styleClass="custom-filter" converter="#{bereichConverter}">
@@ -34,7 +34,7 @@
 
 			<h:outputText value="#{item.bereich.name}" />
 		</p:column>
-		<!--		<p:column field="einsatzkonzentration" headerText="#{msgs['entity.Maschine.einsatzkonzentration.headerText']}" />-->
+		<!--		<p:column field="einsatzkonzentration" headerText="#{msgs['entity.maschine.einsatzkonzentration.headerText']}" />-->
 	</ui:define>
 
 </ui:composition>

@@ -6,14 +6,14 @@
 
     <div class="span-26 last">
         <ui:include src="#{form}">
-            <ui:param name="item" value="#{bean.editItem}"/>
+            <ui:param name="item" value="#{view.editItem}"/>
         </ui:include>
     </div>
 
 <!--    <p:messages/>-->
 
     <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
-        <p:commandButton value="#{msgs['btn.save']}" action="#{bean.save}" update="@form growl"/>
-        <p:commandButton value="#{msgs['btn.cancel']}" action="#{bean.cancel}" update="@form growl" immediate="true"/>
+        <p:commandButton value="#{msgs['btn.save']}" action="#{view.save}" update="@form growl"/>
+        <p:commandButton value="#{msgs['btn.cancel']}" action="#{view.cancel}" update="@form growl" immediate="true"/>
     </div>
 </div>

@@ -5,10 +5,10 @@
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component"
-				xmlns:c="http://bambo.it/jsf">
+				xmlns:c="http://bambo.it/my">
 
 	<ui:define name="columns">
-		<p:column field="pruefDatum" headerText="#{msgs['entity.Messung.pruefDatum.headerText']}" sortOrder="desc">
+		<p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc">
 			<f:facet name="filter">
 				<p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblmessung').filter()" showButtonBar="true"/>
 			</f:facet>
@@ -16,7 +16,7 @@
 				<f:convertDateTime dateStyle="medium" />
 			</p:outputLabel>
 		</p:column>
-		<p:column field="pruefer" headerText="#{msgs['entity.Messung.pruefer.headerText']}" filterMatchMode="exact"
+		<p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
 				  sortBy="#{item.pruefer.email}">
 			<f:facet name="filter">
 				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
@@ -27,7 +27,7 @@
 
 			<h:outputText value="#{item.pruefer.email}" />
 		</p:column>
-		<p:column field="maschine" headerText="#{msgs['entity.Messung.maschine.headerText']}" filterMatchMode="exact"
+		<p:column field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}" filterMatchMode="exact"
 				  sortBy="#{item.maschine.name}">
 			<f:facet name="filter">
 				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{maschineConverter}" style="width: auto">
@@ -39,16 +39,16 @@
 			<h:outputText value="#{item.maschine.name}"/>
 		</p:column>
 
-		<p:column field="refraktometerKonzProz" headerText="#{msgs['entity.Messung.refraktometerKonzProz.headerText']}"/>
-		<p:column field="ph" headerText="#{msgs['entity.Messung.ph.headerText']}" />
-		<p:column field="nitrit" headerText="#{msgs['entity.Messung.nitrit.headerText']}"/>
+		<p:column field="refraktometerKonzProz" headerText="#{msgs['entity.messung.refraktometerKonzProz.headerText']}"/>
+		<p:column field="ph" headerText="#{msgs['entity.messung.ph.headerText']}" />
+		<p:column field="nitrit" headerText="#{msgs['entity.messung.nitrit.headerText']}"/>
 
-		<p:column field="refraktometerKonzProz2" headerText="#{msgs['entity.Messung.refraktometerKonzProz2.headerText']}"/>
-		<p:column field="ph2" headerText="#{msgs['entity.Messung.ph2.headerText']}"/>
-		<p:column field="nitrit2" headerText="#{msgs['entity.Messung.nitrit2.headerText']}"/>
+		<p:column field="refraktometerKonzProz2" headerText="#{msgs['entity.messung.refraktometerKonzProz2.headerText']}"/>
+		<p:column field="ph2" headerText="#{msgs['entity.messung.ph2.headerText']}"/>
+		<p:column field="nitrit2" headerText="#{msgs['entity.messung.nitrit2.headerText']}"/>
 
 		<p:column field="bemerkung" />
-		<p:column field="locked" headerText="#{msgs['entity.Messung.locked.headerText']}"  style="text-align: center;">
+		<p:column field="locked" headerText="#{msgs['entity.messung.locked.headerText']}"  style="text-align: center;">
 			<f:facet name="filter">
 				<p:triStateCheckbox onchange="PF('tblmessung').filter()">
 				</p:triStateCheckbox>

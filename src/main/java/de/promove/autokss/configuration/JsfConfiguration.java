@@ -1,4 +1,4 @@
-package de.promove.autokss;
+package de.promove.autokss.configuration;
 
 import de.promove.autokss.web.scope.ViewScope;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
@@ -37,7 +37,7 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
     }
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+    public void onStartup(ServletContext servletContext) {
 		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
 //		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
 		servletContext.setInitParameter("jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());

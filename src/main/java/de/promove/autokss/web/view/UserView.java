@@ -1,20 +1,17 @@
-package de.promove.autokss.web.crud;
+package de.promove.autokss.web.view;
 
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
-import de.promove.autokss.web.common.crud.AbstractCrudBean;
+import de.promove.autokss.web.common.crud.AbstractCrudView;
 import jakarta.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import jakarta.faces.bean.ManagedBean;
-import jakarta.faces.view.ViewScoped;
-
 @Component
 @Scope("view")
-public class UserBean extends AbstractCrudBean<User> {
+public class UserView extends AbstractCrudView<User> {
 
     @Autowired
     private UserService userService;
@@ -22,7 +19,7 @@ public class UserBean extends AbstractCrudBean<User> {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserBean() {
+    public UserView() {
         super(User.class);
     }
 

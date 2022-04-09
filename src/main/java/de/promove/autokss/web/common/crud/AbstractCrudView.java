@@ -3,14 +3,12 @@ package de.promove.autokss.web.common.crud;
 import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.dao.QueryParameter;
-import de.promove.autokss.model.IdEntity;
 import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
 import jakarta.faces.application.FacesMessage;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -20,14 +18,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
-import org.springframework.context.annotation.Scope;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-public abstract class AbstractCrudBean<T extends NamedEntity> implements Serializable {
+public abstract class AbstractCrudView<T extends NamedEntity> implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1234560L;
@@ -48,15 +45,15 @@ public abstract class AbstractCrudBean<T extends NamedEntity> implements Seriali
 	protected QueryFetch[] itemsQueryFetch;
 	protected QueryFetch[] editItemQueryFetch;
 
-	public AbstractCrudBean(Class<T> clazz) {
+	public AbstractCrudView(Class<T> clazz) {
 		this(clazz, new QueryFetch[0], new QueryFetch[0]);
 	}
 
-	public AbstractCrudBean(Class<T> clazz, QueryFetch[] editItemQueryFetch) {
+	public AbstractCrudView(Class<T> clazz, QueryFetch[] editItemQueryFetch) {
 		this(clazz, new QueryFetch[0], editItemQueryFetch);
 	}
 
-	public AbstractCrudBean(Class<T> clazz, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
+	public AbstractCrudView(Class<T> clazz, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
 		this.clazz = clazz;
 		this.itemsQueryFetch = itemsQueryFetch;
 		this.editItemQueryFetch = editItemQueryFetch;
