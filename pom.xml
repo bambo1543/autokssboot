@@ -197,35 +197,7 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>GLASSFISH</id>
-			<properties>
-				<spring.profiles.active>jndi-mariadb</spring.profiles.active>
-			</properties>
-			<dependencies>
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-web</artifactId>
-					<exclusions>
-						<exclusion>
-							<groupId>org.springframework.boot</groupId>
-							<artifactId>spring-boot-starter-tomcat</artifactId>
-						</exclusion>
-					</exclusions>
-				</dependency>
-				<dependency>
-					<groupId>org.apache.tomcat.embed</groupId>
-					<artifactId>tomcat-embed-jasper</artifactId>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>jakarta.enterprise</groupId>
-					<artifactId>jakarta.enterprise.cdi-api</artifactId>
-					<version>3.0.1</version>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>TOMCAT</id>
+			<id>JNDI</id>
 			<properties>
 				<spring.profiles.active>jndi-mariadb</spring.profiles.active>
 			</properties>
