@@ -39,7 +39,8 @@ public class KuehlschmierstoffBean extends AbstractCrudBean<Kuehlschmierstoff> {
             this.editItem.setDatanblattName(file.getFileName());
             this.editItem.setDatenblatt(BlobProxy.generateProxy(file.getContent()));
 
-            FacesMessage message = new FacesMessage(MessageFactory.getMessage("action.upload.growl.detail", file.getFileName()));
+            FacesMessage message = new FacesMessage(MessageFactory.getMessage("action.upload.growl.summary"),
+                    MessageFactory.getMessage("action.upload.growl.detail", file.getFileName()));
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
