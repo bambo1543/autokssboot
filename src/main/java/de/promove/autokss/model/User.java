@@ -84,7 +84,8 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return credentialsExpire.after(new Date());
+        return true;
+//        return credentialsExpire.after(new Date());
     }
 
     @Override

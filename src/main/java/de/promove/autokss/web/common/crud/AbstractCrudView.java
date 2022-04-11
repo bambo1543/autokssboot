@@ -47,6 +47,8 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 
 	protected boolean modifiable = true;
 
+	private int tableRowCount = 0;
+
 	public AbstractCrudView(Class<T> clazz) {
 		this(clazz, new QueryFetch[0], new QueryFetch[0]);
 	}
@@ -68,7 +70,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 		dataModel = new LazyIdEntityDataModel<>() {
 			@Override
 			public int count(Map<String, FilterMeta> map) {
-				return 0;
+				return countItems(map);
 			}
 
 			@Override
@@ -101,7 +103,12 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	protected int countItems(Map<String, FilterMeta> filterMap) {
-		return genericService.count(clazz, createQueryParameter(filterMap)).intValue();
+		tableRowCount = genericService.count(clazz, createQueryParameter(filterMap)).intValue();
+		return tableRowCount;
+	}
+
+	public int getTableRowCount() {
+		return tableRowCount;
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {

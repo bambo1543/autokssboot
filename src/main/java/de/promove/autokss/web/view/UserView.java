@@ -53,7 +53,7 @@ public class UserView extends AbstractCrudView<User> {
         this.selectedItem = selectedItem;
         String remoteUser = FacesUtils.getRemoteUsername();
         UserDetails userDetails = userDetailsService.loadUserByUsername(remoteUser);
-        modifiable = selectedItem.equals(userDetails) || userDetails.getAuthorities().contains(Role.ADMIN);
+        modifiable = userDetails.equals(selectedItem) || userDetails.getAuthorities().contains(Role.ADMIN);
     }
 
     public String getLocale() {

@@ -1,8 +1,6 @@
 package de.promove.autokss.web.converter;
 
-import de.promove.autokss.model.Bereich;
 import de.promove.autokss.model.IdEntity;
-import de.promove.autokss.service.AbstractEntityService;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,14 +8,14 @@ import jakarta.faces.component.UIComponent;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.convert.Converter;
 
-public abstract class AbstractConverter<T extends IdEntity> implements Converter {
+public abstract class AbstractEntityConverter<T extends IdEntity> implements Converter<T> {
 
     private final Class<T> clazz;
 
     @Autowired
     protected GenericService genericService;
 
-    public AbstractConverter(Class<T> clazz) {
+    public AbstractEntityConverter(Class<T> clazz) {
         this.clazz = clazz;
     }
 
@@ -25,14 +23,9 @@ public abstract class AbstractConverter<T extends IdEntity> implements Converter
         return genericService.findById(clazz, id);
     }
 
-    public final String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        if (o instanceof IdEntity) {
-            return getAsString(facesContext, uiComponent, (T) o);
-        }
-        return null;
-    }
-
     public final String getAsString(FacesContext facesContext, UIComponent uiComponent, T o) {
+        if(o == null) return null;
+
         return o.getId();
     }
 }

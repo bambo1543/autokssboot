@@ -4,6 +4,7 @@ import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.RequestScope;
@@ -31,5 +32,13 @@ public class SelectItemsBean {
 
     public List<Kuehlschmierstoff> getKuehlschmierstoffe() {
         return genericService.listAll(Kuehlschmierstoff.class, QueryOrder.by(Kuehlschmierstoff_.NAME));}
+
+    public List<Role> getRolesByAuthorities() {
+        return Role.getRoles(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+    }
+
+    public List<Role> getRoles() {
+        return List.of(Role.values());
+    }
 
 }

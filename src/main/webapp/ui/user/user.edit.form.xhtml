@@ -9,9 +9,13 @@
 		<p:inputText id="email" value="#{item.email}" />
 		<p:message for="email" />
 
-		<p:outputLabel for="password" value="#{msgs['entity.user.password']}" rendered="#{item.password eq null}"/>
-		<p:password id="password" value="#{item.password}" rendered="#{item.password eq null}"/>
-		<p:message for="password" rendered="#{item.password eq null}"/>
+		<p:outputLabel for="pwd1" value="#{msgs['entity.user.password']}" rendered="#{item.password eq null}"/>
+		<p:password id="pwd1" value="#{item.password}" rendered="#{item.password eq null}" match="pwd2"/>
+		<p:message for="pwd1" rendered="#{item.password eq null}"/>
+
+		<p:outputLabel for="pwd2" value="#{msgs['entity.user.password.repeat']}" rendered="#{item.password eq null}"/>
+		<p:password id="pwd2" value="#{item.password}" rendered="#{item.password eq null}"/>
+		<p:message for="pwd2" rendered="#{item.password eq null}"/>
 
 		<p:outputLabel for="firstName" value="#{msgs['entity.user.firstName']}" />
 		<p:inputText id="firstName" value="#{item.firstName}" />
@@ -24,6 +28,20 @@
 		<p:outputLabel for="comment" value="#{msgs['entity.user.comment']}" />
 		<p:inputText id="comment" value="#{item.comment}" />
 		<p:message for="comment" />
+
+		<p:outputLabel for="accountExpire" value="#{msgs['entity.user.accountExpire']}" />
+		<p:datePicker id="accountExpire" value="#{item.accountExpire}" showButtonBar="true"/>
+		<p:message for="accountExpire" />
+
+		<p:outputLabel for="role" value="#{msgs['entity.user.role']}" />
+		<p:selectOneMenu id="role" value="#{item.role}">
+			<f:selectItems value="#{selectItemsBean.rolesByAuthorities}" var="i" itemLabel="#{i.name}" />
+		</p:selectOneMenu>
+		<p:message for="role"/>
+
+		<p:outputLabel for="enabled" value="#{msgs['entity.user.enabled']}" />
+		<p:selectBooleanCheckbox id="enabled" value="#{item.enabled}" />
+		<p:message for="enabled" />
 
 	</p:panelGrid>
 

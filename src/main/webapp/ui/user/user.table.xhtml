@@ -5,7 +5,7 @@
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component"
-				xmlns:c="http://bambo.it/my">
+				xmlns:my="http://bambo.it/my">
 
 	<ui:define name="extraActions">
 		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{userView.editPassword}" update="pnlCenter" disabled="#{!userView.editable or empty userView.selectedItem}"/>
@@ -13,10 +13,23 @@
 	</ui:define>
 
 	<ui:define name="columns">
+		<p:column field="email" headerText="#{msgs['entity.user.email']}" />
 		<p:column field="firstName" headerText="#{msgs['entity.user.firstName']}" />
 		<p:column field="lastName" headerText="#{msgs['entity.user.lastName']}" />
-		<p:column field="email" headerText="#{msgs['entity.user.email']}" />
 		<p:column field="comment" headerText="#{msgs['entity.user.comment']}" />
+
+		<my:entityColumn field="role" headerText="#{msgs['entity.user.role']}"
+						 value="#{item.role.name}" selectItems="#{selectItemsBean.roles}" converter="#{roleConverter}"
+						 onchange="PF('tbluser').filter()"/>
+
+		<p:column field="enabled" headerText="#{msgs['entity.user.enabled']}"  style="text-align: center;">
+			<f:facet name="filter">
+				<p:triStateCheckbox onchange="PF('tbluser').filter()">
+				</p:triStateCheckbox>
+			</f:facet>
+			<p:selectBooleanCheckbox value="#{item.enabled}" disabled="true" />
+		</p:column>
+
 	</ui:define>
 
 </ui:composition>
