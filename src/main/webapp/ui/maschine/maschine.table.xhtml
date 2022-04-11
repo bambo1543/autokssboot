@@ -29,6 +29,9 @@
 		<my:entityColumn field="einsatzkonzentration" headerText="#{msgs['entity.maschine.einsatzkonzentration.headerText']}"
 				value="#{item.einsatzkonzentration.name}" converter="#{einsatzkonzentrationConverter}" selectItems="#{selectItemsBean.einsatzkonzentrationen}"
 				onchange="PF('tblmaschine').filter()"/>
+		<my:entityColumn field="kuehlschmierstoff" headerText="#{msgs['entity.maschine.kuehlschmierstoff.headerText']}"
+						 value="#{item.kuehlschmierstoff.name}" converter="#{kuehlschmierstoffConverter}" selectItems="#{selectItemsBean.kuehlschmierstoffe}"
+						 onchange="PF('tblmaschine').filter()"/>
 	</ui:define>
 
 </ui:composition>

@@ -1,8 +1,8 @@
 package de.promove.autokss.service;
 
-import de.promove.autokss.model.Bereich;
+import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;
-import de.promove.autokss.web.converter.BereichConverter;
+import de.promove.autokss.web.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 
-//@Service
-//@Transactional
+@Service
+@Transactional
 public class InitDBService {
 
     Logger logger = LoggerFactory.getLogger(InitDBService.class);
@@ -30,22 +30,18 @@ public class InitDBService {
 
     @PostConstruct
     public void init() {
-        if(!environment.acceptsProfiles(Profiles.of("test"))) {
-            Long count = genericService.count(User.class, null, null);
-            if(count == 0) {
-//                String password = UUID.randomUUID().toString();
-                String password = "password";
-                User user = new User("admin@mail.com", password, "Admin", "Admin", "");
-                userService.persist(user);
-                logger.warn("User 'admin@mail.com' with password '" + password + "' created.");
-            }
+        if (!environment.acceptsProfiles(Profiles.of("test"))) {
+            createAdminAccount();
+        }
+    }
 
-            Bereich b1 = new Bereich("Sägen");
-            genericService.persist(b1);
-            Bereich b2 = new Bereich("Fräsen");
-            genericService.persist(b2);
-            Bereich b3 = new Bereich("Drehen");
-            genericService.persist(b3);
+    public void createAdminAccount() {
+        Long count = genericService.count(User.class, null, null);
+        if (count == 0) {
+            String password = "changeit";
+            User user = new User("admin@mail.com", password, "Admin", "Admin", "", true, true, DateUtils.future(), DateUtils.future(), Role.ADMIN);
+            userService.persist(user);
+            logger.warn("User 'admin@mail.com' with password '" + password + "' created.");
         }
     }
 

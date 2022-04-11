@@ -1,14 +1,16 @@
 package de.promove.autokss.web.view;
 
 import de.promove.autokss.configuration.JsfConfiguration;
+import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
 import jakarta.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -20,6 +22,9 @@ public class UserView extends AbstractCrudView<User> {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     public UserView() {
         super(User.class);
@@ -37,7 +42,6 @@ public class UserView extends AbstractCrudView<User> {
 
     public void editPassword() {
         this.editItem = selectedItem;
-
         this.visibleSection = "password";
     }
 
@@ -52,8 +56,14 @@ public class UserView extends AbstractCrudView<User> {
 
     public void cancelPassword() {
         editItem = null;
-
         this.visibleSection = "table";
+    }
+
+    public void setSelectedItem(User selectedItem) {
+        this.selectedItem = selectedItem;
+        String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        UserDetails userDetails = userDetailsService.loadUserByUsername(remoteUser);
+        modifiable = selectedItem.equals(userDetails) || userDetails.getAuthorities().contains(Role.ADMIN);
     }
 
     public String getLocale() {

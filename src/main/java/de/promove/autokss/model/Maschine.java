@@ -37,6 +37,9 @@ public class Maschine extends AbstractBaseEntity implements NamedEntity {
     @ManyToOne(optional = false)
     private Einsatzkonzentration einsatzkonzentration;
 
+    @ManyToOne(optional = false)
+    private Kuehlschmierstoff kuehlschmierstoff;
+
     public Maschine(String name, String description, Bereich bereich) {
         this.name = name;
         this.description = description;

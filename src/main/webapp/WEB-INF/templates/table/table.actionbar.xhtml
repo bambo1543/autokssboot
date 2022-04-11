@@ -10,7 +10,7 @@
     <p:commandButton id="btnEdit" icon="pi pi-pencil" action="#{view.edit}" update="@form" disabled="#{!view.editable}" />
     <p:tooltip id="btnEditTooltip" for="btnEdit" value="#{msgs['btn.edit.tooltip']}"/>
 
-    <p:commandButton id="btnDelete" icon="pi pi-trash" action="#{view.delete}" update="@form growl" disabled="#{!view.deleteable}" >
+    <p:commandButton id="btnDelete" icon="pi pi-trash" action="#{view.delete}" update="@form growl" disabled="#{!view.deletable}" >
         <p:confirm header="Confirm deletion" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
     </p:commandButton>
     <p:tooltip id="btnDeleteTooltip" for="btnDelete" value="#{msgs['btn.delete.tooltip']}"/>

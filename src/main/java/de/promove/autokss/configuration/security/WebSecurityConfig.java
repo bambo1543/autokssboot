@@ -1,4 +1,4 @@
-package de.promove.autokss.web.security;
+package de.promove.autokss.configuration.security;
 
 import de.promove.autokss.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
     }
 
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return myUserDetailsService;
-    }
-
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public UserDetailsService userDetailsServiceBean() {
+        return myUserDetailsService;
     }
 
 }

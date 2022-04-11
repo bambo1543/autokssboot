@@ -20,7 +20,7 @@ public abstract class AbstractEntityService<T extends IdEntity> {
 	@Autowired
 	private GenericDao genericDao;
 
-	private Class<T> clazz;
+	private final Class<T> clazz;
 
 	public AbstractEntityService(Class<T> clazz) {
 		this.clazz = clazz;

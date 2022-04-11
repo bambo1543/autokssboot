@@ -1,19 +1,21 @@
 package de.promove.autokss.model;
 
 import jakarta.persistence.Lob;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.OneToMany;
+import lombok.*;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Kuehlschmierstoff extends AbstractBaseEntity implements NamedEntity {
 
     @NotNull
@@ -36,4 +38,7 @@ public class Kuehlschmierstoff extends AbstractBaseEntity implements NamedEntity
 
     @Lob
     private Blob datenblatt;
+
+    @OneToMany(mappedBy = "kuehlschmierstoff")
+    private Set<Maschine> maschinen = new HashSet<>();
 }

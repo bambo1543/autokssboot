@@ -45,6 +45,8 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	protected QueryFetch[] itemsQueryFetch;
 	protected QueryFetch[] editItemQueryFetch;
 
+	protected boolean modifiable = true;
+
 	public AbstractCrudView(Class<T> clazz) {
 		this(clazz, new QueryFetch[0], new QueryFetch[0]);
 	}
@@ -191,15 +193,15 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	public boolean isEditable() {
-		return isModifyable();
+		return isModifiable();
 	}
 
-	public boolean isDeleteable() {
-		return isModifyable();
+	public boolean isDeletable() {
+		return isModifiable();
 	}
 
-	protected boolean isModifyable() {
-		if (selectedItem != null) {
+	protected boolean isModifiable() {
+		if (modifiable && selectedItem != null) {
 			if (selectedItem instanceof LockedEntity) {
 				LockedEntity lockedEntity = (LockedEntity) selectedItem;
 				return !lockedEntity.isLocked();

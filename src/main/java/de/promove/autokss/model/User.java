@@ -1,8 +1,9 @@
 package de.promove.autokss.model;
 
+import de.promove.autokss.web.util.DateUtils;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User extends AbstractBaseEntity implements NamedEntity, UserDetails {
+
+    private static final long serialVersionUID = 12345327L;
 
     @Email
     @NotNull
@@ -31,6 +35,28 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
     private String lastName;
     private String comment;
 
+    private boolean enabled;
+    private boolean locked;
+    private Date accountExpire;
+    private Date credentialsExpire;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public User(String email, String password, String firstName, String lastName, String comment, Role role) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.comment = comment;
+        this.enabled = true;
+        this.locked = false;
+        this.accountExpire = DateUtils.future();
+        this.credentialsExpire = DateUtils.future();
+        this.role = role;
+    }
+
     @Override
     public String getName() {
         return getFirstName();
@@ -41,29 +67,27 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
         return getEmail();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public boolean isAccountNonLocked() {
+        return !locked;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public boolean isAccountNonExpired() {
+        return accountExpire.after(new Date());
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+        return credentialsExpire.after(new Date());
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(role);
     }
 
 }

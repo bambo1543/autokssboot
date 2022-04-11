@@ -8,7 +8,7 @@
 				xmlns:c="http://bambo.it/my">
 
 	<ui:define name="extraActions">
-		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{view.editPassword}" update="pnlCenter" disabled="#{empty view.selectedItem}"/>
+		<p:commandButton id="btnPassword" icon="pi pi-key"  action="#{userView.editPassword}" update="pnlCenter" disabled="#{!userView.editable or empty userView.selectedItem}"/>
 		<p:tooltip id="btnPasswordTooltip" for="btnPassword" value="#{msgs['btn.password.tooltip']}"/>
 	</ui:define>
 

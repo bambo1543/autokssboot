@@ -4,6 +4,7 @@ import de.promove.autokss.dao.GenericDao;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.dao.QueryParameterEntry;
 import de.promove.autokss.model.*;
+import de.promove.autokss.web.util.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,11 +23,11 @@ class GenericDaoTests {
 	GenericDao genericDao;
 
 	private static User createMarkus() {
-		return new User("mvogel@promove-gmbh.de", "password", "Markus", "Vogel", "");
+		return new User("mvogel@promove-gmbh.de", "password", "Markus", "Vogel", "", Role.USER);
 	}
 
 	private static User createAndreas() {
-		return new User("andreas.bga@gmail.com", "password", "Andreas", "Baumgartner", "");
+		return new User("andreas.bga@gmail.com", "password", "Andreas", "Baumgartner", "", Role.USER);
 	}
 
 	@Test

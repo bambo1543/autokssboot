@@ -44,6 +44,12 @@
 			<f:selectItems value="#{selectItemsBean.einsatzkonzentrationen}" var="i" itemLabel="#{i.name}/min:#{i.min}/max:#{i.max}/soll:#{i.soll}" />
 		</p:selectOneMenu>
 		<p:message for="einsatzkonzentration"/>
+
+		<p:outputLabel for="kuehlschmierstoff" value="#{msgs['entity.maschine.kuehlschmierstoff']}" />
+		<p:selectOneMenu id="kuehlschmierstoff" value="#{item.kuehlschmierstoff}" converter="#{kuehlschmierstoffConverter}">
+			<f:selectItems value="#{selectItemsBean.kuehlschmierstoffe}" var="i" itemLabel="#{i.name}" />
+		</p:selectOneMenu>
+		<p:message for="kuehlschmierstoff"/>
     </p:panelGrid>
 
 </div>

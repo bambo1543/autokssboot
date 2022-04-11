@@ -29,4 +29,7 @@ public class SelectItemsBean {
 
     public List<Einsatzkonzentration> getEinsatzkonzentrationen() {return genericService.listAll(Einsatzkonzentration.class, QueryOrder.by(Einsatzkonzentration_.SOLL));}
 
+    public List<Kuehlschmierstoff> getKuehlschmierstoffe() {
+        return genericService.listAll(Kuehlschmierstoff.class, QueryOrder.by(Kuehlschmierstoff_.NAME));}
+
 }

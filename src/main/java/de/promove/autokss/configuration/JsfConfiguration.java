@@ -2,6 +2,7 @@ package de.promove.autokss.configuration;
 
 import de.promove.autokss.web.scope.ViewScope;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Configuration;
@@ -59,15 +60,25 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
     }
 
 //    @Bean
+    public CharacterEncodingFilter characterEncodingFilter() {
+        return new CharacterEncodingFilter();
+    }
+//    @Bean
+    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterFilterRegistrationBean() {
+        FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean = new FilterRegistrationBean<>(characterEncodingFilter());
+        filterRegistrationBean.addServletNames("FacesServlet");
+        return filterRegistrationBean;
+    }
+
+
+//    @Bean
 //    public FileUploadFilter fileUploadFilter() {
 //        return new FileUploadFilter();
 //    }
-//
 //    @Bean
 //    public FilterRegistrationBean<FileUploadFilter> uploadFilterRegistration() {
 //        FilterRegistrationBean<FileUploadFilter> filterRegistrationBean = new FilterRegistrationBean<>(fileUploadFilter());
 //        filterRegistrationBean.addServletNames("FacesServlet");
-//        System.out.println("register file upload filter .......................................");
 //        return filterRegistrationBean;
 //    }
 
