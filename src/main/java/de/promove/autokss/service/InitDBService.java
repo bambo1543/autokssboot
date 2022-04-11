@@ -40,7 +40,7 @@ public class InitDBService {
         if (count == 0) {
             String password = "changeit";
             User user = new User("admin@mail.com", password, "Admin", "Admin", "", true, true, DateUtils.future(), DateUtils.future(), Role.ADMIN, null);
-            userService.persist(user);
+            userService.persistAndEncode(user);
             logger.warn("User 'admin@mail.com' with password '" + password + "' created.");
         }
     }

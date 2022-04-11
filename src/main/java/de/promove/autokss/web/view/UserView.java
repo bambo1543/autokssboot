@@ -1,6 +1,5 @@
 package de.promove.autokss.web.view;
 
-import de.promove.autokss.configuration.JsfConfiguration;
 import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
@@ -9,7 +8,6 @@ import de.promove.autokss.web.scope.ViewScope;
 import de.promove.autokss.web.util.FacesUtils;
 import jakarta.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,9 +21,6 @@ public class UserView extends AbstractCrudView<User> {
     private UserService userService;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UserDetailsService userDetailsService;
 
     public UserView() {
@@ -34,12 +29,7 @@ public class UserView extends AbstractCrudView<User> {
 
     @Override
     protected void persistEditItem(User editItem) {
-        userService.persist(editItem);
-    }
-
-    @Override
-    protected void mergeEditItem(User editItem) {
-        userService.merge(editItem);
+        userService.persistAndEncode(editItem);
     }
 
     public void editPassword() {
@@ -48,9 +38,7 @@ public class UserView extends AbstractCrudView<User> {
     }
 
     public void savePassword() {
-        String encoded = passwordEncoder.encode(editItem.getPassword());
-        editItem.setPassword(encoded);
-        userService.merge(editItem);
+        userService.mergeAndEncode(editItem);
         editItem = null;
 
         this.visibleSection = "table";

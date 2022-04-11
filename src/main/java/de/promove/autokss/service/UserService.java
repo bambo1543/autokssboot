@@ -24,24 +24,22 @@ public class UserService extends AbstractEntityService<User> {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public void persist(User editItem) {
-        encodeEditItem(editItem);
-        super.persist(editItem);
+    public void persistAndEncode(User user) {
+        encodePassword(user);
+        super.persist(user);
     }
 
-    @Override
-    public User merge(User editItem) {
-//        encodeEditItem(editItem);
-        return super.merge(editItem);
+    public User mergeAndEncode(User user) {
+        encodePassword(user);
+        return super.merge(user);
     }
 
-    private void encodeEditItem(User editItem) {
-        String encoded = passwordEncoder.encode(editItem.getPassword());
-        editItem.setPassword(encoded);
+    private void encodePassword(User user) {
+        String encoded = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encoded);
     }
 
-    public User findUserByUsername(String email) {
-        return find(QueryParameter.with(User_.email, email));
+    public User findUserByUsername(String username) {
+        return find(QueryParameter.with(User_.email, username));
     }
 }
