@@ -100,15 +100,17 @@ public class ThemeSwitcherBean implements Serializable {
     }
 
     public String getCurrentTheme() {
-        return currentTheme;
+            return currentTheme;
     }
 
     public void setCurrentTheme(String currentTheme) {
         this.currentTheme = currentTheme;
         String username = FacesUtils.getRemoteUsername();
-        User user = userService.findUserByUsername(username);
-        user.setTheme(currentTheme);
-        userService.merge(user);
+        if(username != null) {
+            User user = userService.findUserByUsername(username);
+            user.setTheme(currentTheme);
+            userService.merge(user);
+        }
 
         submitUserSettings();
     }
