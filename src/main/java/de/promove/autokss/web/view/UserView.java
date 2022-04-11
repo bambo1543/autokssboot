@@ -5,6 +5,8 @@ import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
+import de.promove.autokss.web.scope.ViewScope;
+import de.promove.autokss.web.util.FacesUtils;
 import jakarta.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@Scope(JsfConfiguration.VIEW_SCOPE)
+@ViewScope
 public class UserView extends AbstractCrudView<User> {
 
     @Autowired
@@ -61,7 +63,7 @@ public class UserView extends AbstractCrudView<User> {
 
     public void setSelectedItem(User selectedItem) {
         this.selectedItem = selectedItem;
-        String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        String remoteUser = FacesUtils.getRemoteUsername();
         UserDetails userDetails = userDetailsService.loadUserByUsername(remoteUser);
         modifiable = selectedItem.equals(userDetails) || userDetails.getAuthorities().contains(Role.ADMIN);
     }

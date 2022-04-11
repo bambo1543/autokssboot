@@ -44,6 +44,8 @@ public class User extends AbstractBaseEntity implements NamedEntity, UserDetails
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String theme;
+
     public User(String email, String password, String firstName, String lastName, String comment, Role role) {
         this.email = email;
         this.password = password;

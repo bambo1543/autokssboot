@@ -12,4 +12,8 @@ public class FacesUtils {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
+	public static String getRemoteUsername() {
+		return FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+	}
+
 }

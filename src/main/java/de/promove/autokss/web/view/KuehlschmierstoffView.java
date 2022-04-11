@@ -3,6 +3,7 @@ package de.promove.autokss.web.view;
 import de.promove.autokss.configuration.JsfConfiguration;
 import de.promove.autokss.model.Kuehlschmierstoff;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
+import de.promove.autokss.web.scope.ViewScope;
 import de.promove.autokss.web.util.MessageFactory;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -21,7 +22,7 @@ import java.io.*;
 import java.sql.SQLException;
 
 @Controller
-@Scope(JsfConfiguration.VIEW_SCOPE)
+@ViewScope
 public class KuehlschmierstoffView extends AbstractCrudView<Kuehlschmierstoff> {
 
     Logger logger = LoggerFactory.getLogger(KuehlschmierstoffView.class);

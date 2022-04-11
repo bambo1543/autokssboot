@@ -1,6 +1,8 @@
 package de.promove.autokss.service;
 
+import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.User;
+import de.promove.autokss.model.User_;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +41,7 @@ public class UserService extends AbstractEntityService<User> {
         editItem.setPassword(encoded);
     }
 
+    public User findUserByUsername(String email) {
+        return find(QueryParameter.with(User_.email, email));
+    }
 }

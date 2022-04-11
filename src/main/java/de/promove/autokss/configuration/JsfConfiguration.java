@@ -1,6 +1,6 @@
 package de.promove.autokss.configuration;
 
-import de.promove.autokss.web.scope.ViewScope;
+import de.promove.autokss.web.scope.JsfViewScope;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 
 import jakarta.faces.webapp.FacesServlet;
 import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
 
 @Configuration
 public class JsfConfiguration implements ServletContextAware, ServletContextInitializer {
@@ -55,20 +54,20 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
     @Bean
     public CustomScopeConfigurer getViewScope() {
         CustomScopeConfigurer scope = new CustomScopeConfigurer();
-        scope.addScope(VIEW_SCOPE, new ViewScope());
+        scope.addScope(VIEW_SCOPE, new JsfViewScope());
         return scope;
     }
 
 //    @Bean
-    public CharacterEncodingFilter characterEncodingFilter() {
-        return new CharacterEncodingFilter();
-    }
+//    public CharacterEncodingFilter characterEncodingFilter() {
+//        return new CharacterEncodingFilter();
+//    }
 //    @Bean
-    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterFilterRegistrationBean() {
-        FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean = new FilterRegistrationBean<>(characterEncodingFilter());
-        filterRegistrationBean.addServletNames("FacesServlet");
-        return filterRegistrationBean;
-    }
+//    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterFilterRegistrationBean() {
+//        FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean = new FilterRegistrationBean<>(characterEncodingFilter());
+//        filterRegistrationBean.addServletNames("FacesServlet");
+//        return filterRegistrationBean;
+//    }
 
 
 //    @Bean
