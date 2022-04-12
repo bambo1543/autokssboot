@@ -3,8 +3,6 @@ package de.promove.autokss.dao;
 import jakarta.persistence.metamodel.SingularAttribute;
 
 /**
- * Date: 23.09.2010
- * Time: 19:57:51
  * <a href="mailto:andreas@bambo.it">Andreas Baumgartner, andreas@bambo.it</a>
  */
 public class QueryParameterEntry<X, T> {

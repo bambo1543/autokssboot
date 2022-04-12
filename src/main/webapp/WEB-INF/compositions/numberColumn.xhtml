@@ -6,10 +6,7 @@
                 xmlns:cc="http://java.sun.com/jsf/composite"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <p:column sortBy="#{value}" filterBy="#{value}" style="text-align: right; #{style}">
-        <f:facet name="header">
-            <h:outputText value="#{headerText}"/>
-        </f:facet>
+    <p:column field="#{field}" sortBy="#{value}" filterBy="#{value}" style="text-align: right; #{style}">
         <h:outputText value="#{value}">
             <f:convertNumber minFractionDigits="2"/>
         </h:outputText>

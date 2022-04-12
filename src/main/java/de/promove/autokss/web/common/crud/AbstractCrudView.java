@@ -112,7 +112,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {
-		return new QueryParameter(clazz, filters);
+		return new QueryParameter(clazz, filters, FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	}
 
 	public String getEntityName() {

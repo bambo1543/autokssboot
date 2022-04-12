@@ -10,14 +10,13 @@
 	<ui:define name="columns">
 		<p:column field="name" headerText="#{msgs['entity.kuehlschmierstoff.name']}" />
 		<p:column field="hersteller" headerText="#{msgs['entity.kuehlschmierstoff.hersteller']}" />
-		<my:numberColumn value="#{item.phMin}" headerText="#{msgs['entity.kuehlschmierstoff.phMin']}"/>
-		<my:numberColumn value="#{item.phMax}" headerText="#{msgs['entity.kuehlschmierstoff.phMax']}"/>
-		<my:numberColumn value="#{item.refraktometer}" headerText="#{msgs['entity.kuehlschmierstoff.refraktometer']}"/>
-		<my:numberColumn value="#{item.nitrat}" headerText="#{msgs['entity.kuehlschmierstoff.nitrat']}"/>
-		<my:numberColumn value="#{item.nitrit}" headerText="#{msgs['entity.kuehlschmierstoff.nitrit']}"/>
-		<my:numberColumn value="#{item.wasserhaerte}" headerText="#{msgs['entity.kuehlschmierstoff.wasserhaerte']}"/>
+		<my:numberColumn field="phMin" value="#{item.phMin}" headerText="#{msgs['entity.kuehlschmierstoff.phMin']}"/>
+		<my:numberColumn field="phMax" value="#{item.phMax}" headerText="#{msgs['entity.kuehlschmierstoff.phMax']}"/>
+		<my:numberColumn field="refraktometer" value="#{item.refraktometer}" headerText="#{msgs['entity.kuehlschmierstoff.refraktometer']}"/>
+		<my:numberColumn field="nitrat" value="#{item.nitrat}" headerText="#{msgs['entity.kuehlschmierstoff.nitrat']}"/>
+		<my:numberColumn field="nitrit" value="#{item.nitrit}" headerText="#{msgs['entity.kuehlschmierstoff.nitrit']}"/>
+		<my:numberColumn field="wasserhaerte" value="#{item.wasserhaerte}" headerText="#{msgs['entity.kuehlschmierstoff.wasserhaerte']}"/>
 
-<!--		<p:column field="datanblattName" headerText="#{msgs['entity.kuehlschmierstoff.datenblattName']}" />-->
 		<p:column exportable="false" headerText="#{msgs['entity.kuehlschmierstoff.datenblatt']}" style="text-align: center">
 			<p:commandButton ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined" disabled="#{item.datanblattName eq null}">
 				<f:setPropertyActionListener value="#{item}" target="#{kuehlschmierstoffView.editItem}"/>

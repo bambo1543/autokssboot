@@ -9,9 +9,9 @@
 
 	<ui:define name="columns">
 		<p:column field="name" headerText="#{msgs['entity.einsatzkonzentration.name']}" />
-		<my:numberColumn value="#{item.min}" headerText="#{msgs['entity.einsatzkonzentration.min']}" />
-		<my:numberColumn value="#{item.max}" headerText="#{msgs['entity.einsatzkonzentration.max']}" />
-		<my:numberColumn value="#{item.soll}" headerText="#{msgs['entity.einsatzkonzentration.soll']}" />
+		<my:numberColumn field="min" value="#{item.min}" headerText="#{msgs['entity.einsatzkonzentration.min']}" />
+		<my:numberColumn field="max" value="#{item.max}" headerText="#{msgs['entity.einsatzkonzentration.max']}" />
+		<my:numberColumn field="soll" value="#{item.soll}" headerText="#{msgs['entity.einsatzkonzentration.soll']}" />
 	</ui:define>
 
 </ui:composition>

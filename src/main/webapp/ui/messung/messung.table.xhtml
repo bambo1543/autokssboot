@@ -5,7 +5,7 @@
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:b="http://java.sun.com/jsf/composite/component"
-				xmlns:c="http://bambo.it/my">
+				xmlns:my="http://bambo.it/my">
 
 	<ui:define name="columns">
 		<p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc">
@@ -39,13 +39,13 @@
 			<h:outputText value="#{item.maschine.name}"/>
 		</p:column>
 
-		<p:column field="refraktometerKonzProz" headerText="#{msgs['entity.messung.refraktometerKonzProz.headerText']}"/>
-		<p:column field="ph" headerText="#{msgs['entity.messung.ph.headerText']}" />
-		<p:column field="nitrit" headerText="#{msgs['entity.messung.nitrit.headerText']}"/>
+		<my:numberColumn field="refraktometerKonzProz" value="#{item.refraktometerKonzProz}" headerText="#{msgs['entity.messung.refraktometerKonzProz.headerText']}"/>
+		<my:numberColumn field="ph" value="#{item.ph}" headerText="#{msgs['entity.messung.ph.headerText']}" />
+		<my:numberColumn field="nitrit" value="#{item.nitrit}" headerText="#{msgs['entity.messung.nitrit.headerText']}"/>
 
-		<p:column field="refraktometerKonzProz2" headerText="#{msgs['entity.messung.refraktometerKonzProz2.headerText']}"/>
-		<p:column field="ph2" headerText="#{msgs['entity.messung.ph2.headerText']}"/>
-		<p:column field="nitrit2" headerText="#{msgs['entity.messung.nitrit2.headerText']}"/>
+		<my:numberColumn field="refraktometerKonzProz2" value="#{item.refraktometerKonzProz2}" headerText="#{msgs['entity.messung.refraktometerKonzProz2.headerText']}"/>
+		<my:numberColumn field="ph2" value="#{item.ph2}" headerText="#{msgs['entity.messung.ph2.headerText']}"/>
+		<my:numberColumn field="nitrit2" value="#{item.nitrit2}" headerText="#{msgs['entity.messung.nitrit2.headerText']}"/>
 
 		<p:column field="bemerkung" />
 		<p:column field="locked" headerText="#{msgs['entity.messung.locked.headerText']}"  style="text-align: center;">
