@@ -3,7 +3,6 @@ package de.promove.autokss.model;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
@@ -14,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Messung extends AbstractBaseEntity implements LockedEntity, NamedEntity {
+public class Messung extends AbstractNamedBaseEntity implements LockedEntity {
 
     @NotNull
     private Date pruefDatum;
@@ -22,16 +21,16 @@ public class Messung extends AbstractBaseEntity implements LockedEntity, NamedEn
     @NotNull
     private Date timestamp;
 
-    private Double refraktometerKonzProz;
+    private Double rm1;
     @Max(value = 14)
-    private Double ph;
-    private Double nitrit;
+    private Double ph1;
+    private Double nitrit1;
 
     private Double wasserstandCm;
     private Double wasserNachgefuellt;
     private Double oelNachgefuellt;
 
-    private Double refraktometerKonzProz2;
+    private Double rm2;
     @Max(value = 14)
     private Double ph2;
     private Double nitrit2;
@@ -39,9 +38,11 @@ public class Messung extends AbstractBaseEntity implements LockedEntity, NamedEn
     private String bemerkung;
     private boolean locked;
 
+    @NotNull
     @ManyToOne(optional = false)
     private User pruefer;
 
+    @NotNull
     @ManyToOne(optional = false)
     private Maschine maschine;
 

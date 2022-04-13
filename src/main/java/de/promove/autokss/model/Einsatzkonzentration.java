@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Einsatzkonzentration extends AbstractBaseEntity implements NamedEntity {
+public class Einsatzkonzentration extends AbstractNamedBaseEntity {
 
     @NotNull
     @Column(unique = true)

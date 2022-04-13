@@ -5,24 +5,65 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:n="http://java.sun.com/jsf/composite/component">
 
-	<ui:define name="head">
-		<style>
-			input[id='frmCrud:tblmessung:pruefDatePicker_input'] {
-				width: 90%;
-			}
-			span.shortenText {
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-		</style>
-	</ui:define>
+    <ui:define name="head">
+        <style>
+            input[id='frmCrud:tblmessung:pruefDatePicker_input'] {
+                width: 90%;
+            }
 
-	<ui:define name="center">
-		<ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
-			<ui:param name="view" value="#{messungView}"/>
-			<ui:param name="name" value="messung"/>
-		</ui:include>
-	</ui:define>
+            span.shortenText {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /*span[@class='rechtsbundig'].input{*/
+            /*	text-align: right;*/
+            /*}*/
+
+            input[id='frmCrud:wasserNachgefuellt_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:oelNachgefuellt_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:wasserstandCm_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:rm1_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:nitrit1_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:ph1_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:rm2_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:nitrit2_input'] {
+                text-align: right;
+            }
+
+            input[id='frmCrud:ph2_input'] {
+                text-align: right;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="center">
+        <ui:include src="/WEB-INF/templates/crud/crud.template.xhtml">
+            <ui:param name="view" value="#{messungView}"/>
+            <ui:param name="name" value="messung"/>
+        </ui:include>
+    </ui:define>
 
 </ui:composition>

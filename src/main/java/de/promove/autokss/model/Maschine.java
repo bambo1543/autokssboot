@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Maschine extends AbstractBaseEntity implements NamedEntity {
+public class Maschine extends AbstractNamedBaseEntity {
 
     @NotNull
     private String name;
@@ -31,12 +31,15 @@ public class Maschine extends AbstractBaseEntity implements NamedEntity {
 
     private Date letzterEmulsionswechsel;
 
+    @NotNull
     @ManyToOne(optional = false)
     private Bereich bereich;
 
+    @NotNull
     @ManyToOne(optional = false)
     private Einsatzkonzentration einsatzkonzentration;
 
+    @NotNull
     @ManyToOne(optional = false)
     private Kuehlschmierstoff kuehlschmierstoff;
 

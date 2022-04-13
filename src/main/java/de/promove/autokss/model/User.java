@@ -1,6 +1,6 @@
 package de.promove.autokss.model;
 
-import de.promove.autokss.web.util.DateUtils;
+import de.promove.autokss.util.DateUtils;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
@@ -20,7 +20,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractBaseEntity implements NamedEntity, UserDetails {
+public class User extends AbstractNamedBaseEntity implements UserDetails {
 
     private static final long serialVersionUID = 12345327L;
 

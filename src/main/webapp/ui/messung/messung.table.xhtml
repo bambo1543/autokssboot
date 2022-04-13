@@ -12,8 +12,7 @@
 			<f:facet name="filter">
 				<p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblmessung').filter()" showButtonBar="true"/>
 			</f:facet>
-			<p:outputLabel value="#{item.pruefDatum}">
-				<f:convertDateTime dateStyle="medium" />
+			<p:outputLabel value="#{item.pruefDatum}" converter="#{dateOnlyConverter}">
 			</p:outputLabel>
 		</p:column>
 		<p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
@@ -39,11 +38,11 @@
 			<h:outputText value="#{item.maschine.name}"/>
 		</p:column>
 
-		<my:numberColumn field="refraktometerKonzProz" value="#{item.refraktometerKonzProz}" headerText="#{msgs['entity.messung.refraktometerKonzProz.headerText']}"/>
-		<my:numberColumn field="ph" value="#{item.ph}" headerText="#{msgs['entity.messung.ph.headerText']}" />
-		<my:numberColumn field="nitrit" value="#{item.nitrit}" headerText="#{msgs['entity.messung.nitrit.headerText']}"/>
+		<my:numberColumn field="rm1" value="#{item.rm1}" headerText="#{msgs['entity.messung.rm1.headerText']}"/>
+		<my:numberColumn field="ph1" value="#{item.ph1}" headerText="#{msgs['entity.messung.ph1.headerText']}" />
+		<my:numberColumn field="nitrit1" value="#{item.nitrit1}" headerText="#{msgs['entity.messung.nitrit1.headerText']}"/>
 
-		<my:numberColumn field="refraktometerKonzProz2" value="#{item.refraktometerKonzProz2}" headerText="#{msgs['entity.messung.refraktometerKonzProz2.headerText']}"/>
+		<my:numberColumn field="rm2" value="#{item.rm2}" headerText="#{msgs['entity.messung.rm2.headerText']}"/>
 		<my:numberColumn field="ph2" value="#{item.ph2}" headerText="#{msgs['entity.messung.ph2.headerText']}"/>
 		<my:numberColumn field="nitrit2" value="#{item.nitrit2}" headerText="#{msgs['entity.messung.nitrit2.headerText']}"/>
 

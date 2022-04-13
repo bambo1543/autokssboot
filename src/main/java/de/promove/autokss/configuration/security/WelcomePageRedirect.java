@@ -1,5 +1,6 @@
 package de.promove.autokss.configuration.security;
 
+import de.promove.autokss.web.util.NavigationOutcome;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -11,7 +12,7 @@ public class WelcomePageRedirect implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/")
-                .setViewName("forward:/index.xhtml");
+                .setViewName("forward:" + NavigationOutcome.START.getOutcome());
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 }

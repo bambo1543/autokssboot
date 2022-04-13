@@ -4,7 +4,6 @@ import de.promove.autokss.dao.GenericDao;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.dao.QueryParameterEntry;
 import de.promove.autokss.model.*;
-import de.promove.autokss.web.util.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -107,8 +106,8 @@ class GenericDaoTests {
 		Messung me1 = new Messung(new Date(), u1, m1);
 		me1.setTimestamp(new Date());
 
-		me1.setPh(9.0);
-		me1.setNitrit(5.0);
+		me1.setPh1(9.0);
+		me1.setNitrit1(5.0);
 		genericDao.persist(me1);
 
 		List<Messung> messungen = genericDao.listAll(Messung.class);
@@ -117,8 +116,8 @@ class GenericDaoTests {
 		Messung me2 = new Messung(new Date(), u1, m1);
 		me2.setTimestamp(new Date());
 
-		me2.setPh(15.0);
-		me2.setNitrit(5.0);
+		me2.setPh1(15.0);
+		me2.setNitrit1(5.0);
 
 		try {
 			genericDao.persist(me2);

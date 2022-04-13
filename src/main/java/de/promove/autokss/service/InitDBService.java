@@ -2,7 +2,7 @@ package de.promove.autokss.service;
 
 import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;
-import de.promove.autokss.web.util.DateUtils;
+import de.promove.autokss.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

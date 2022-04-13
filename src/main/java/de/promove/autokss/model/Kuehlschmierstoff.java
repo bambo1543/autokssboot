@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Kuehlschmierstoff extends AbstractBaseEntity implements NamedEntity {
+public class Kuehlschmierstoff extends AbstractNamedBaseEntity {
 
     @NotNull
     private String name;

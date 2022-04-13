@@ -5,21 +5,17 @@ import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.service.InitDBService;
 import de.promove.autokss.service.UserService;
-import de.promove.autokss.web.util.DateUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 
-import jakarta.transaction.Transactional;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -119,11 +115,11 @@ public class MariaImportTest {
                 Messung m = new Messung(rs.getDate("Prüfdatum"), usersMap.get(rs.getInt("Prüfer")),
                         maschinenMap.get(rs.getInt("Maschine")));
                 m.setTimestamp(rs.getDate("Timestamp"));
-                m.setRefraktometerKonzProz(rs.getDouble("RefraktometerKonzProz"));
-                m.setRefraktometerKonzProz2(rs.getDouble("RefraktometerKonz%Mess2"));
-                m.setNitrit(rs.getDouble("Nitrit"));
+                m.setRm1(rs.getDouble("RefraktometerKonzProz"));
+                m.setRm2(rs.getDouble("RefraktometerKonz%Mess2"));
+                m.setNitrit1(rs.getDouble("Nitrit"));
                 m.setNitrit2(rs.getDouble("NitritMess2"));
-                m.setPh(rs.getDouble("pHWert"));
+                m.setPh1(rs.getDouble("pHWert"));
                 m.setPh2(rs.getDouble("pHWertMess2"));
                 m.setOelNachgefuellt(rs.getDouble("ÖlNachgefüllt"));
                 m.setWasserNachgefuellt(rs.getDouble("WasserNachgefüllt"));

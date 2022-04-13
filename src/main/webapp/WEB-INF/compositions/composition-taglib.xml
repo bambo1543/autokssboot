@@ -10,4 +10,20 @@
         <tag-name>entityColumn</tag-name>
         <source>entityColumn.xhtml</source>
     </tag>
+    <tag>
+        <tag-name>inputNumberPercent</tag-name>
+        <source>inputNumberPercent.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>inputNumberCm</tag-name>
+        <source>inputNumberCm.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>inputNumberMg</tag-name>
+        <source>inputNumberMg.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>inputNumberLiter</tag-name>
+        <source>inputNumberLiter.xhtml</source>
+    </tag>
 </facelet-taglib>

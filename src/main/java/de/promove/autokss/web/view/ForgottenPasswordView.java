@@ -4,6 +4,7 @@ import de.promove.autokss.model.User;
 import de.promove.autokss.service.EmailService;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.scope.ViewScope;
+import de.promove.autokss.web.util.NavigationOutcome;
 import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
@@ -43,7 +44,7 @@ public class ForgottenPasswordView {
             user.setPassword(password);
             userService.mergeAndEncode(user);
         }
-        return "login";
+        return NavigationOutcome.LOGIN.getOutcome();
     }
 
 }

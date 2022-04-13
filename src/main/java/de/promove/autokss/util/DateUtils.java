@@ -1,4 +1,4 @@
-package de.promove.autokss.web.util;
+package de.promove.autokss.util;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -42,11 +42,11 @@
 /* Form */
 .frmLabel {
     margin-right: 10px;
-    width: 90px;
+    /*width: 90px;*/
 }
 
 .frmInput {
-    width: 200px;
+    /*width: 200px;*/
 }
 
 /*Override JQuery/Primefaces styles*/

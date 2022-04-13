@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Bereich extends AbstractBaseEntity implements NamedEntity {
+public class Bereich extends AbstractNamedBaseEntity {
 
     @NotNull
     private String name;

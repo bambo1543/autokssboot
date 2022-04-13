@@ -4,6 +4,7 @@ import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.LockedEntity;
+import de.promove.autokss.model.AbstractNamedBaseEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.GrowlMessenger;
@@ -209,8 +210,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 
 	protected boolean isModifiable() {
 		if (modifiable && selectedItem != null) {
-			if (selectedItem instanceof LockedEntity) {
-				LockedEntity lockedEntity = (LockedEntity) selectedItem;
+			if (selectedItem instanceof LockedEntity lockedEntity) {
 				return !lockedEntity.isLocked();
 			}
 			return true;

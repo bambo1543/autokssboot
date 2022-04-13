@@ -2,10 +2,69 @@
 	 xmlns:ui="http://java.sun.com/jsf/facelets"
 	 xmlns:h="http://java.sun.com/jsf/html"
 	 xmlns:f="http://java.sun.com/jsf/core"
-	 xmlns:p="http://primefaces.org/ui">
+	 xmlns:p="http://primefaces.org/ui"
+	 xmlns:my="http://bambo.it/my"
+	 xmlns:b="http://java.sun.com/jsf/composite/component">
 
-	<h:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+	<p:panelGrid columns="3" style="margin: 5px;" >
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
+		<p:inputText value="#{item.pruefer.email}" readonly="true"/>
+		<p:message for="@previous"/>
 
-    </h:panelGrid>
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.pruefDatum']}"/>
+		<p:inputText value="#{item.pruefDatum}" readonly="true"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.maschine']}"/>
+		<p:inputText value="#{item.maschine.name}"  readonly="true"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.wasserstandCm']}"/>
+		<my:inputNumberCm id="wasserstandCm" value="#{item.wasserstandCm}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.rm1']}"/>
+		<my:inputNumberPercent id="rm1" value="#{item.rm1}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.ph1']}"/>
+		<p:inputNumber id="ph1" value="#{item.ph1}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit1']}"/>
+		<my:inputNumberMg id="nitrit1" value="#{item.nitrit1}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.wasserNachgefuellt']}"/>
+		<my:inputNumberLiter id="wasserNachgefuellt" value="#{item.wasserNachgefuellt}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt']}"/>
+		<my:inputNumberLiter id="oelNachgefuellt" value="#{item.oelNachgefuellt}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.rm2']}"/>
+		<my:inputNumberPercent id="rm2" value="#{item.rm2}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.ph2']}"/>
+		<p:inputNumber id="ph2" value="#{item.ph2}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit2']}"/>
+		<my:inputNumberMg id="nitrit2" value="#{item.nitrit2}"/>
+		<p:message for="@previous"/>
+
+		<p:outputLabel for="@next" value="#{msgs['entity.messung.locked']}"/>
+		<p:selectBooleanCheckbox value="#{item.locked}"/>
+		<p:message for="@previous"/>
+    </p:panelGrid>
+
+	<p:tooltip for="rm1" value="#{msgs['entity.messung.rm.tooltip']}" />
+	<p:tooltip for="rm2" value="#{msgs['entity.messung.rm.tooltip']}" />
+	<p:tooltip for="ph1" value="#{msgs['entity.messung.ph.tooltip']}" />
+	<p:tooltip for="ph2" value="#{msgs['entity.messung.ph.tooltip']}" />
+	<p:tooltip for="nitrit1" value="#{msgs['entity.messung.nitrit.tooltip']}" />
+	<p:tooltip for="nitrit2" value="#{msgs['entity.messung.nitrit.tooltip']}" />
 
 </div>
