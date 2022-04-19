@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:my="http://bambo.it/my">
+
+    <ui:define name="head">
+    </ui:define>
+
+    <ui:define name="center">
+        <h:form id="frmMessungSecond">
+            <div class="span-26 last">
+                <p:panelGrid columns="3" style="margin: 5px;" >
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
+                    <p:inputText value="#{messungFirstView.messung.pruefer.email}" readonly="true"/>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefDatum']}"/>
+                    <p:datePicker value="#{messungFirstView.messung.pruefDatum}"/>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.maschine']}"/>
+                    <p:selectOneMenu value="#{messungFirstView.messung.maschine}" converter="#{maschineConverter}">
+                        <f:selectItems value="#{messungFirstView.maschinenForFirstMessung}" var="i"
+                                       itemLabel="#{i.name}"/>
+                    </p:selectOneMenu>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserstandCm']}"/>
+                    <my:inputNumberCm id="wasserstandCm" value="#{messungFirstView.messung.wasserstandCm}" required="true"/>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.rm']}"/>
+                    <my:inputNumberPercent id="rm1" value="#{messungFirstView.messung.rm1}" required="true"/>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.ph']}"/>
+                    <p:inputNumber id="ph1" value="#{messungFirstView.messung.ph1}" required="true"/>
+                    <p:message for="@previous"/>
+
+                    <p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit']}"/>
+                    <my:inputNumberMg id="nitrit1" value="#{messungFirstView.messung.nitrit1}" required="true"/>
+                    <p:message for="@previous"/>
+                </p:panelGrid>
+
+                <p:tooltip for="rm1" value="#{msgs['entity.messung.rm.tooltip']}" />
+                <p:tooltip for="ph1" value="#{msgs['entity.messung.ph.tooltip']}" />
+                <p:tooltip for="nitrit1" value="#{msgs['entity.messung.nitrit.tooltip']}" />
+                <p:tooltip for="wasserstandCm" value="#{msgs['entity.messung.wasserstandCm.tooltip']}" />
+            </div>
+
+            <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                <p:commandButton value="#{msgs['btn.save']}" action="#{messungFirstView.save}" update="@form growl"/>
+                <p:commandButton value="#{msgs['btn.cancel']}" action="#{messungFirstView.cancel}" update="@form growl"
+                                 immediate="true"/>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

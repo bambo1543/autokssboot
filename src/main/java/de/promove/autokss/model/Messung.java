@@ -57,4 +57,8 @@ public class Messung extends AbstractNamedBaseEntity implements LockedEntity {
         return sdf.format(pruefDatum) + " " + maschine.getName() + " " + pruefer.getEmail();
     }
 
+
+    public boolean isMessung1Complete() {
+        return maschine != null && rm1 != null && ph1 != null && nitrit1 != null && wasserstandCm != null;
+    }
 }

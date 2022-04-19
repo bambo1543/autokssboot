@@ -1,3 +1,17 @@
+input[inputmode='decimal']{
+    text-align: right;
+}
+input[inputmode='numeric']{
+    text-align: right;
+}
+/*span.ui-inputnumber > input{*/
+/*    text-align: right;*/
+/*}*/
+
+input[readonly].ui-widget {
+    background-color: lightgray;
+}
+
 /*Text and divs alignments*/
 .center {
     margin-left: auto;

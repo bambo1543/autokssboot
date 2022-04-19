@@ -1,10 +1,10 @@
 <ui:composition template="/WEB-INF/templates/table/table.template.xhtml"
 				xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:ui="http://java.sun.com/jsf/facelets"
-				xmlns:h="http://java.sun.com/jsf/html"
-				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
-				xmlns:b="http://java.sun.com/jsf/composite/component"
+				xmlns:b="http://xmlns.jcp.org/jsf/composite/component"
 				xmlns:my="http://bambo.it/my">
 
 	<ui:define name="columns">
@@ -41,6 +41,10 @@
 		<my:numberColumn field="rm1" value="#{item.rm1}" headerText="#{msgs['entity.messung.rm1.headerText']}"/>
 		<my:numberColumn field="ph1" value="#{item.ph1}" headerText="#{msgs['entity.messung.ph1.headerText']}" />
 		<my:numberColumn field="nitrit1" value="#{item.nitrit1}" headerText="#{msgs['entity.messung.nitrit1.headerText']}"/>
+
+		<my:numberColumn field="wasserstandCm" value="#{item.wasserstandCm}" headerText="#{msgs['entity.messung.wasserstandCm.headerText']}"/>
+		<my:numberColumn field="wasserNachgefuellt" value="#{item.wasserNachgefuellt}" headerText="#{msgs['entity.messung.wasserNachgefuellt.headerText']}"/>
+		<my:numberColumn field="oelNachgefuellt" value="#{item.oelNachgefuellt}" headerText="#{msgs['entity.messung.oelNachgefuellt.headerText']}"/>
 
 		<my:numberColumn field="rm2" value="#{item.rm2}" headerText="#{msgs['entity.messung.rm2.headerText']}"/>
 		<my:numberColumn field="ph2" value="#{item.ph2}" headerText="#{msgs['entity.messung.ph2.headerText']}"/>

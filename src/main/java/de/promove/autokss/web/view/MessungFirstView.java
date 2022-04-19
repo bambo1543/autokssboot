@@ -3,10 +3,14 @@ package de.promove.autokss.web.view;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
+import de.promove.autokss.service.MessungService;
 import de.promove.autokss.web.scope.ViewScope;
+import de.promove.autokss.web.util.FacesUtils;
+import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.NavigationOutcome;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +26,9 @@ public class MessungFirstView {
     @Autowired
     private GenericService genericService;
 
+    @Autowired
+    private MessungService messungService;
+
     private Messung messung = new Messung();
 
     @PostConstruct
@@ -32,11 +39,7 @@ public class MessungFirstView {
         messung.setPruefDatum(new Date());
     }
 
-    public Messung getMessung() {
-        return messung;
-    }
-
-    public List<Maschine> getMaschinenForFirstMessung() {
+    public List<Maschine> getMaschinenWithoutMessung() {
         List<Maschine> maschinen = genericService.listAll(Maschine.class);
         List<Messung> messungen = genericService.list(Messung.class, QueryParameter.with(Messung_.locked, Boolean.FALSE), null, null);
         for (Messung messung : messungen) {
@@ -46,10 +49,26 @@ public class MessungFirstView {
         return maschinen;
     }
 
+    public Messung getMessung() {
+        return messung;
+    }
+
+    public void updateRefill() {
+        if(messung.isMessung1Complete()) {
+            messungService.calculateRefill(messung);
+        }
+    }
+
     public String save() {
-        messung.setTimestamp(Calendar.getInstance().getTime());
-        genericService.persist(messung);
-        return NavigationOutcome.START.getOutcome();
+        if(getMaschinenWithoutMessung().contains(messung.getMaschine()) && messung.isMessung1Complete()) {
+            messungService.calculateRefill(messung);
+            messung.setTimestamp(Calendar.getInstance().getTime());
+            genericService.persist(messung);
+            return NavigationOutcome.START.getOutcome();
+        } else {
+            GrowlMessenger.publish("Offene Messung fuer Maschine '" + messung.getMaschine().getName() + "' bereits vorhanden.");
+            return null;
+        }
     }
 
     public String cancel() {
