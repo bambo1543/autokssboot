@@ -39,6 +39,14 @@ public class GenericService {
 		return genericDao.listAll(clazz, queryOrder, queryFetches);
 	}
 
+	public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter) {
+		return genericDao.list(clazz, queryParameter, null, null);
+	}
+
+	public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder) {
+		return genericDao.list(clazz, queryParameter, queryOrder, null);
+	}
+
 	public <T> List<T> list(Class<T> clazz, QueryParameter queryParameter, QueryOrder queryOrder, QueryFetch... queryFetches) {
 		return genericDao.list(clazz, queryParameter, queryOrder, queryFetches);
 	}

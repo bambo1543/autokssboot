@@ -38,7 +38,7 @@ public class MariaImportTest {
     private Map<Integer, Einsatzkonzentration> einsatzkonzentrationMap = new HashMap<>();
     private Map<Integer, Maschine> maschinenMap = new HashMap<>();
 
-    @Test
+//    @Test
     public void test() throws SQLException {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");

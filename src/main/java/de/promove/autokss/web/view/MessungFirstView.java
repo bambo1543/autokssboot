@@ -33,7 +33,7 @@ public class MessungFirstView {
 
     @PostConstruct
     public void init() {
-        String remoteUser = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        String remoteUser = FacesUtils.getRemoteUsername();
         User user = genericService.find(User.class, QueryParameter.with(User_.email, remoteUser));
         messung.setPruefer(user);
         messung.setPruefDatum(new Date());
@@ -64,11 +64,12 @@ public class MessungFirstView {
             messungService.calculateRefill(messung);
             messung.setTimestamp(Calendar.getInstance().getTime());
             genericService.persist(messung);
-            return NavigationOutcome.START.getOutcome();
         } else {
             GrowlMessenger.publish("Offene Messung fuer Maschine '" + messung.getMaschine().getName() + "' bereits vorhanden.");
             return null;
         }
+
+        return NavigationOutcome.START.getOutcome();
     }
 
     public String cancel() {

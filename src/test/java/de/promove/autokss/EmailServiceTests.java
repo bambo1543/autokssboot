@@ -22,7 +22,7 @@ class EmailServiceTests {
 	@Autowired
 	EmailService emailService;
 
-	@Test
+//	@Test
 	public void testSimpleEmail() {
 		emailService.sendSimpleMessage("andreas.bga@gmail.com", "Test AutoKSS", "Test AutoKSS");
 	}

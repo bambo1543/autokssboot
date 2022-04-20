@@ -6,11 +6,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:my="http://bambo.it/my">
 
-    <ui:define name="head">
-        <style>
-        </style>
-    </ui:define>
-
     <ui:define name="center">
         <h:form id="frmMessung1">
             <div class="span-26 last">
@@ -34,6 +29,10 @@
                     </p:selectOneMenu>
                     <p:message for="@previous"/>
 
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
                     <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserstandCm']}"/>
                     <p:inputNumber id="wasserstandCm" value="#{messungFirstView.messung.wasserstandCm}"
                                    symbol="cm" symbolPosition="s" required="true" />
@@ -56,13 +55,13 @@
                     <p:outputLabel/>
 
                     <p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt']}"/>
-                    <p:inputNumber id="oelNachgefuellt" value="#{messungFirstView.messung.oelNachgefuellt}"
-                                   symbolPosition="s" symbol="l" required="true" readonly="true" styleClass="readonly" />
+                    <p:inputNumber value="#{messungFirstView.messung.oelNachgefuellt}"
+                                   symbolPosition="s" symbol="l" required="true" readonly="true" />
                     <p:message for="@previous"/>
 
                     <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserNachgefuellt']}"/>
-                    <p:inputNumber id="wasserNachgefuellt" value="#{messungFirstView.messung.wasserNachgefuellt}"
-                                   symbolPosition="s" symbol="l" required="true" readonly="true" styleClass="readonly"/>
+                    <p:inputNumber value="#{messungFirstView.messung.wasserNachgefuellt}"
+                                   symbolPosition="s" symbol="l" required="true" readonly="true"/>
                     <p:message for="@previous"/>
                 </p:panelGrid>
 
