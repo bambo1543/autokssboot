@@ -59,7 +59,7 @@ public class MessungSecondView {
             messung.setLocked(true);
             genericService.merge(messung);
         } else {
-            GrowlMessenger.publish("Offene Messung fuer Maschine '" + messung.getMaschine().getName() + "' bereits vorhanden.");
+            GrowlMessenger.publish("Offene Messung fuer Maschine '" + messung.getMaschine().getName() + "' wurde bereits abgeschlossen.");
             return null;
         }
 
