@@ -36,7 +36,7 @@
 				<div class="span-26 last">
 					<h:form id="formHeader">
 						<div class="ui-widget ui-widget-header ui-corner-top" style="height: 50px;">
-							<h:panelGrid columns="2" columnClasses="textLeft,textRight" style="width: 100%">
+							<p:panelGrid columns="2" layout="grid" columnClasses="textLeft,textRight" style="width: 100%">
 								<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
 								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
 									<f:selectItems value="#{themeSwitcherBean.themes}" />
@@ -48,7 +48,7 @@
 										<h:outputText value="#{t}"/>
 									</p:column>
 								</p:selectOneMenu>
-							</h:panelGrid>
+							</p:panelGrid>
 						</div>
 					</h:form>
 					<ui:include src="menu.xhtml" />

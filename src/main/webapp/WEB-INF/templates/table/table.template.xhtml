@@ -17,9 +17,8 @@
 
 		<ui:insert name="tableHeader">
 			<f:facet name="header">
-				<h:panelGrid columns="2" columnClasses="textLeft,textRight">
+				<p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
 					<h:panelGroup>
-<!--						<p:outputLabel id="rowCount" value="#{view.tableRowCount}" style="font-size: x-large; margin-right: 5px"/>-->
 						<h:outputText value="#{msgs['entity.'.concat(name).concat('.plural')]}" style="font-size: x-large"/>
 					</h:panelGroup>
 					<h:panelGroup>
@@ -27,7 +26,7 @@
 							<ui:include src="table.actionbar.xhtml"/>
 						</ui:insert>
 					</h:panelGroup>
-				</h:panelGrid>
+				</p:panelGrid>
 			</f:facet>
 		</ui:insert>
 
