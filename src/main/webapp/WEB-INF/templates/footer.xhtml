@@ -5,9 +5,8 @@
 	 xmlns:p="http://primefaces.org/ui"
 	 xmlns:my="http://bambo.it/my">
 
-	<div class="ui-widget ui-widget-header ui-corner-top" style="height: 25px;">
-		<div class="textRight">
-			<p:outputLabel value="#{facesContext.externalContext.remoteUser}" />
-		</div>
-	</div>
+	<p:panelGrid columns="2" style="height: 25px;" styleClass="span-26 last" layout="grid" columnClasses="textLeft,textRight">
+		<p:outputLabel value="#1" />
+		<p:outputLabel value="#{facesContext.externalContext.remoteUser}" />
+	</p:panelGrid>
 </div>

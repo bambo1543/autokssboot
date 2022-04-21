@@ -17,6 +17,7 @@ import jakarta.servlet.ServletContext;
 public class JsfConfiguration implements ServletContextAware, ServletContextInitializer {
 
     public static final String VIEW_SCOPE = "view";
+    public static final String FACES_SERVLET_NAME = "FacesServlet";
 
     @Bean
     public FacesServlet facesServlet() {
@@ -26,7 +27,7 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
     @Bean
     public ServletRegistrationBean facesServletRegistration() {
         ServletRegistrationBean registration = new ServletRegistrationBean(facesServlet(), "*.xhtml", "*.jsf");
-        registration.setName("FacesServlet");
+        registration.setName(FACES_SERVLET_NAME);
         registration.setLoadOnStartup(1);
         return registration;
     }
@@ -65,10 +66,9 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
 //    @Bean
 //    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterFilterRegistrationBean() {
 //        FilterRegistrationBean<CharacterEncodingFilter> filterRegistrationBean = new FilterRegistrationBean<>(characterEncodingFilter());
-//        filterRegistrationBean.addServletNames("FacesServlet");
+//        filterRegistrationBean.addServletNames(FACES_SERVLET_NAME);
 //        return filterRegistrationBean;
 //    }
-
 
 //    @Bean
 //    public FileUploadFilter fileUploadFilter() {

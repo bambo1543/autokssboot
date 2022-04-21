@@ -26,13 +26,4 @@ public class CharacterEncodingFilter implements Filter {
 		chain.doFilter(req, resp);
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-	}
-	
-	public void destroy() {
-		
-	}
-
-
 }
