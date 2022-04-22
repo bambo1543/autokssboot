@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:my="http://bambo.it/my">
+
+    <ui:define name="head">
+    </ui:define>
+
+    <ui:define name="center">
+        <h:form id="frmMessung2">
+            <h:panelGroup rendered="#{messungSecondView.maschinen.isEmpty()}" styleClass="span-26 last textCenter">
+                <p:outputLabel value="Keine Maschinen mit 1. Messung vorhanden." /><br/>
+                <p:outputLabel value="Bitte legen sie zuerst eine 1. Messung an." /><br/>
+                <p:link value="1. Messung erfassen" outcome="/view/workflow/messung.edit.form.first.xhtml" />
+            </h:panelGroup>
+            <h:panelGroup rendered="#{!messungSecondView.maschinen.isEmpty()}">
+                <div class="span-26 last">
+                    <p:panelGrid columns="3" style="margin: 5px;" >
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
+                        <p:inputText value="#{messungSecondView.pruefer.email}" readonly="true"/>
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.maschine']}"/>
+                        <p:selectOneMenu value="#{messungSecondView.messung.maschine}" converter="#{maschineConverter}">
+                            <f:selectItems value="#{messungSecondView.maschinen}" var="i" itemLabel="#{i.name}"/>
+                            <p:ajax listener="#{messungSecondView.onMaschineChange}" update="@form"/>
+                        </p:selectOneMenu>
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefDatum']}"/>
+                        <p:datePicker value="#{messungSecondView.messung.pruefDatum}" readonly="true"/>
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt.past']}"/>
+                        <p:inputNumber value="#{messungSecondView.messung.oelNachgefuellt}"
+                                       symbolPosition="s" symbol="l" required="true" />
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserNachgefuellt.past']}"/>
+                        <p:inputNumber value="#{messungSecondView.messung.wasserNachgefuellt}"
+                                       symbolPosition="s" symbol="l" required="true" />
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.rm']}"/>
+                        <p:inputNumber id="rm2" value="#{messungSecondView.messung.rm2}" symbol="%" symbolPosition="s" required="true" />
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.ph']}"/>
+                        <p:inputNumber id="ph2" value="#{messungSecondView.messung.ph2}" required="true" />
+                        <p:message for="@previous"/>
+
+                        <p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit']}"/>
+                        <p:inputNumber id="nitrit2" value="#{messungSecondView.messung.nitrit2}" symbolPosition="s" symbol="mg" required="true" />
+                        <p:message for="@previous"/>
+
+                    </p:panelGrid>
+
+                <p:tooltip for="rm2" value="#{msgs['entity.messung.rm.tooltip']}" />
+                <p:tooltip for="ph2" value="#{msgs['entity.messung.ph.tooltip']}" />
+                <p:tooltip for="nitrit2" value="#{msgs['entity.messung.nitrit.tooltip']}" />
+            </div>
+
+            <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                <p:commandButton value="#{msgs['btn.save']}" action="#{messungSecondView.save}" update="@form growl"/>
+                <p:commandButton value="#{msgs['btn.cancel']}" action="#{messungSecondView.cancel}" update="@form growl" immediate="true"/>
+            </div>
+        </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

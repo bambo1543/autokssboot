@@ -1,7 +1,7 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.entity;
 
 import de.promove.autokss.configuration.JsfConfiguration;
-import de.promove.autokss.model.Maschine;
+import de.promove.autokss.model.Bereich;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
 import de.promove.autokss.web.scope.ViewScope;
 import org.springframework.context.annotation.Scope;
@@ -10,10 +10,9 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @ViewScope
-public class MaschineView extends AbstractCrudView<Maschine> {
+public class BereichView extends AbstractCrudView<Bereich> {
 
-    public MaschineView() {
-        super(Maschine.class);
+    public BereichView() {
+        super(Bereich.class);
     }
-
 }

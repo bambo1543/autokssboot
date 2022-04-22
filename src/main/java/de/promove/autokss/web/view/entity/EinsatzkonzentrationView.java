@@ -1,4 +1,4 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.entity;
 
 import de.promove.autokss.configuration.JsfConfiguration;
 import de.promove.autokss.model.Bereich;

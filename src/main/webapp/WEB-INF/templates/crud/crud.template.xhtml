@@ -7,14 +7,14 @@
 
 	<h:form id="frmCrud">
 		<h:panelGroup id="pnlTable" rendered="#{view.visibleSection eq 'table'}">
-			<ui:include src="/ui/#{name}/#{name}.table.xhtml">
+			<ui:include src="/view/entity/#{name}/#{name}.table.xhtml">
 				<ui:param name="tableId" value="tbl#{name}"/>
 			</ui:include>
 		</h:panelGroup>
 
 		<h:panelGroup id="pnlEdit" rendered="#{view.visibleSection eq 'form'}">
 			<ui:include src="/WEB-INF/templates/crud/edit.template.xhtml">
-				<ui:param name="form" value="/ui/#{name}/#{name}.edit.form.xhtml"/>
+				<ui:param name="form" value="/view/entity/#{name}/#{name}.edit.form.xhtml"/>
 			</ui:include>
 		</h:panelGroup>
 	</h:form>

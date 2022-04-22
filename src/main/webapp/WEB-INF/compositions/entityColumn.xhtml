@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <p:column field="#{field}" headerText="#{headerText}" sortBy="#{value}" filterMatchMode="exact">
+    <p:column id="#{field}" field="#{field}" headerText="#{headerText}" sortBy="#{value}" filterMatchMode="exact" exportValue="#{value}" >
         <f:facet name="filter">
             <p:selectOneMenu onchange="#{onchange}" converter="#{converter}" styleClass="custom-filter">
                 <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />

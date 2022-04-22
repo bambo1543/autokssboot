@@ -4,16 +4,19 @@ import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryOrder;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.LockedEntity;
-import de.promove.autokss.model.AbstractNamedBaseEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
+import de.promove.autokss.web.common.MessageBundleLoader;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
-import jakarta.faces.application.FacesMessage;
+import lombok.Getter;
+import lombok.Setter;
+import org.primefaces.component.api.UIColumn;
+import org.primefaces.component.export.PDFOptions;
+import org.primefaces.component.export.PDFOrientationType;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
-import org.primefaces.model.file.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -23,6 +26,10 @@ import jakarta.faces.context.FacesContext;
 import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public abstract class AbstractCrudView<T extends NamedEntity> implements Serializable {
@@ -30,25 +37,29 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	@Serial
 	private static final long serialVersionUID = 1234560L;
 
-	private UploadedFile uploadedFile;
-
 	@Autowired
 	@Qualifier(value = "genericService")
 	protected GenericService genericService;
 
 	protected Class<T> clazz;
-
+	@Getter
 	protected String visibleSection = "";
 
+	@Getter
 	protected LazyDataModel<T> dataModel;
+	@Getter
+	@Setter
 	protected T selectedItem;
+	@Getter
+	@Setter
 	protected T editItem;
 	protected QueryFetch[] itemsQueryFetch;
 	protected QueryFetch[] editItemQueryFetch;
 
 	protected boolean modifiable = true;
 
-	private int tableRowCount = 0;
+	@Getter
+	private PDFOptions pdfOptions;
 
 	public AbstractCrudView(Class<T> clazz) {
 		this(clazz, new QueryFetch[0], new QueryFetch[0]);
@@ -80,15 +91,25 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 				this.setRowCount(countItems(filterMap));
 				return items;
 			}
-
 		};
-	}
 
-	public String getVisibleSection() {
-		return visibleSection;
+		pdfOptions = new PDFOptions();
+		pdfOptions.setCellFontSize("12");
+		pdfOptions.setFontName("Courier");
+		pdfOptions.setOrientation(PDFOrientationType.LANDSCAPE);
 	}
 
 	protected List<T> loadItems(int first, int pageSize, Map<String, SortMeta> sortMap, Map<String, FilterMeta> filterMap) {
+		QueryParameter queryParameter = createQueryParameter(filterMap);
+		queryParameter = appendQueryParameters(queryParameter);
+		return genericService.list(clazz, queryParameter, createQueryOrder(sortMap), first, pageSize, itemsQueryFetch);
+	}
+
+	protected QueryParameter appendQueryParameters(QueryParameter queryParameter) {
+		return queryParameter;
+	}
+
+	protected QueryOrder createQueryOrder(Map<String, SortMeta> sortMap) {
 		QueryOrder order = null;
 
 		for (String key : sortMap.keySet()) {
@@ -99,17 +120,11 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 				order.and(key, QueryOrder.OrderDirection.getByInt(sortMeta.getOrder().intValue()));
 			}
 		}
-
-		return genericService.list(clazz, createQueryParameter(filterMap), order, first, pageSize, itemsQueryFetch);
+		return order;
 	}
 
 	protected int countItems(Map<String, FilterMeta> filterMap) {
-		tableRowCount = genericService.count(clazz, createQueryParameter(filterMap)).intValue();
-		return tableRowCount;
-	}
-
-	public int getTableRowCount() {
-		return tableRowCount;
+		return genericService.count(clazz, createQueryParameter(filterMap)).intValue();
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {
@@ -118,18 +133,6 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 
 	public String getEntityName() {
 		return MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + ".singular");
-	}
-
-	public LazyDataModel<T> getDataModel() {
-		return dataModel;
-	}
-
-	public T getEditItem() {
-		return editItem;
-	}
-
-	public void setEditItem(T editItem) {
-		this.editItem = editItem;
 	}
 
 	public void add() {
@@ -188,14 +191,6 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 		selectedItem = null;
 	}
 
-	public T getSelectedItem() {
-		return selectedItem;
-	}
-
-	public void setSelectedItem(T selectedItem) {
-		this.selectedItem = selectedItem;
-	}
-
 	public boolean isAddable() {
 		return true;
 	}
@@ -218,19 +213,25 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 		return false;
 	}
 
-	public void upload() {
-		if (uploadedFile != null) {
-			FacesMessage message = new FacesMessage("Successful", uploadedFile.getFileName() + " is uploaded.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
+	public String formatColumn(UIColumn column) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Object value = UIColumn.createValueExpressionFromField(context, "item", column.getField()).getValue(context.getELContext());
+		if(value instanceof Date) {
+			return SimpleDateFormat.getDateInstance().format(value);
+		} else if(value instanceof Number) {
+			NumberFormat numberFormat = DecimalFormat.getInstance();
+			numberFormat.setMinimumFractionDigits(2);
+			numberFormat.setMaximumFractionDigits(2);
+			return numberFormat.format(value);
+		} else if(value instanceof NamedEntity namedEntity) {
+			return namedEntity.getName();
 		}
+		return null;
 	}
 
-	public UploadedFile getUploadedFile() {
-		return uploadedFile;
+	public String getFilename() {
+		return MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase()+ ".plural") + " " + DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 	}
 
-	public void setUploadedFile(UploadedFile uploadedFile) {
-		this.uploadedFile = uploadedFile;
-	}
 }
 

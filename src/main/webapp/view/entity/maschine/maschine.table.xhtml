@@ -14,7 +14,8 @@
 		<my:numberColumn field="wasserstandMinCm" value="#{item.wasserstandMinCm}" headerText="#{msgs['entity.maschine.wasserstandMinCm.headerText']}"/>
 		<my:numberColumn field="wasserstandMaxCm" value="#{item.wasserstandMaxCm}" headerText="#{msgs['entity.maschine.wasserstandMaxCm.headerText']}"/>
 		<my:numberColumn field="cmEntsprichtLiter" value="#{item.cmEntsprichtLiter}" headerText="#{msgs['entity.maschine.cmEntsprichtLiter.headerText']}"/>
-		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.maschine.letzterEmulsionswechsel.headerText']}">
+		<p:column field="letzterEmulsionswechsel" headerText="#{msgs['entity.maschine.letzterEmulsionswechsel.headerText']}"
+				  exportFunction="#{measureReportView.formatColumn}">
 			<f:facet name="filter">
 				<p:datePicker id="emulsionsDatePicker" selectionMode="range" onchange="PF('tblmaschine').filter()" showButtonBar="true" />
 			</f:facet>

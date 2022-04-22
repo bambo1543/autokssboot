@@ -1,0 +1,56 @@
+<ui:composition template="/WEB-INF/templates/table/table.template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:b="http://xmlns.jcp.org/jsf/composite/component"
+				xmlns:my="http://bambo.it/my">
+
+	<ui:define name="columns">
+		<p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
+				  exportFunction="#{measureReportView.formatColumn}">
+			<f:facet name="filter">
+				<p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblmessung').filter()" showButtonBar="true"/>
+			</f:facet>
+			<p:outputLabel value="#{item.pruefDatum}" converter="#{dateOnlyConverter}"/>
+		</p:column>
+		<p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
+				  sortBy="#{item.pruefer.email}" exportValue="#{item.pruefer.email}">
+			<f:facet name="filter">
+				<p:selectOneMenu onchange="PF('tblmessung').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
+					<f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+					<f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
+				</p:selectOneMenu>
+			</f:facet>
+
+			<h:outputText value="#{item.pruefer.email}" />
+		</p:column>
+		<my:entityColumn field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}"
+						 value="#{item.maschine.name}" converter="#{maschineConverter}" selectItems="#{selectItemsBean.maschine}"
+						 onchange="PF('tblmessung').filter()"/>
+
+		<my:numberColumn field="rm1" value="#{item.rm1}" headerText="#{msgs['entity.messung.rm1.headerText']}" />
+		<my:numberColumn field="ph1" value="#{item.ph1}" headerText="#{msgs['entity.messung.ph1.headerText']}" />
+		<my:numberColumn field="nitrit1" value="#{item.nitrit1}" headerText="#{msgs['entity.messung.nitrit1.headerText']}" />
+
+		<my:numberColumn field="wasserstandCm" value="#{item.wasserstandCm}" headerText="#{msgs['entity.messung.wasserstandCm.headerText']}" />
+		<my:numberColumn field="wasserNachgefuellt" value="#{item.wasserNachgefuellt}" headerText="#{msgs['entity.messung.wasserNachgefuellt.headerText']}" />
+		<my:numberColumn field="oelNachgefuellt" value="#{item.oelNachgefuellt}" headerText="#{msgs['entity.messung.oelNachgefuellt.headerText']}" />
+
+		<my:numberColumn field="rm2" value="#{item.rm2}" headerText="#{msgs['entity.messung.rm2.headerText']}" />
+		<my:numberColumn field="ph2" value="#{item.ph2}" headerText="#{msgs['entity.messung.ph2.headerText']}" />
+		<my:numberColumn field="nitrit2" value="#{item.nitrit2}" headerText="#{msgs['entity.messung.nitrit2.headerText']}" />
+
+		<p:column field="bemerkung" />
+		<p:column field="locked" headerText="#{msgs['entity.messung.locked.headerText']}"  style="text-align: center;" >
+			<f:facet name="filter">
+				<p:triStateCheckbox onchange="PF('tblmessung').filter()">
+				</p:triStateCheckbox>
+			</f:facet>
+			<p:selectBooleanCheckbox value="#{item.locked}" disabled="true" />
+		</p:column>
+
+	</ui:define>
+
+</ui:composition>

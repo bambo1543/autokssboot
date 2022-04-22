@@ -4,16 +4,18 @@
      xmlns:f="http://xmlns.jcp.org/jsf/core"
      xmlns:p="http://primefaces.org/ui">
 
-    <div class="span-26 last">
-        <ui:include src="#{form}">
-            <ui:param name="item" value="#{view.editItem}"/>
-        </ui:include>
-    </div>
+    <h:panelGroup>
+        <div class="span-26 last">
+            <ui:include src="#{form}">
+                <ui:param name="item" value="#{view.editItem}"/>
+            </ui:include>
+        </div>
 
-<!--    <p:messages/>-->
+    <!--    <p:messages/>-->
 
-    <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
-        <p:commandButton value="#{msgs['btn.save']}" action="#{view.save}" update="@form growl"/>
-        <p:commandButton value="#{msgs['btn.cancel']}" action="#{view.cancel}" update="@form growl" immediate="true"/>
-    </div>
+        <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+            <p:commandButton value="#{msgs['btn.save']}" action="#{view.save}" update="@form growl"/>
+            <p:commandButton value="#{msgs['btn.cancel']}" action="#{view.cancel}" update="@form growl" immediate="true"/>
+        </div>
+    </h:panelGroup>
 </div>

@@ -6,7 +6,7 @@
                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <p:column field="#{field}" sortBy="#{value}" filterBy="#{value}" style="text-align: right; #{style}">
+    <p:column id="#{field}" field="#{field}" sortBy="#{value}" filterBy="#{value}" style="text-align: right; #{style}" >
         <h:outputText value="#{value}">
             <f:convertNumber minFractionDigits="2"/>
         </h:outputText>

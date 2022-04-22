@@ -1,4 +1,4 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.entity;
 
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.EmailService;

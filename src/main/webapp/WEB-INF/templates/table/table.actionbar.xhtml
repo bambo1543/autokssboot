@@ -20,4 +20,13 @@
     <p:commandButton id="toggler" type="button" value="#{msgs['table.column.toggler']}" icon="pi pi-align-justify" style="margin-left: 5px"/>
     <p:columnToggler datasource="#{tableId}" trigger="toggler" />
 
+    <p:commandButton value="PDF">
+        <p:dataExporter type="pdf" target="#{tableId}" fileName="#{view.filename}" encoding="iso-8859-1"
+                        exporter="#{myPdfExporter}" options="#{view.pdfOptions}"  />
+    </p:commandButton>
+    <p:commandButton value="XLS">
+        <p:dataExporter type="xls" target="#{tableId}" fileName="#{view.filename}" encoding="iso-8859-1"
+                        exporter="#{myExcelExporter}"/>
+    </p:commandButton>
+
 </div>

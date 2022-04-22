@@ -1,6 +1,5 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.entity;
 
-import de.promove.autokss.configuration.JsfConfiguration;
 import de.promove.autokss.model.Kuehlschmierstoff;
 import de.promove.autokss.web.common.crud.AbstractCrudView;
 import de.promove.autokss.web.scope.ViewScope;
@@ -14,8 +13,6 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.io.*;

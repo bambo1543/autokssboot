@@ -7,18 +7,19 @@
     <h:form id="formMenu">
         <p:menubar>
             <p:submenu label="Daten">
-                <p:menuitem value="#{msgs['entity.maschine.plural']}" url="#{request.contextPath}/ui/maschine/maschine.crud.xhtml" />
-                <p:menuitem value="#{msgs['entity.bereich.plural']}" url="#{request.contextPath}/ui/bereich/bereich.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.einsatzkonzentration.plural']}" url="#{request.contextPath}/ui/einsatzkonzentration/einsatzkonzentration.crud.xhtml" />
-                <p:menuitem value="#{msgs['entity.kuehlschmierstoff.plural']}" url="#{request.contextPath}/ui/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.messung.plural']}" url="#{request.contextPath}/ui/messung/messung.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.user.plural']}" url="#{request.contextPath}/ui/user/user.crud.xhtml"/>
+                <p:menuitem value="#{msgs['entity.maschine.plural']}" url="#{request.contextPath}/view/entity/maschine/maschine.crud.xhtml" />
+                <p:menuitem value="#{msgs['entity.bereich.plural']}" url="#{request.contextPath}/view/entity/bereich/bereich.crud.xhtml"/>
+                <p:menuitem value="#{msgs['entity.einsatzkonzentration.plural']}" url="#{request.contextPath}/view/entity/einsatzkonzentration/einsatzkonzentration.crud.xhtml" />
+                <p:menuitem value="#{msgs['entity.kuehlschmierstoff.plural']}" url="#{request.contextPath}/view/entity/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
+                <p:menuitem value="#{msgs['entity.messung.plural']}" url="#{request.contextPath}/view/entity/messung/messung.crud.xhtml"/>
+                <p:menuitem value="#{msgs['entity.user.plural']}" url="#{request.contextPath}/view/entity/user/user.crud.xhtml"/>
             </p:submenu>
             <p:submenu label="Workflow">
-                <p:menuitem value="#{msgs['workflow.firstMessung']}" url="#{request.contextPath}/ui/messung/messung.edit.form.first.xhtml"/>
-                <p:menuitem value="#{msgs['workflow.secondMessung']}" url="#{request.contextPath}/ui/messung/messung.edit.form.second.xhtml"/>
+                <p:menuitem value="#{msgs['workflow.firstMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.first.xhtml"/>
+                <p:menuitem value="#{msgs['workflow.secondMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.second.xhtml"/>
             </p:submenu>
             <p:submenu label="Berichte">
+                <p:menuitem value="#{msgs['report.measures']}" url="#{request.contextPath}/view/report/measures.xhtml"/>
                 <p:menuitem value="Werte Bericht öffnen"/>
                 <p:menuitem value="Verbrauchtsbericht öffnen"/>
                 <p:menuitem value="Bericht per Email senden"/>

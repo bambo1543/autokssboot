@@ -1,0 +1,105 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
+				xmlns:my="http://bambo.it/my">
+
+    <ui:define name="head">
+        <style>
+            input[id='frmmeasures:tblmeasures:pruefDatePicker_input'] {
+                width: 90%;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="center">
+		<h:form id="frmmeasures">
+            <p:dataTable id="tblmeasures" widgetVar="tblmeasures"
+                         var="item" value="#{measureReportView.dataModel}"
+                         selection="#{measureReportView.selectedItem}" selectionMode="single"
+                         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,50,100,1000" rowKey="#{measureReportView.id}"
+                         lazy="true" size="small" resizableColumns="true">
+                <ui:insert name="tableHeader">
+                    <f:facet name="header">
+                        <p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
+                            <h:panelGroup>
+                                <p:outputLabel value="#{msgs['report.measures']}" style="font-size: large"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:commandButton value="PDF">
+                                    <p:dataExporter type="pdf" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
+                                                    options="#{measureReportView.pdfOptions}" exporter="#{myPdfExporter}" />
+                                </p:commandButton>
+                                <p:commandButton value="XLS">
+                                    <p:dataExporter type="xls" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
+                                                    exporter="#{myExcelExporter}"/>
+                                </p:commandButton>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </f:facet>
+                </ui:insert>
+
+                <p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
+                          exportFunction="#{measureReportView.formatColumn}">
+                    <f:facet name="filter">
+                        <p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblmeasures').filter()" showButtonBar="true"/>
+                    </f:facet>
+                    <p:outputLabel value="#{item.pruefDatum}" converter="#{dateOnlyConverter}"/>
+                </p:column>
+                <p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
+                          sortBy="#{item.pruefer.email}" exportValue="#{item.pruefer.name}">
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tblmeasures').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
+                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
+                        </p:selectOneMenu>
+                    </f:facet>
+
+                    <h:outputText value="#{item.pruefer.email}" />
+                </p:column>
+                <p:column field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}" filterMatchMode="exact"
+                          sortBy="#{item.maschine.name}" exportValue="#{item.maschine.name}" >
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tblmeasures').filter()" styleClass="custom-filter" converter="#{maschineConverter}" style="width: auto">
+                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+                        </p:selectOneMenu>
+                    </f:facet>
+
+                    <h:outputText value="#{item.maschine.name}"/>
+                </p:column>
+
+                <p:column field="wasserstandCm" sortBy="#{item.wasserstandCm}" filterBy="#{item.wasserstandCm}"
+                          headerText="#{msgs['entity.messung.wasserstandCm.headerText']}" style="text-align: right;"
+                          exportFunction="#{measureReportView.formatColumn}">
+                    <h:outputText value="#{item.wasserstandCm}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column field="wasserNachgefuellt" sortBy="#{item.wasserNachgefuellt}" filterBy="#{item.wasserNachgefuellt}"
+                          headerText="#{msgs['entity.messung.wasserNachgefuellt.headerText']}" style="text-align: right;"
+                          exportFunction="#{measureReportView.formatColumn}">
+                    <h:outputText value="#{item.wasserNachgefuellt}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column field="oelNachgefuellt" sortBy="#{item.oelNachgefuellt}" filterBy="#{item.oelNachgefuellt}"
+                          headerText="#{msgs['entity.messung.oelNachgefuellt.headerText']}" style="text-align: right;"
+                          exportFunction="#{measureReportView.formatColumn}">
+                    <h:outputText value="#{item.oelNachgefuellt}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column field="bemerkung" />
+            </p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

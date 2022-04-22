@@ -61,7 +61,7 @@ public class User extends AbstractNamedBaseEntity implements UserDetails {
 
     @Override
     public String getName() {
-        return getFirstName();
+        return getFirstName() + " " + getLastName();
     }
 
     @Override

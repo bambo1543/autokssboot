@@ -1,4 +1,4 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.entity;
 
 import de.promove.autokss.model.Role;
 import de.promove.autokss.model.User;

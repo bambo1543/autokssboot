@@ -1,4 +1,4 @@
-package de.promove.autokss.web.view;
+package de.promove.autokss.web.view.workflow;
 
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.*;
