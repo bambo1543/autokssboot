@@ -124,7 +124,8 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	protected int countItems(Map<String, FilterMeta> filterMap) {
-		return genericService.count(clazz, createQueryParameter(filterMap)).intValue();
+		QueryParameter queryParameter = createQueryParameter(filterMap);
+		return genericService.count(clazz, appendQueryParameters(queryParameter)).intValue();
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {
