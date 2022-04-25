@@ -35,7 +35,7 @@ import java.util.Date;
 public class MeasureReportView extends AbstractCrudView<Messung> {
 
     public MeasureReportView() {
-        super(Messung.class);
+        super(Messung.class, MessageFactory.getMessage("report.measures"));
     }
 
     @Override
@@ -44,7 +44,4 @@ public class MeasureReportView extends AbstractCrudView<Messung> {
         return queryParameter;
     }
 
-    public String getFilename() {
-        return MessageFactory.getMessage("report.measures") + " " + DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-    }
 }

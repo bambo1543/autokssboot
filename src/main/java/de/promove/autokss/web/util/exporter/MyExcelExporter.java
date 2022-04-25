@@ -8,6 +8,7 @@ import org.primefaces.component.column.Column;
 import org.primefaces.component.datatable.export.DataTableExcelExporter;
 import org.primefaces.component.datatable.export.DataTableExcelXExporter;
 import org.primefaces.model.ColumnMeta;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller
+@Component
 public class MyExcelExporter extends DataTableExcelExporter {
 
     protected List<UIColumn> getExportableColumns(UITable table) {

@@ -9,11 +9,16 @@ import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.common.MessageBundleLoader;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
+import de.promove.autokss.web.util.exporter.MyColoredPdfExporter;
+import de.promove.autokss.web.view.report.FilteredView;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.ValueHolder;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.export.PDFOptions;
 import org.primefaces.component.export.PDFOrientationType;
+import org.primefaces.component.outputlabel.OutputLabel;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -32,7 +37,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public abstract class AbstractCrudView<T extends NamedEntity> implements Serializable {
+public abstract class AbstractCrudView<T extends NamedEntity> implements Serializable, FilteredView {
 
 	@Serial
 	private static final long serialVersionUID = 1234560L;
@@ -41,6 +46,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	@Qualifier(value = "genericService")
 	protected GenericService genericService;
 
+	@Getter
 	protected Class<T> clazz;
 	@Getter
 	protected String visibleSection = "";
@@ -61,16 +67,28 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	@Getter
 	private PDFOptions pdfOptions;
 
+	@Getter
+	private Map<String, FilterMeta> filterMap = new HashMap<>();
+
+	private String reportHeader = null;
+	@Getter
+	private MyColoredPdfExporter pdfExporter;
+
 	public AbstractCrudView(Class<T> clazz) {
-		this(clazz, new QueryFetch[0], new QueryFetch[0]);
+		this(clazz, null, new QueryFetch[0], new QueryFetch[0]);
+	}
+
+	public AbstractCrudView(Class<T> clazz, String reportHeader) {
+		this(clazz, reportHeader, new QueryFetch[0], new QueryFetch[0]);
 	}
 
 	public AbstractCrudView(Class<T> clazz, QueryFetch[] editItemQueryFetch) {
-		this(clazz, new QueryFetch[0], editItemQueryFetch);
+		this(clazz, null, new QueryFetch[0], editItemQueryFetch);
 	}
 
-	public AbstractCrudView(Class<T> clazz, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
+	public AbstractCrudView(Class<T> clazz, String reportHeader, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
 		this.clazz = clazz;
+		this.reportHeader = reportHeader;
 		this.itemsQueryFetch = itemsQueryFetch;
 		this.editItemQueryFetch = editItemQueryFetch;
 	}
@@ -80,6 +98,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 		visibleSection = "table";
 
 		dataModel = new LazyIdEntityDataModel<>() {
+
 			@Override
 			public int count(Map<String, FilterMeta> map) {
 				return countItems(map);
@@ -87,11 +106,14 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 
 			@Override
 			public List<T> load(int first, int pageSize, Map<String, SortMeta> sortMap, Map<String, FilterMeta> filterMap) {
+				AbstractCrudView.this.filterMap = filterMap;
 				List<T> items = loadItems(first, pageSize, sortMap, filterMap);
 				this.setRowCount(countItems(filterMap));
 				return items;
 			}
 		};
+
+		pdfExporter = new MyColoredPdfExporter(reportHeader == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + ".plural") : reportHeader, this);
 
 		pdfOptions = new PDFOptions();
 		pdfOptions.setCellFontSize("12");
@@ -216,7 +238,15 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 
 	public String formatColumn(UIColumn column) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		Object value = UIColumn.createValueExpressionFromField(context, "item", column.getField()).getValue(context.getELContext());
+		Object value = null;
+		if(column.getField() != null) {
+			value = UIColumn.createValueExpressionFromField(context, "item", column.getField()).getValue(context.getELContext());
+		} else if(column.getChildren().size() == 1) {
+			UIComponent uiComponent = column.getChildren().get(0);
+			if(uiComponent instanceof ValueHolder valueHolder) {
+				value = valueHolder.getValue();
+			}
+		}
 		if(value instanceof Date) {
 			return SimpleDateFormat.getDateInstance().format(value);
 		} else if(value instanceof Number) {
@@ -231,7 +261,12 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	public String getFilename() {
-		return MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase()+ ".plural") + " " + DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+		return (reportHeader == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase()+ ".plural") : reportHeader)
+				+ " " + DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+	}
+
+	public String getI18nFieldName(String entityField) {
+		return MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + "." + entityField);
 	}
 
 }

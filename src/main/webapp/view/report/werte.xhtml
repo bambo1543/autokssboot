@@ -1,0 +1,121 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
+				xmlns:my="http://bambo.it/my">
+
+    <ui:define name="center">
+		<h:form id="frmwerte">
+            <p:dataTable id="tblwerte" widgetVar="tblwerte"
+                         var="item" value="#{werteReportView.dataModel}"
+                         selection="#{werteReportView.selectedItem}" selectionMode="single"
+                         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,50,100,1000" rowKey="#{item.id}"
+                         lazy="true" size="small" resizableColumns="true">
+                <ui:insert name="tableHeader">
+                    <f:facet name="header">
+                        <p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
+                            <h:panelGroup>
+                                <p:outputLabel value="#{msgs['report.werte']}" style="font-size: large"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:commandButton value="PDF">
+                                    <p:dataExporter type="pdf" target="tblwerte" fileName="#{werteReportView.filename}" encoding="iso-8859-1"
+                                                    options="#{werteReportView.pdfOptions}" exporter="#{werteReportView.pdfExporter}" />
+                                </p:commandButton>
+                                <p:commandButton value="XLS">
+                                    <p:dataExporter type="xls" target="tblwerte" fileName="#{werteReportView.filename}" encoding="iso-8859-1"
+                                                    exporter="#{myExcelExporter}"/>
+                                </p:commandButton>
+                            </h:panelGroup>
+                        </p:panelGrid>
+                    </f:facet>
+                </ui:insert>
+
+                <p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
+                          exportFunction="#{werteReportView.formatColumn}">
+                    <f:facet name="filter">
+                        <p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblwerte').filter()" showButtonBar="true"/>
+                    </f:facet>
+                    <h:outputText value="#{item.pruefDatum}" converter="#{dateOnlyConverter}"/>
+                </p:column>
+                <p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
+                          sortBy="#{item.pruefer.email}" exportValue="#{item.pruefer.name}">
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tblwerte').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
+                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
+                        </p:selectOneMenu>
+                    </f:facet>
+
+                    <h:outputText value="#{item.pruefer.email}" />
+                </p:column>
+                <p:column field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}" filterMatchMode="exact"
+                          sortBy="#{item.maschine.name}" exportValue="#{item.maschine.name}">
+                    <f:facet name="filter">
+                        <p:selectOneMenu onchange="PF('tblwerte').filter()" styleClass="custom-filter" converter="#{maschineConverter}" style="width: auto">
+                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
+                            <f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
+                        </p:selectOneMenu>
+                    </f:facet>
+
+                    <h:outputText value="#{item.maschine.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msgs['report.werte.sollRM']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.rmSoll}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column id="rm1" headerText="#{msgs['report.werte.istRM1']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.rm1}" style="#{item.rm1InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msgs['report.werte.istRM2']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.rm2}" style="#{item.rm2InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="#{msgs['report.werte.sollPH']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.maschine.kuehlschmierstoff.phSoll}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msgs['report.werte.istPH1']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.ph1}" style="#{item.ph1InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msgs['report.werte.istPH2']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.ph2}" style="#{item.ph2InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="#{msgs['report.werte.sollNitrit']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.maschine.kuehlschmierstoff.nitrit}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msgs['report.werte.istNitrit1']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.nitrit1}" style="#{item.nitrit1InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{msgs['report.werte.istNitrit2']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
+                    <h:outputText value="#{item.nitrit2}" style="#{item.nitrit2InRange ? '' : 'color: #ff0000'}">
+                        <f:convertNumber minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column field="bemerkung" />
+            </p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

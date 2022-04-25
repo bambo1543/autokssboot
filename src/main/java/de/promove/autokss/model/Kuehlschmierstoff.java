@@ -2,6 +2,7 @@ package de.promove.autokss.model;
 
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 import lombok.*;
 
 import jakarta.persistence.Entity;
@@ -41,4 +42,9 @@ public class Kuehlschmierstoff extends AbstractNamedBaseEntity {
 
     @OneToMany(mappedBy = "kuehlschmierstoff")
     private Set<Maschine> maschinen = new HashSet<>();
+
+    @Transient
+    public double getPhSoll() {
+        return (phMin + phMax) / 2;
+    }
 }

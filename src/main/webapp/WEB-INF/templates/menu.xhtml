@@ -3,34 +3,33 @@
      xmlns:h="http://xmlns.jcp.org/jsf/html"
      xmlns:f="http://xmlns.jcp.org/jsf/core"
      xmlns:p="http://primefaces.org/ui">
-    <div class="card">
-    <h:form id="formMenu">
-        <p:menubar>
-            <p:submenu label="Daten">
-                <p:menuitem value="#{msgs['entity.maschine.plural']}" url="#{request.contextPath}/view/entity/maschine/maschine.crud.xhtml" />
-                <p:menuitem value="#{msgs['entity.bereich.plural']}" url="#{request.contextPath}/view/entity/bereich/bereich.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.einsatzkonzentration.plural']}" url="#{request.contextPath}/view/entity/einsatzkonzentration/einsatzkonzentration.crud.xhtml" />
-                <p:menuitem value="#{msgs['entity.kuehlschmierstoff.plural']}" url="#{request.contextPath}/view/entity/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.messung.plural']}" url="#{request.contextPath}/view/entity/messung/messung.crud.xhtml"/>
-                <p:menuitem value="#{msgs['entity.user.plural']}" url="#{request.contextPath}/view/entity/user/user.crud.xhtml"/>
-            </p:submenu>
-            <p:submenu label="Workflow">
-                <p:menuitem value="#{msgs['workflow.firstMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.first.xhtml"/>
-                <p:menuitem value="#{msgs['workflow.secondMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.second.xhtml"/>
-            </p:submenu>
-            <p:submenu label="Berichte">
-                <p:menuitem value="#{msgs['report.measures']}" url="#{request.contextPath}/view/report/measures.xhtml"/>
-                <p:menuitem value="Werte Bericht öffnen"/>
-                <p:menuitem value="Verbrauchtsbericht öffnen"/>
-                <p:menuitem value="Bericht per Email senden"/>
-            </p:submenu>
 
-            <p:divider layout="vertical"/>
+    <div class="card span-26 last">
+        <h:form id="formMenu">
+            <p:menubar>
+                <p:submenu label="Daten">
+                    <p:menuitem value="#{msgs['entity.maschine.plural']}" url="#{request.contextPath}/view/entity/maschine/maschine.crud.xhtml" />
+                    <p:menuitem value="#{msgs['entity.bereich.plural']}" url="#{request.contextPath}/view/entity/bereich/bereich.crud.xhtml"/>
+                    <p:menuitem value="#{msgs['entity.einsatzkonzentration.plural']}" url="#{request.contextPath}/view/entity/einsatzkonzentration/einsatzkonzentration.crud.xhtml" />
+                    <p:menuitem value="#{msgs['entity.kuehlschmierstoff.plural']}" url="#{request.contextPath}/view/entity/kuehlschmierstoff/kuehlschmierstoff.crud.xhtml"/>
+                    <p:menuitem value="#{msgs['entity.messung.plural']}" url="#{request.contextPath}/view/entity/messung/messung.crud.xhtml"/>
+                    <p:menuitem value="#{msgs['entity.user.plural']}" url="#{request.contextPath}/view/entity/user/user.crud.xhtml"/>
+                </p:submenu>
+                <p:submenu label="Workflow">
+                    <p:menuitem value="#{msgs['workflow.firstMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.first.xhtml"/>
+                    <p:menuitem value="#{msgs['workflow.secondMessung']}" url="#{request.contextPath}/view/workflow/messung.edit.form.second.xhtml"/>
+                </p:submenu>
+                <p:submenu label="Berichte">
+                    <p:menuitem value="#{msgs['report.measures']}" url="#{request.contextPath}/view/report/measures.xhtml"/>
+                    <p:menuitem value="#{msgs['report.werte']}" url="#{request.contextPath}/view/report/werte.xhtml"/>
+                    <p:menuitem value="Verbrauchtsbericht" disabled="true"/>
+                </p:submenu>
 
-            <p:menuitem value="#{msgs['btn.login']}" url="#{request.contextPath}/login.xhtml" rendered="#{not securityBean.loggedIn}"/>
-            <p:menuitem value="#{msgs['btn.logout']}" url="#{request.contextPath}/logout" rendered="#{securityBean.loggedIn}"/>
+                <p:divider layout="vertical"/>
 
-        </p:menubar>
-    </h:form>
+                <p:menuitem value="#{msgs['btn.login']}" url="#{request.contextPath}/login.xhtml" rendered="#{not securityBean.loggedIn}"/>
+                <p:menuitem value="#{msgs['btn.logout']}" url="#{request.contextPath}/logout" rendered="#{securityBean.loggedIn}"/>
+            </p:menubar>
+        </h:form>
     </div>
 </div>

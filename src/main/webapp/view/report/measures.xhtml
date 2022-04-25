@@ -7,21 +7,13 @@
 				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
 				xmlns:my="http://bambo.it/my">
 
-    <ui:define name="head">
-        <style>
-            input[id='frmmeasures:tblmeasures:pruefDatePicker_input'] {
-                width: 90%;
-            }
-        </style>
-    </ui:define>
-
     <ui:define name="center">
 		<h:form id="frmmeasures">
             <p:dataTable id="tblmeasures" widgetVar="tblmeasures"
                          var="item" value="#{measureReportView.dataModel}"
                          selection="#{measureReportView.selectedItem}" selectionMode="single"
                          paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="10,20,50,100,1000" rowKey="#{measureReportView.id}"
+                         rowsPerPageTemplate="10,20,50,100,1000" rowKey="#{item.id}"
                          lazy="true" size="small" resizableColumns="true">
                 <ui:insert name="tableHeader">
                     <f:facet name="header">
@@ -32,7 +24,7 @@
                             <h:panelGroup>
                                 <p:commandButton value="PDF">
                                     <p:dataExporter type="pdf" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
-                                                    options="#{measureReportView.pdfOptions}" exporter="#{myPdfExporter}" />
+                                                    options="#{measureReportView.pdfOptions}" exporter="#{measureReportView.pdfExporter}" />
                                 </p:commandButton>
                                 <p:commandButton value="XLS">
                                     <p:dataExporter type="xls" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
@@ -71,14 +63,6 @@
                     </f:facet>
 
                     <h:outputText value="#{item.maschine.name}"/>
-                </p:column>
-
-                <p:column field="wasserstandCm" sortBy="#{item.wasserstandCm}" filterBy="#{item.wasserstandCm}"
-                          headerText="#{msgs['entity.messung.wasserstandCm.headerText']}" style="text-align: right;"
-                          exportFunction="#{measureReportView.formatColumn}">
-                    <h:outputText value="#{item.wasserstandCm}">
-                        <f:convertNumber minFractionDigits="2"/>
-                    </h:outputText>
                 </p:column>
 
                 <p:column field="wasserNachgefuellt" sortBy="#{item.wasserNachgefuellt}" filterBy="#{item.wasserNachgefuellt}"

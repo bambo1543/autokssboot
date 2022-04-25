@@ -18,6 +18,7 @@ import org.primefaces.component.datatable.export.DataTablePDFExporter;
 import org.primefaces.component.export.ExportConfiguration;
 import org.primefaces.model.ColumnMeta;
 import org.primefaces.util.LangUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
@@ -29,7 +30,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@Component
 public class MyPdfExporter extends DataTablePDFExporter {
 
     protected Document createDocument() {

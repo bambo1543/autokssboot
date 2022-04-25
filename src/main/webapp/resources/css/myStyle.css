@@ -77,3 +77,13 @@ input[readonly].ui-widget {
 /*select.selectOneMenuFilter.ui-column-filter{*/
 /*	width: 80px;*/
 /*}*/
+
+input[id$='pruefDatePicker_input'] {
+    width: 90%;
+}
+
+span.shortenText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
