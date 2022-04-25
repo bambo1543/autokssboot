@@ -6,7 +6,7 @@
 	 xmlns:my="http://bambo.it/my">
 
 	<p:panelGrid columns="2" style="height: 25px;" styleClass="span-26 last" layout="grid" columnClasses="textLeft,textRight">
-		<p:outputLabel value="#1" />
+		<p:outputLabel value="#{securityBean.buildProperties.version}" />
 		<p:outputLabel value="#{facesContext.externalContext.remoteUser}" />
 	</p:panelGrid>
 </div>

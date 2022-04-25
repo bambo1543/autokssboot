@@ -11,7 +11,7 @@
 
 	<groupId>de.promove</groupId>
 	<artifactId>autokss</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Auto KSS</name>
 	<description>Auto KSS</description>
 	<packaging>war</packaging>
@@ -173,8 +173,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>repackage</id>
 						<goals>
 							<goal>repackage</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>build-info</goal>
 						</goals>
 					</execution>
 				</executions>
