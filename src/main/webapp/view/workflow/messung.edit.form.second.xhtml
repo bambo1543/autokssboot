@@ -6,9 +6,6 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:my="http://bambo.it/my">
 
-    <ui:define name="head">
-    </ui:define>
-
     <ui:define name="center">
         <h:form id="frmMessung2">
             <h:panelGroup rendered="#{messungSecondView.maschinen.isEmpty()}" styleClass="span-26 last textCenter">
@@ -18,7 +15,7 @@
             </h:panelGroup>
             <h:panelGroup rendered="#{!messungSecondView.maschinen.isEmpty()}">
                 <div>
-                    <p:panelGrid columns="3" style="margin: 5px;" >
+                    <p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
                         <p:inputText value="#{messungSecondView.pruefer.email}" readonly="true"/>
                         <p:message for="@previous"/>
