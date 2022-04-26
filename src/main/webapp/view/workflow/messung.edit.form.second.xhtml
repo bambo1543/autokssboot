@@ -17,7 +17,7 @@
                 <p:link value="1. Messung erfassen" outcome="/view/workflow/messung.edit.form.first.xhtml" />
             </h:panelGroup>
             <h:panelGroup rendered="#{!messungSecondView.maschinen.isEmpty()}">
-                <div class="span-26 last">
+                <div>
                     <p:panelGrid columns="3" style="margin: 5px;" >
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
                         <p:inputText value="#{messungSecondView.pruefer.email}" readonly="true"/>
@@ -32,11 +32,8 @@
 
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefDatum']}"/>
                         <p:datePicker value="#{messungSecondView.messung.pruefDatum}" readonly="true"/>
-                        <p:message for="@previous"/>
+                        <p:message for="@previous" style="margin-bottom: 50px"/>
 
-                        <p:outputLabel/>
-                        <p:outputLabel/>
-                        <p:outputLabel/>
 
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt.past']}"/>
                         <p:inputNumber value="#{messungSecondView.messung.oelNachgefuellt}"
@@ -46,11 +43,8 @@
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserNachgefuellt.past']}"/>
                         <p:inputNumber value="#{messungSecondView.messung.wasserNachgefuellt}"
                                        symbolPosition="s" symbol="l" required="true" />
-                        <p:message for="@previous"/>
+                        <p:message for="@previous" style="margin-bottom: 50px"/>
 
-                        <p:outputLabel/>
-                        <p:outputLabel/>
-                        <p:outputLabel/>
 
                         <p:outputLabel for="@next" value="#{msgs['entity.messung.rm']}"/>
                         <p:inputNumber id="rm2" value="#{messungSecondView.messung.rm2}" symbol="%" symbolPosition="s" required="true" />
@@ -71,7 +65,7 @@
                 <p:tooltip for="nitrit2" value="#{msgs['entity.messung.nitrit.tooltip']}" />
             </div>
 
-            <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+            <div style="text-align:left; margin-bottom: 5px; margin-top: 5px;">
                 <p:commandButton value="#{msgs['btn.save']}" action="#{messungSecondView.save}" update="@form growl"/>
                 <p:commandButton value="#{msgs['btn.cancel']}" action="#{messungSecondView.cancel}" update="@form growl" immediate="true"/>
             </div>

@@ -1,3 +1,7 @@
+.roundCorners {
+    border-radius: 3px
+}
+
 input[inputmode='decimal']{
     text-align: right;
 }
@@ -55,12 +59,16 @@ input[readonly].ui-widget {
 
 /* Form */
 .frmLabel {
-    margin-right: 10px;
-    /*width: 90px;*/
+    /*margin-right: 10px;*/
+    width: 100px;
 }
 
 .frmInput {
-    /*width: 200px;*/
+    width: 300px;
+}
+
+.frmMessage {
+    width: 100px;
 }
 
 /*Override JQuery/Primefaces styles*/

@@ -14,8 +14,8 @@
                 <p:link value="2. Messung erfassen" outcome="/view/workflow/messung.edit.form.second.xhtml" />
             </h:panelGroup>
                 <h:panelGroup rendered="#{!messungFirstView.maschinenWithoutMessung.isEmpty()}">
-                    <div class="span-26 last">
-                        <p:panelGrid columns="3" style="margin: 5px;">
+                    <div>
+                        <p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
                             <p:inputText id="pruefer" value="#{messungFirstView.messung.pruefer.email}" readonly="true"/>
                             <p:message for="@previous"/>
@@ -28,11 +28,8 @@
                             <p:selectOneMenu value="#{messungFirstView.messung.maschine}" converter="#{maschineConverter}">
                                 <f:selectItems value="#{messungFirstView.maschinenWithoutMessung}" var="i" itemLabel="#{i.name}"/>
                             </p:selectOneMenu>
-                            <p:message for="@previous"/>
+                            <p:message for="@previous" style="margin-bottom: 50px"/>
 
-                            <p:outputLabel/>
-                            <p:outputLabel/>
-                            <p:outputLabel/>
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserstandCm']}"/>
                             <p:inputNumber id="wasserstandCm" value="#{messungFirstView.messung.wasserstandCm}"
@@ -49,11 +46,8 @@
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit']}"/>
                             <p:inputNumber id="nitrit1" value="#{messungFirstView.messung.nitrit1}" symbolPosition="s" symbol="mg" required="true" />
-                            <p:message for="@previous"/>
+                            <p:message for="@previous" style="margin-bottom: 50px"/>
 
-                            <p:outputLabel/>
-                            <p:outputLabel/>
-                            <p:outputLabel/>
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt']}"/>
                             <p:inputNumber value="#{messungFirstView.messung.oelNachgefuellt}"
@@ -72,7 +66,7 @@
                         <p:tooltip for="nitrit1" value="#{msgs['entity.messung.nitrit.tooltip']}" />
                     </div>
 
-                    <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                    <div style="text-align:left; margin-bottom: 5px; margin-top: 5px;">
                         <p:commandButton value="#{msgs['btn.calculate.refill']}" actionListener="#{messungFirstView.updateRefill}" update="@form growl" process="@form" style="margin-right: 5px"/>
                         <p:commandButton value="#{msgs['btn.save']}" action="#{messungFirstView.save}" update="@form growl"/>
                         <p:commandButton value="#{msgs['btn.cancel']}" action="#{messungFirstView.cancel}" update="@form growl"

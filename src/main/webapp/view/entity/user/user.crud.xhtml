@@ -13,7 +13,7 @@
 
         <h:form id="frmPassword">
             <h:panelGroup id="pnlPassword" rendered="#{userView.visibleSection eq 'password'}">
-                    <div class="span-26 last">
+                    <div class="col-12">
                         <p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
                             <p:outputLabel for="pwd1" value="#{msgs['entity.user.password']}"/>
                             <p:password id="pwd1" value="#{userView.editItem.password}" match="pwd2" />
@@ -25,7 +25,7 @@
                         </p:panelGrid>
                     </div>
 
-                    <div class="span-26 last" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                    <div class="col-12" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
                         <p:commandButton value="#{msgs['btn.save']}" action="#{userView.savePassword}"
                                          update="pnlCenter growl"/>
                         <p:commandButton value="#{msgs['btn.cancel']}" action="#{userView.cancelPassword}"

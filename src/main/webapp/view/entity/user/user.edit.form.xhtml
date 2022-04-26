@@ -4,7 +4,7 @@
 	 xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
 
-	<p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
 		<p:outputLabel for="email" value="#{msgs['entity.user.email']}" />
 		<p:inputText id="email" value="#{item.email}" />
 		<p:message for="email" />

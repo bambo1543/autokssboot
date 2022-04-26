@@ -4,7 +4,7 @@
 	 xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
 
-	<p:panelGrid columns="3" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
+	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
 		<p:outputLabel for="name" value="#{msgs['entity.einsatzkonzentration.name']}" />
 		<p:inputText id="name" value="#{item.name}" />
 		<p:message for="name"/>

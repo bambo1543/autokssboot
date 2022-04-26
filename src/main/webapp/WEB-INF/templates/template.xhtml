@@ -19,9 +19,12 @@
 <!--			<link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/favicon-32x32.png"/>-->
 		</f:facet>
 
+<!--		<link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>-->
+
+		<h:outputStylesheet library="css" name="primeflex.css"/>
 		<h:outputStylesheet library="css" name="theme.css"/>
 		<h:outputStylesheet library="css" name="myStyle.css"/>
-		<h:outputStylesheet library="css" name="grid.css"/>
+<!--		<h:outputStylesheet library="css" name="grid.css"/>-->
 		<h:outputStylesheet library="css" name="famfamfam.css"/>
 		<h:outputStylesheet library="primefaces" name="primeicons/primeicons.css"  />
 
@@ -29,37 +32,34 @@
 	</h:head>
 
 	<h:body>
-			<p:growl id="growl" showDetail="true"/>
+		<p:growl id="growl" showDetail="true"/>
 
-<!--			<div class="container showgrid">-->
-			<div class="container">
-				<div class="span-26 last">
-					<h:form id="formHeader">
-						<div class="ui-widget ui-widget-header ui-corner-top" style="height: 50px;">
-							<p:panelGrid columns="2" layout="grid" columnClasses="textLeft,textRight" style="width: 100%">
-								<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
-								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
-									<f:selectItems value="#{themeSwitcherBean.themes}" />
-									<p:ajax event="change"/>
-									<p:column>
-										<span class="ui-theme ui-theme-#{t}" style="width: 30px; height: 20px"/>
-									</p:column>
-									<p:column>
-										<h:outputText value="#{t}"/>
-									</p:column>
-								</p:selectOneMenu>
-							</p:panelGrid>
-						</div>
-					</h:form>
-					<ui:include src="menu.xhtml" />
-				</div>
-				<h:panelGroup id="pnlCenter" class="span-26 last">
-					<ui:insert name="center"/>
-				</h:panelGroup>
-				<h:panelGroup id="pnlFooter" class="span-26 last">
-					<ui:include src="footer.xhtml"/>
-				</h:panelGroup>
-			</div>
+		<div class="grid">
+			<h:panelGroup class="col-12" >
+				<h:form id="formHeader">
+					<p:panelGrid columns="2" layout="grid" columnClasses="textLeft,textRight" contentStyle="border-radius: 3px 3px 0 0">
+						<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
+						<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
+							<f:selectItems value="#{themeSwitcherBean.themes}" />
+							<p:ajax event="change"/>
+							<p:column>
+								<span class="ui-theme ui-theme-#{t}" style="width: 30px; height: 20px"/>
+							</p:column>
+							<p:column>
+								<h:outputText value="#{t}"/>
+							</p:column>
+						</p:selectOneMenu>
+					</p:panelGrid>
+				</h:form>
+				<ui:include src="menu.xhtml" />
+			</h:panelGroup>
+			<h:panelGroup id="pnlCenter" class="col-12">
+				<ui:insert name="center"/>
+			</h:panelGroup>
+			<h:panelGroup id="pnlFooter" class="col-12" >
+				<ui:include src="footer.xhtml"/>
+			</h:panelGroup>
+		</div>
 	</h:body>
 
 </f:view>

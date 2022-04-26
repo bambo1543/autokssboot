@@ -6,7 +6,7 @@
 	 xmlns:my="http://bambo.it/my"
 	 xmlns:b="http://xmlns.jcp.org/jsf/composite/component">
 
-	<p:panelGrid columns="3" style="margin: 5px;" >
+	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
 		<p:outputLabel for="@next" value="#{msgs['entity.messung.pruefer']}"/>
 		<p:inputText value="#{item.pruefer.email}" readonly="true"/>
 		<p:message for="@previous"/>
