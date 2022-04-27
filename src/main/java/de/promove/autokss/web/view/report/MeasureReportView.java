@@ -35,7 +35,12 @@ import java.util.Date;
 public class MeasureReportView extends AbstractCrudView<Messung> {
 
     public MeasureReportView() {
-        super(Messung.class, MessageFactory.getMessage("report.measures"));
+        super(Messung.class);
+    }
+
+    @Override
+    protected String getReportHeader() {
+        return MessageFactory.getMessage("report.measures");
     }
 
     @Override

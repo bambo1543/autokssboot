@@ -17,8 +17,6 @@ public class Maschine extends AbstractNamedBaseEntity {
 
     @NotNull
     private String name;
-//    @NotNull
-    private String description;
 
     @NotNull
     private Double tankVolumenLiter;
@@ -43,10 +41,15 @@ public class Maschine extends AbstractNamedBaseEntity {
     @ManyToOne(optional = false)
     private Kuehlschmierstoff kuehlschmierstoff;
 
-    public Maschine(String name, String description, Bereich bereich) {
+    public Maschine(String name, Bereich bereich) {
         this.name = name;
-        this.description = description;
         this.bereich = bereich;
+    }
+
+    public Maschine(Einsatzkonzentration ek, Double tankVolumenLiter, Double wasserstandMaxCm) {
+        this.einsatzkonzentration = ek;
+        this.wasserstandMaxCm = wasserstandMaxCm;
+        this.tankVolumenLiter = tankVolumenLiter;
     }
 
 }

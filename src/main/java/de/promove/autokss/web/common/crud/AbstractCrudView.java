@@ -6,7 +6,6 @@ import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
-import de.promove.autokss.web.common.MessageBundleLoader;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
 import de.promove.autokss.web.util.exporter.MyColoredPdfExporter;
@@ -18,7 +17,6 @@ import lombok.Setter;
 import org.primefaces.component.api.UIColumn;
 import org.primefaces.component.export.PDFOptions;
 import org.primefaces.component.export.PDFOrientationType;
-import org.primefaces.component.outputlabel.OutputLabel;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -70,25 +68,19 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	@Getter
 	private Map<String, FilterMeta> filterMap = new HashMap<>();
 
-	private String reportHeader = null;
 	@Getter
 	private MyColoredPdfExporter pdfExporter;
 
 	public AbstractCrudView(Class<T> clazz) {
-		this(clazz, null, new QueryFetch[0], new QueryFetch[0]);
-	}
-
-	public AbstractCrudView(Class<T> clazz, String reportHeader) {
-		this(clazz, reportHeader, new QueryFetch[0], new QueryFetch[0]);
+		this(clazz, new QueryFetch[0], new QueryFetch[0]);
 	}
 
 	public AbstractCrudView(Class<T> clazz, QueryFetch[] editItemQueryFetch) {
-		this(clazz, null, new QueryFetch[0], editItemQueryFetch);
+		this(clazz, new QueryFetch[0], editItemQueryFetch);
 	}
 
-	public AbstractCrudView(Class<T> clazz, String reportHeader, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
+	public AbstractCrudView(Class<T> clazz, QueryFetch[] itemsQueryFetch, QueryFetch[] editItemQueryFetch) {
 		this.clazz = clazz;
-		this.reportHeader = reportHeader;
 		this.itemsQueryFetch = itemsQueryFetch;
 		this.editItemQueryFetch = editItemQueryFetch;
 	}
@@ -113,12 +105,16 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 			}
 		};
 
-		pdfExporter = new MyColoredPdfExporter(reportHeader == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + ".plural") : reportHeader, this);
+		pdfExporter = new MyColoredPdfExporter(getReportHeader() == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase() + ".plural") : getReportHeader(), this);
 
 		pdfOptions = new PDFOptions();
 		pdfOptions.setCellFontSize("12");
 		pdfOptions.setFontName("Courier");
 		pdfOptions.setOrientation(PDFOrientationType.LANDSCAPE);
+	}
+
+	protected String getReportHeader() {
+		return null;
 	}
 
 	protected List<T> loadItems(int first, int pageSize, Map<String, SortMeta> sortMap, Map<String, FilterMeta> filterMap) {
@@ -261,7 +257,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	public String getFilename() {
-		return (reportHeader == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase()+ ".plural") : reportHeader)
+		return (getReportHeader() == null ? MessageFactory.getMessage("entity." + clazz.getSimpleName().toLowerCase()+ ".plural") : getReportHeader())
 				+ " " + DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 	}
 

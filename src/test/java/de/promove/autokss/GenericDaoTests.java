@@ -82,20 +82,20 @@ class GenericDaoTests {
 				1.0, 1.0, 1.0, "", null, new HashSet<>());
 		genericDao.persist(kss1);
 
-		Maschine m1 = new Maschine("CTX 310", "test", b3);
+		Maschine m1 = new Maschine("CTX 310", b3);
 		applyNotNullAttributes(m1);
 		m1.setLetzterEmulsionswechsel(new Date(new Date().getTime() - 1000));
 		m1.setEinsatzkonzentration(e1);
 		m1.setKuehlschmierstoff(kss1);
 		genericDao.persist(m1);
 
-		Maschine m2 = new Maschine("DMC 64 V","test", b2);
+		Maschine m2 = new Maschine("DMC 64 V", b2);
 		applyNotNullAttributes(m2);
 		m2.setEinsatzkonzentration(e1);
 		m2.setKuehlschmierstoff(kss1);
 		genericDao.persist(m2);
 
-		Maschine m3 = new Maschine("Meba Bandsäge", "test", b1);
+		Maschine m3 = new Maschine("Meba Bandsäge", b1);
 		applyNotNullAttributes(m3);
 		m3.setEinsatzkonzentration(e2);
 		m3.setKuehlschmierstoff(kss1);

@@ -92,7 +92,7 @@ public class MariaImportTest {
         List<Maschine> maschinen = jdbcTemplate.query("select * from neutblMaschine", new RowMapper<Maschine>() {
             @Override
             public Maschine mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Maschine m = new Maschine(rs.getString("Bezeichnung"), rs.getString("Bemerkung"),
+                Maschine m = new Maschine(rs.getString("Bezeichnung"),
                         bereicheMap.get(rs.getInt("Bereich")));
                 m.setTankVolumenLiter(rs.getDouble("VolumenTank"));
                 m.setWasserstandMaxCm(rs.getDouble("maxWassercm"));

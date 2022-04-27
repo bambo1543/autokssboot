@@ -25,7 +25,12 @@ import java.util.List;
 public class WerteReportView extends AbstractCrudView<Messung> {
 
     public WerteReportView() {
-        super(Messung.class, MessageFactory.getMessage("report.werte"));
+        super(Messung.class);
+    }
+
+    @Override
+    protected String getReportHeader() {
+        return MessageFactory.getMessage("report.werte");
     }
 
     @Override
