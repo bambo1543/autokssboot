@@ -60,6 +60,15 @@ public class MariaImportTest {
 
         initDBService.createAdminAccount();
         logger.info("Persisted Admin Account");
+
+        final Map<Integer, String> emailMap = new HashMap<>();
+        emailMap.put(1, "mmueller@promove-gmbh.de");
+        emailMap.put(2, "iboebel@promove-gmbh.de");
+        emailMap.put(3, "autokss@promove-gmbh.de");
+        emailMap.put(4, "mvogel@promove-gmbh.de");
+        emailMap.put(5, "pmendel@promove-gmbh.de");
+        emailMap.put(6, "emorina@promove-gmbh.de");
+
         List<User> users = jdbcTemplate.query("select * from neutblPrüfer", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -67,7 +76,7 @@ public class MariaImportTest {
                 String nachname = rs.getString("Nachname");
                 User user = new User(vorname + "." + nachname + "@promove-gmbh.de", passwordEncoder.encode("passwort"),
                         vorname, nachname, rs.getString("Bemerkung"), Role.USER);
-                usersMap.put(rs.getInt("IDPrüfer"), user);
+                usersMap.put(idPruefer, user);
                 return user;
             }
         });
@@ -86,7 +95,7 @@ public class MariaImportTest {
         genericService.persistAll(einsatzkonzentrationen);
         logger.info("Persisted Einsatzkonzentration");
 
-        Kuehlschmierstoff kss = new Kuehlschmierstoff("Zubora 65 H-Ultra", "Viscotex", 8.7, 9.3, 1.3, 16.0, 0.01, 14.4, null, null, null);
+        Kuehlschmierstoff kss = new Kuehlschmierstoff("Zubora 65 H-Ultra", "Viscotex", 8.7, 9.3, 1.3, 50.0, 20.0, 14.4, null, null, null);
         genericService.persist(kss);
 
         List<Maschine> maschinen = jdbcTemplate.query("select * from neutblMaschine", new RowMapper<Maschine>() {
@@ -109,7 +118,7 @@ public class MariaImportTest {
         genericService.persistAll(maschinen);
         logger.info("Persisted Maschine");
 
-        List<Messung> messungen = jdbcTemplate.query("select * from neutblMessung", new RowMapper<Messung>() {
+        List<Messung> messungen = jdbcTemplate.query("select * from neutblMessung m where m.gesperrt = 1", new RowMapper<Messung>() {
             @Override
             public Messung mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Messung m = new Messung(rs.getDate("Prüfdatum"), usersMap.get(rs.getInt("Prüfer")),
