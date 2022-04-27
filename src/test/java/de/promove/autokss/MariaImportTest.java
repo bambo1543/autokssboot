@@ -74,7 +74,16 @@ public class MariaImportTest {
             public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                 String vorname = rs.getString("Vorname");
                 String nachname = rs.getString("Nachname");
-                User user = new User(vorname + "." + nachname + "@promove-gmbh.de", passwordEncoder.encode("passwort"),
+                int idPruefer = rs.getInt("IDPrüfer");
+
+                String email;
+                if(emailMap.containsKey(idPruefer)) {
+                    email = emailMap.get(idPruefer);
+                } else {
+                    email = vorname + "." + nachname + "@promove-gmbh.de";
+                }
+
+                User user = new User(email, passwordEncoder.encode("changeit"),
                         vorname, nachname, rs.getString("Bemerkung"), Role.USER);
                 usersMap.put(idPruefer, user);
                 return user;
