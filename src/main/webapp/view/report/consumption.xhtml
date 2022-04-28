@@ -1,0 +1,118 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:f="http://xmlns.jcp.org/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
+				xmlns:my="http://bambo.it/my">
+
+    <ui:define name="center">
+		<h:form id="frmconsumption">
+            <p:dataTable id="tblconsumption" widgetVar="tblconsumption"
+						 var="item" value="#{consumptionReportView.dataModel}"
+						 selection="#{consumptionReportView.selectedItem}" selectionMode="single"
+						 paginator="true" rows="10" rowsPerPageTemplate="10,20,50,100,1000"
+						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         size="small" lazy="true">
+
+				<ui:insert name="tableHeader">
+					<f:facet name="header">
+						<p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
+							<h:panelGroup>
+								<p:outputLabel value="#{msgs['report.consumption']}" style="font-size: large"/>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:commandButton value="PDF">
+									<p:dataExporter type="pdf" target="tblconsumption" fileName="#{consumptionReportView.filename}" encoding="iso-8859-1"
+													options="#{consumptionReportView.pdfOptions}" exporter="#{consumptionReportView.pdfExporter}" />
+								</p:commandButton>
+								<p:commandButton value="XLS">
+									<p:dataExporter type="xls" target="tblconsumption" fileName="#{consumptionReportView.filename}" encoding="iso-8859-1"
+													exporter="#{myExcelExporter}"/>
+								</p:commandButton>
+							</h:panelGroup>
+						</p:panelGrid>
+					</f:facet>
+				</ui:insert>
+
+				<p:column field="from" headerText="#{msgs['report.consumption.from']}"
+						  exportFunction="#{consumptionReportView.formatColumn}">
+					<f:facet name="filter">
+						<p:datePicker id="fromDatePicker" onchange="PF('tblconsumption').filter()" showButfromnBar="true"/>
+					</f:facet>
+					<h:outputText value="#{item.from}" converter="#{dateOnlyConverter}"/>
+				</p:column>
+				<p:column field="to" headerText="#{msgs['report.consumption.to']}"
+						  exportFunction="#{consumptionReportView.formatColumn}">
+					<f:facet name="filter">
+						<p:datePicker id="toDatePicker" onchange="PF('tblconsumption').filter()" showButtonBar="true"/>
+					</f:facet>
+					<h:outputText value="#{item.to}" converter="#{dateOnlyConverter}"/>
+				</p:column>
+				<p:column field="maschine" headerText="#{msgs['report.consumption.maschine']}" filterable="false"
+						  sortBy="#{item.maschine.name}" exportValue="#{item.maschine.name}">
+					<h:outputText value="#{item.maschine.name}"/>
+				</p:column>
+
+				<p:column headerText="#{msgs['report.consumption.days']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.days}" />
+				</p:column>
+
+				<p:column headerText="#{msgs['report.consumption.oilOpeningBalance']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.oilOpeningBalance}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.oilFilled']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.oilFilled}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.oilEndBalance']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.oilEndBalance}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.oilConsumption']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.oilConsumption}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.oilConsumptionPerDay']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.oilConsumptionPerDay}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msgs['report.consumption.waterOpeningBalance']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.waterOpeningBalance}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.waterFilled']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.waterFilled}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.waterEndBalance']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.waterEndBalance}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.waterConsumption']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.waterConsumption}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msgs['report.consumption.waterConsumptionPerDay']}" style="text-align: right;" exportFunction="#{consumptionReportView.formatColumn}">
+					<h:outputText value="#{item.waterConsumptionPerDay}">
+						<f:convertNumber minFractionDigits="2"/>
+					</h:outputText>
+				</p:column>
+				
+            </p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

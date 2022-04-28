@@ -6,6 +6,7 @@ import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
+import de.promove.autokss.web.util.ColumnUtils;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
 import de.promove.autokss.web.util.exporter.MyColoredPdfExporter;
@@ -233,27 +234,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	public String formatColumn(UIColumn column) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		Object value = null;
-		if(column.getField() != null) {
-			value = UIColumn.createValueExpressionFromField(context, "item", column.getField()).getValue(context.getELContext());
-		} else if(column.getChildren().size() == 1) {
-			UIComponent uiComponent = column.getChildren().get(0);
-			if(uiComponent instanceof ValueHolder valueHolder) {
-				value = valueHolder.getValue();
-			}
-		}
-		if(value instanceof Date) {
-			return SimpleDateFormat.getDateInstance().format(value);
-		} else if(value instanceof Number) {
-			NumberFormat numberFormat = DecimalFormat.getInstance();
-			numberFormat.setMinimumFractionDigits(2);
-			numberFormat.setMaximumFractionDigits(2);
-			return numberFormat.format(value);
-		} else if(value instanceof NamedEntity namedEntity) {
-			return namedEntity.getName();
-		}
-		return null;
+		return ColumnUtils.formatColumn(column);
 	}
 
 	public String getFilename() {

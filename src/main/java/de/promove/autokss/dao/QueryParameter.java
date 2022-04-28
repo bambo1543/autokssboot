@@ -2,6 +2,7 @@ package de.promove.autokss.dao;
 
 import de.promove.autokss.dao.QueryParameterEntry.Operator;
 import de.promove.autokss.service.UserService;
+import de.promove.autokss.util.DateUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.primefaces.model.FilterMeta;
 import org.slf4j.Logger;
@@ -80,11 +81,11 @@ public class QueryParameter {
                 } else if(type.equals(Date.class)) {
                     if(filterValue instanceof List filterList) {
                         if(filterList.size() == 2 && filterList.get(0) instanceof LocalDate && filterList.get(1) instanceof LocalDate) {
-                            this.parameters.add(new QueryParameterEntry<>(filterName, localDateToDateConversion((LocalDate) filterList.get(0)), Operator.GE));
-                            this.parameters.add(new QueryParameterEntry<>(filterName, localDateToDateConversion((LocalDate) filterList.get(1)), Operator.LE));
+                            this.parameters.add(new QueryParameterEntry<>(filterName, DateUtils.localDateToDateConversion((LocalDate) filterList.get(0)), Operator.GE));
+                            this.parameters.add(new QueryParameterEntry<>(filterName, DateUtils.localDateToDateConversion((LocalDate) filterList.get(1)), Operator.LE));
                         }
                     } else if(filterValue instanceof LocalDate localDate) {
-                        this.parameters.add(new QueryParameterEntry<>(filterName, localDateToDateConversion(localDate)));
+                        this.parameters.add(new QueryParameterEntry<>(filterName, DateUtils.localDateToDateConversion(localDate)));
                     }
                 } else {
                     this.parameters.add(new QueryParameterEntry<>(filterName, filterValue));
@@ -94,14 +95,6 @@ public class QueryParameter {
             }
         }
 	}
-
-    private Date localDateToDateConversion(LocalDate localDate) {
-        //default time zone
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-
-        //local date + atStartOfDay() + default time zone + toInstant() = Date
-        return Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
-    }
 
     private QueryParameter(SingularAttribute name, Object value) {
         this.parameters = new ArrayList<>();

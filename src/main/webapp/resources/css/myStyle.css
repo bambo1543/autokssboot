@@ -86,7 +86,7 @@ input[readonly].ui-widget {
 /*	width: 80px;*/
 /*}*/
 
-input[id$='pruefDatePicker_input'] {
+input[id*='DatePicker_input'] {
     width: 90%;
 }
 
