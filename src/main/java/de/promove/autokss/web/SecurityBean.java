@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 
 @Controller
 @SessionScope
@@ -25,5 +27,8 @@ public class SecurityBean implements Serializable {
         return !"anonymousUser".equals(authentication.getPrincipal());
     }
 
+    public String getBuildDate() {
+        return DateFormat.getDateTimeInstance().format(Date.from(buildProperties.getTime()));
+    }
 
 }

@@ -28,7 +28,7 @@
                             <p:selectOneMenu value="#{messungFirstView.messung.maschine}" converter="#{maschineConverter}">
                                 <f:selectItems value="#{messungFirstView.maschinenWithoutMessung}" var="i" itemLabel="#{i.name}"/>
                             </p:selectOneMenu>
-                            <p:message for="@previous" style="margin-bottom: 50px"/>
+                            <p:message for="@previous" styleClass="newLine"/>
 
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserstandCm']}"/>
@@ -46,7 +46,7 @@
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.nitrit']}"/>
                             <p:inputNumber id="nitrit1" value="#{messungFirstView.messung.nitrit1}" symbolPosition="s" symbol="mg" required="true" />
-                            <p:message for="@previous" style="margin-bottom: 50px"/>
+                            <p:message for="@previous" styleClass="newLine"/>
 
 
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.oelNachgefuellt']}"/>
@@ -57,6 +57,10 @@
                             <p:outputLabel for="@next" value="#{msgs['entity.messung.wasserNachgefuellt']}"/>
                             <p:inputNumber value="#{messungFirstView.messung.wasserNachgefuellt}"
                                            symbolPosition="s" symbol="l" required="true" readonly="true"/>
+                            <p:message for="@previous" styleClass="newLine"/>
+
+                            <p:outputLabel for="@next" value="#{msgs['entity.messung.bemerkung']}"/>
+                            <p:inputText value="#{messungFirstView.messung.bemerkung}"/>
                             <p:message for="@previous"/>
                         </p:panelGrid>
 

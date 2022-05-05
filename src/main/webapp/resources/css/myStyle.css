@@ -16,6 +16,10 @@ input[readonly].ui-widget {
     background-color: lightgray;
 }
 
+.newLine {
+    margin-bottom: 50px;
+}
+
 /*Text and divs alignments*/
 .center {
     margin-left: auto;
