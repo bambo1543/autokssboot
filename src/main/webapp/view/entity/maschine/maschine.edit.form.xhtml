@@ -1,8 +1,9 @@
 <div xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	 xmlns:h="http://xmlns.jcp.org/jsf/html"
 	 xmlns:f="http://xmlns.jcp.org/jsf/core"
-	 xmlns:p="http://primefaces.org/ui">
+	 xmlns:p="http://primefaces.org/ui"
+	 xmlns:b="http://xmlns.jcp.org/jsf/composite/component"
+>
 
 	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
 		<p:outputLabel for="name" value="#{msgs['entity.maschine.name']}" />
@@ -46,6 +47,17 @@
 			<f:selectItems value="#{selectItemsBean.kuehlschmierstoffe}" var="i" itemLabel="#{i.name}" />
 		</p:selectOneMenu>
 		<p:message for="kuehlschmierstoff"/>
+
+		<p:outputLabel for="uploads" value="#{msgs['entity.maschine.uploads']}" />
+		<b:upload id="uploads" view="#{view}" item="#{item}"/>
+		<p:message for="uploads"/>
+
+		<f:facet name = "footer">
+			<h:panelGroup style = "display:block; text-align:left">
+				<p:fileUpload id="upload" listener="#{maschineView.handleFileUpload}" mode="advanced" update="growl @form" />
+			</h:panelGroup>
+		</f:facet>
+
     </p:panelGrid>
 
 </div>

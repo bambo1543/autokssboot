@@ -1,5 +1,4 @@
 <div xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	 xmlns:h="http://xmlns.jcp.org/jsf/html"
 	 xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
@@ -38,18 +37,18 @@
 		<p:message for="wasserhaerte"/>
 
 		<p:outputLabel for="datenblattName" value="#{msgs['entity.kuehlschmierstoff.datenblattName']}" />
-		<h:outputText id="datenblattName" value="#{item.datanblattName}"  />
 		<h:panelGroup>
-			<p:commandButton ajax="true" icon="pi pi-trash" styleClass="ui-button-outlined" update="datenblattName download" action="#{kuehlschmierstoffView.removeDatenblatt}" disabled="#{item.datanblattName eq null}"/>
 			<p:commandButton id="download" ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined" disabled="#{item.datanblattName eq null}">
 				<p:fileDownload value="#{kuehlschmierstoffView.datenblattFile}"/>
 			</p:commandButton>
+			<p:commandButton ajax="true" icon="pi pi-trash" styleClass="ui-button-outlined" update="datenblattName download" action="#{kuehlschmierstoffView.removeDatenblatt}" disabled="#{item.datanblattName eq null}"/>
+			<p:outputLabel id="datenblattName" value="#{item.datanblattName}" style="margin-left: 5px" />
 		</h:panelGroup>
+		<p:message for="datenblattName"/>
 
 		<f:facet name = "footer">
 			<h:panelGroup style = "display:block; text-align:left">
-				<p:fileUpload id="datenblatt" listener="#{kuehlschmierstoffView.handleFileUpload}" label="#{msgs['entity.kuehlschmierstoff.datenblatt']}"
-							  mode="advanced" update="datenblattName growl" />
+				<p:fileUpload listener="#{kuehlschmierstoffView.handleFileUpload}" mode="advanced" update="datenblattName growl" />
 			</h:panelGroup>
 		</f:facet>
 

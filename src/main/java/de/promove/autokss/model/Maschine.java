@@ -1,19 +1,19 @@
 package de.promove.autokss.model;
 
-import lombok.*;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import java.util.Date;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.*;
 
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Maschine extends AbstractNamedBaseEntity {
+public class Maschine extends AbstractNamedBaseEntity implements UploadEntity {
 
     @NotNull
     private String name;
@@ -41,6 +41,9 @@ public class Maschine extends AbstractNamedBaseEntity {
     @ManyToOne(optional = false)
     private Kuehlschmierstoff kuehlschmierstoff;
 
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Upload> uploads = new HashSet<>();
+
     public Maschine(String name, Bereich bereich) {
         this.name = name;
         this.bereich = bereich;
@@ -50,6 +53,11 @@ public class Maschine extends AbstractNamedBaseEntity {
         this.einsatzkonzentration = ek;
         this.wasserstandMaxCm = wasserstandMaxCm;
         this.tankVolumenLiter = tankVolumenLiter;
+    }
+
+    @Transient
+    public List<Upload> getUploadList() {
+        return new ArrayList<>(uploads);
     }
 
 }

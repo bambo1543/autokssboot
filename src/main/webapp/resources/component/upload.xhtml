@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="view"/>
+    <composite:attribute name="item"/>
+</composite:interface>
+
+<composite:implementation>
+    <h:panelGroup>
+        <ui:repeat value="#{item.uploads}" var="upload">
+            <p:commandButton ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                <p:fileDownload value="#{view.getUpload(upload.name)}"/>
+            </p:commandButton>
+            <p:commandButton action="#{view.removeUpload(upload.name)}" update="@form" ajax="true" icon="pi pi-trash"
+                             styleClass="ui-button-outlined"/>
+            <p:outputLabel value="#{upload.name}" style="margin-left: 5px"/><br/>
+        </ui:repeat>
+    </h:panelGroup>
+</composite:implementation>
+</html>

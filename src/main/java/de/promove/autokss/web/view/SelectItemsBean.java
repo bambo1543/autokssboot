@@ -5,7 +5,6 @@ import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -28,7 +27,7 @@ public class SelectItemsBean {
         return genericService.listAll(User.class, QueryOrder.by(User_.email));
     }
 
-    public List<Einsatzkonzentration> getEinsatzkonzentrationen() {return genericService.listAll(Einsatzkonzentration.class, QueryOrder.by(Einsatzkonzentration_.SOLL));}
+    public List<Einsatzkonzentration> getEinsatzkonzentrationen() {return genericService.listAll(Einsatzkonzentration.class, QueryOrder.by(Einsatzkonzentration_.NAME));}
 
     public List<Kuehlschmierstoff> getKuehlschmierstoffe() {
         return genericService.listAll(Kuehlschmierstoff.class, QueryOrder.by(Kuehlschmierstoff_.NAME));}

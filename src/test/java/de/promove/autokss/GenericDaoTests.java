@@ -1,9 +1,11 @@
 package de.promove.autokss;
 
 import de.promove.autokss.dao.GenericDao;
+import de.promove.autokss.dao.QueryFetch;
 import de.promove.autokss.dao.QueryParameter;
 import de.promove.autokss.dao.QueryParameterEntry;
 import de.promove.autokss.model.*;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -65,6 +67,11 @@ class GenericDaoTests {
 
 	@Test
 	public void testMaschinenUndBereich() {
+		Upload upload = new Upload();
+		upload.setName("upload1");
+		upload.setContentType("application/pdf");
+		upload.setContent(BlobProxy.generateProxy("blabla".getBytes()));
+
 		Bereich b1 = new Bereich("Sägen");
 		genericDao.persist(b1);
 		Bereich b2 = new Bereich("Fräsen");
@@ -87,6 +94,7 @@ class GenericDaoTests {
 		m1.setLetzterEmulsionswechsel(new Date(new Date().getTime() - 1000));
 		m1.setEinsatzkonzentration(e1);
 		m1.setKuehlschmierstoff(kss1);
+		m1.getUploads().add(upload);
 		genericDao.persist(m1);
 
 		Maschine m2 = new Maschine("DMC 64 V", b2);
@@ -104,9 +112,10 @@ class GenericDaoTests {
 		List<Maschine> maschinen = genericDao.listAll(Maschine.class);
 		Assert.isTrue(maschinen.size() == 3);
 
-		Maschine byId = genericDao.findById(Maschine.class, m1.getId());
+		Maschine byId = genericDao.findById(Maschine.class, m1.getId(), QueryFetch.withLeftJoin(Maschine_.uploads));
 		Assert.isTrue(b3.equals(byId.getBereich()));
 		Assert.isTrue(byId.getLetzterEmulsionswechsel().before(new Date()));
+		Assert.isTrue(byId.getUploads().size() == 1);
 
 		User u1 = createAndreas();
 		genericDao.persist(u1);
