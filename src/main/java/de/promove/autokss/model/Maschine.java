@@ -16,16 +16,21 @@ import java.util.*;
 public class Maschine extends AbstractNamedBaseEntity implements UploadEntity {
 
     @NotNull
+    @Column(nullable=false)
     private String name;
 
     @NotNull
-    private Double tankVolumenLiter;
+    @Column(nullable=false)
+    private double tankVolumenLiter;
     @NotNull
-    private Double wasserstandMaxCm;
+    @Column(nullable=false)
+    private double wasserstandMaxCm;
     @NotNull
-    private Double wasserstandMinCm;
+    @Column(nullable=false)
+    private double wasserstandMinCm;
     @NotNull
-    private Double cmEntsprichtLiter;
+    @Column(nullable=false)
+    private double cmEntsprichtLiter;
 
     private Date letzterEmulsionswechsel;
 

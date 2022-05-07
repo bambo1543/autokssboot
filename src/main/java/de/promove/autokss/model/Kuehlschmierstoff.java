@@ -1,12 +1,11 @@
 package de.promove.autokss.model;
 
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
-import lombok.*;
-
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Blob;
 import java.util.HashSet;
@@ -20,20 +19,27 @@ import java.util.Set;
 public class Kuehlschmierstoff extends AbstractNamedBaseEntity {
 
     @NotNull
+    @Column(nullable=false)
     private String name;
     private String hersteller;
     @NotNull
-    private Double phMin;
+    @Column(nullable=false)
+    private double phMin;
     @NotNull
-    private Double phMax;
+    @Column(nullable=false)
+    private double phMax;
     @NotNull
-    private Double refraktometer;
+    @Column(nullable=false)
+    private double refraktometer;
     @NotNull
-    private Double nitrat;
+    @Column(nullable=false)
+    private double nitrat;
     @NotNull
-    private Double nitrit;
+    @Column(nullable=false)
+    private double nitrit;
     @NotNull
-    private Double wasserhaerte;
+    @Column(nullable=false)
+    private double wasserhaerte;
 
     private String datanblattName;
 

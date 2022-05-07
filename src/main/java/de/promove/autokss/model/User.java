@@ -1,16 +1,19 @@
 package de.promove.autokss.model;
 
 import de.promove.autokss.util.DateUtils;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -26,21 +29,25 @@ public class User extends AbstractNamedBaseEntity implements UserDetails {
 
     @Email
     @NotNull
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     @NotNull
+    @Column(nullable=false)
     private String password;
 
     private String firstName;
     private String lastName;
     private String comment;
 
+    @Column(nullable=false)
     private boolean enabled;
+    @Column(nullable=false)
     private boolean locked;
     private Date accountExpire;
     private Date credentialsExpire;
 
     @NotNull
+    @Column(nullable=false)
     @Enumerated(EnumType.STRING)
     private Role role;
 

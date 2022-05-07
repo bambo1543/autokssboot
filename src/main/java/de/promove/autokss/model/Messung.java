@@ -1,14 +1,14 @@
 package de.promove.autokss.model;
 
-import de.promove.autokss.util.ColorUtil;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,9 +19,11 @@ import java.util.Date;
 public class Messung extends AbstractNamedBaseEntity implements LockedEntity {
 
     @NotNull
+    @Column(nullable=false)
     private Date pruefDatum;
 
     @NotNull
+    @Column(nullable=false)
     private Date timestamp;
 
     private Double rm1;
@@ -39,6 +41,8 @@ public class Messung extends AbstractNamedBaseEntity implements LockedEntity {
     private Double nitrit2;
 
     private String bemerkung;
+
+    @Column(nullable=false)
     private boolean locked;
 
     @NotNull

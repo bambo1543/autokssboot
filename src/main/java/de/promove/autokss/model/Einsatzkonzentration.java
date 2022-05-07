@@ -1,12 +1,14 @@
 package de.promove.autokss.model;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,14 +19,17 @@ import java.util.Set;
 public class Einsatzkonzentration extends AbstractNamedBaseEntity {
 
     @NotNull
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
     @NotNull
-    private Double min;
+    @Column(nullable=false)
+    private double min;
     @NotNull
-    private Double max;
+    @Column(nullable=false)
+    private double max;
     @NotNull
-    private Double soll;
+    @Column(nullable=false)
+    private double soll;
 
     @OneToMany(mappedBy = "einsatzkonzentration", cascade = CascadeType.ALL)
     private Set<Maschine> maschinen = new HashSet<>();
