@@ -5,7 +5,6 @@ import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.service.InitDBService;
 import de.promove.autokss.service.UserService;
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 @ActiveProfiles({"dbimport"})
@@ -104,7 +105,7 @@ public class MariaImportTest {
         genericService.persistAll(einsatzkonzentrationen);
         logger.info("Persisted Einsatzkonzentration");
 
-        Kuehlschmierstoff kss = new Kuehlschmierstoff("Zubora 65 H-Ultra", "Viscotex", 8.7, 9.3, 1.3, 50.0, 20.0, 14.4, null, null, null);
+        Kuehlschmierstoff kss = new Kuehlschmierstoff("Zubora 65 H-Ultra", "Viscotex", 8.7, 9.3, 1.3, 50.0, 20.0, 14.4, null, null);
         genericService.persist(kss);
 
         List<Maschine> maschinen = jdbcTemplate.query("select * from neutblMaschine", new RowMapper<Maschine>() {

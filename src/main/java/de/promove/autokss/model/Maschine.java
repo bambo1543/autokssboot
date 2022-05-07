@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -58,11 +60,6 @@ public class Maschine extends AbstractNamedBaseEntity implements UploadEntity {
         this.einsatzkonzentration = ek;
         this.wasserstandMaxCm = wasserstandMaxCm;
         this.tankVolumenLiter = tankVolumenLiter;
-    }
-
-    @Transient
-    public List<Upload> getUploadList() {
-        return new ArrayList<>(uploads);
     }
 
 }

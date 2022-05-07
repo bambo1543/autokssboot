@@ -38,7 +38,7 @@ public class AbstractUploadCrudView<T extends UploadEntity> extends AbstractCrud
     public void handleFileUpload(FileUploadEvent event) {
         UploadedFile file = event.getFile();
         if (file != null) {
-            Optional<Upload> optionalUpload = editItem.getUploadList().stream().filter(u -> u.getName().equals(file.getFileName())).findFirst();
+            Optional<Upload> optionalUpload = editItem.getUploads().stream().filter(u -> u.getName().equals(file.getFileName())).findFirst();
             if(optionalUpload.isEmpty()) {
                 Upload upload = new Upload(file.getFileName(), file.getContentType(), BlobProxy.generateProxy(file.getContent()));
                 this.editItem.getUploads().add(upload);
@@ -53,7 +53,7 @@ public class AbstractUploadCrudView<T extends UploadEntity> extends AbstractCrud
     public StreamedContent getUpload(String name) {
         StreamedContent file = null;
         try {
-            Optional<Upload> optionalUpload = editItem.getUploadList().stream().filter(u -> u.getName().equals(name)).findFirst();
+            Optional<Upload> optionalUpload = editItem.getUploads().stream().filter(u -> u.getName().equals(name)).findFirst();
             if (optionalUpload.isPresent()) {
                 InputStream binaryStream = optionalUpload.get().getContent().getBinaryStream();
                 file = DefaultStreamedContent.builder()
@@ -69,7 +69,7 @@ public class AbstractUploadCrudView<T extends UploadEntity> extends AbstractCrud
     }
 
     public void removeUpload(String name) {
-        Optional<Upload> optionalUpload = editItem.getUploadList().stream().filter(u -> u.getName().equals(name)).findFirst();
+        Optional<Upload> optionalUpload = editItem.getUploads().stream().filter(u -> u.getName().equals(name)).findFirst();
         optionalUpload.ifPresent(upload -> editItem.getUploads().remove(upload));
 
         FacesMessage message = new FacesMessage(MessageFactory.getMessage("action.upload.remove.growl.summary"),

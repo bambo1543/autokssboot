@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Kuehlschmierstoff extends AbstractNamedBaseEntity {
+public class Kuehlschmierstoff extends AbstractNamedBaseEntity implements UploadEntity {
 
     @NotNull
     @Column(nullable=false)
@@ -41,13 +40,11 @@ public class Kuehlschmierstoff extends AbstractNamedBaseEntity {
     @Column(nullable=false)
     private double wasserhaerte;
 
-    private String datanblattName;
-
-    @Lob
-    private Blob datenblatt;
-
     @OneToMany(mappedBy = "kuehlschmierstoff")
     private Set<Maschine> maschinen = new HashSet<>();
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Upload> uploads = new HashSet<>();
 
     @Transient
     public double getPhSoll() {

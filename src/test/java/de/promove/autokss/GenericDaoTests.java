@@ -14,7 +14,6 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.util.Assert;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 @SpringBootTest
@@ -85,8 +84,7 @@ class GenericDaoTests {
 		Einsatzkonzentration e2 = new Einsatzkonzentration("Stufe2", 7.0, 8.0, 7.5);
 		genericDao.persist(e2);
 
-		Kuehlschmierstoff kss1 = new Kuehlschmierstoff("KSS1", "", 7.0, 9.0, 1.0,
-				1.0, 1.0, 1.0, "", null, new HashSet<>());
+		Kuehlschmierstoff kss1 = new Kuehlschmierstoff("KSS1", "", 7.0, 9.0, 1.0, 1.0, 1.0, 1.0, null, null);
 		genericDao.persist(kss1);
 
 		Maschine m1 = new Maschine("CTX 310", b3);
