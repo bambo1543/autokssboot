@@ -1,0 +1,1 @@
+ALTER TABLE upload MODIFY content LONGBLOB NOT NULL;

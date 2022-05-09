@@ -29,5 +29,4 @@ public class Upload extends AbstractNamedBaseEntity {
     @NotNull @Lob
     @Column(nullable=false)
     private Blob content;
-
 }
