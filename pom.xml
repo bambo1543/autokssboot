@@ -22,15 +22,6 @@
 		<java.version>17</java.version>
 
 		<flyway.version>8.2.0</flyway.version>
-
-		<flyway.url>jdbc:mariadb://localhost:3306/autokss</flyway.url>
-		<flyway.user>root</flyway.user>
-		<flyway.password>15431543</flyway.password>
-
-<!--		<flyway.url>jdbc:mariadb://pm-srvmybe-test:3306/autokss-test</flyway.url>-->
-<!--		<flyway.user>autokss</flyway.user>-->
-<!--		<flyway.password>15431543</flyway.password>-->
-
 	</properties>
 
 	<dependencies>
@@ -47,7 +38,6 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>${flyway.version}</version>
 		</dependency>
 
 		<dependency>
@@ -99,8 +89,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.2</version>
 		</dependency>
-
-
 
 		<!-- Spring -->
 		<dependency>
@@ -159,7 +147,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}-${spring.profiles.active}</finalName>
+		<finalName>${project.artifactId}-${spring.profiles.active}</finalName>
 
 		<plugins>
 			<plugin>
@@ -219,7 +207,32 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<escapeString>\</escapeString>
+				</configuration>
+			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/application*.properties</include>
+					<include>jndi/jdbc/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>**/application*.properties</exclude>
+					<exclude>jndi/jdbc/*.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
 
 	<profiles>
@@ -228,6 +241,14 @@
 			<properties>
 <!--				<spring.profiles.active>hsqldb</spring.profiles.active>-->
 				<spring.profiles.active>mariadb</spring.profiles.active>
+
+				<flyway.url>jdbc:mariadb://localhost:3306/autokss</flyway.url>
+				<flyway.user>root</flyway.user>
+				<flyway.password>15431543</flyway.password>
+
+				<!--		<flyway.url>jdbc:mariadb://pm-srvmybe-test:3306/autokss-test</flyway.url>-->
+				<!--		<flyway.user>autokss</flyway.user>-->
+				<!--		<flyway.password>15431543</flyway.password>-->
 			</properties>
 			<dependencies>
 				<dependency>
@@ -242,6 +263,17 @@
 					<groupId>jakarta.enterprise</groupId>
 					<artifactId>jakarta.enterprise.cdi-api</artifactId>
 					<version>3.0.1</version>
+				</dependency>
+
+				<dependency>
+					<groupId>com.github.h-thurow</groupId>
+					<artifactId>simple-jndi</artifactId>
+					<version>0.23.0</version>
+				</dependency>
+				<dependency>
+					<groupId>commons-dbcp</groupId>
+					<artifactId>commons-dbcp</artifactId>
+					<version>1.4</version>
 				</dependency>
 			</dependencies>
 		</profile>
