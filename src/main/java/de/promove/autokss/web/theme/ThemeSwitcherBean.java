@@ -3,22 +3,21 @@ package de.promove.autokss.web.theme;
 import de.promove.autokss.model.User;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.util.FacesUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.context.annotation.SessionScope;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.event.InteractiveAuthenticationSuccessEvent;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -90,6 +89,7 @@ public class ThemeSwitcherBean implements Serializable {
         themes.add("ui-darkness");
         themes.add("ui-lightness");
         themes.add("vader");
+        Collections.sort(themes);
 
         currentTheme = "afterwork";
 //        currentTheme = themes.get(0);

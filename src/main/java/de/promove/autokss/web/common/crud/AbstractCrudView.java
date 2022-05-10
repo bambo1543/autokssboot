@@ -11,8 +11,8 @@ import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
 import de.promove.autokss.web.util.exporter.MyColoredPdfExporter;
 import de.promove.autokss.web.view.report.FilteredView;
-import jakarta.faces.component.UIComponent;
-import jakarta.faces.component.ValueHolder;
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.component.api.UIColumn;
@@ -24,17 +24,14 @@ import org.primefaces.model.SortMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractCrudView<T extends NamedEntity> implements Serializable, FilteredView {
 
@@ -231,6 +228,10 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isExportEnabled() {
+		return true;
 	}
 
 	public String formatColumn(UIColumn column) {

@@ -242,13 +242,13 @@
 <!--				<spring.profiles.active>hsqldb</spring.profiles.active>-->
 				<spring.profiles.active>mariadb</spring.profiles.active>
 
-<!--				<flyway.url>jdbc:mariadb://localhost:3306/autokss</flyway.url>-->
-<!--				<flyway.user>root</flyway.user>-->
-<!--				<flyway.password>15431543</flyway.password>-->
+				<flyway.url>jdbc:mariadb://localhost:3306/autokss</flyway.url>
+				<flyway.user>root</flyway.user>
+				<flyway.password>15431543</flyway.password>
 
-					<flyway.url>jdbc:mariadb://pm-srvmybe-test:3306/autokss</flyway.url>
-					<flyway.user>autokss</flyway.user>
-					<flyway.password>15431543</flyway.password>
+<!--					<flyway.url>jdbc:mariadb://pm-srvmybe-test:3306/autokss</flyway.url>-->
+<!--					<flyway.user>autokss</flyway.user>-->
+<!--					<flyway.password>15431543</flyway.password>-->
 			</properties>
 			<dependencies>
 				<dependency>

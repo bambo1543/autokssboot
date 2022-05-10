@@ -1,5 +1,6 @@
 package de.promove.autokss.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +14,12 @@ import javax.sql.DataSource;
 @Profile({"mariadb, jndi-mariadb"})
 public class FlywayJndiConfiguration {
 
+    @Value("spring.datasource.jndi-name")
+    private String jndiName;
+
     @Bean
     @FlywayDataSource
     public DataSource getFlywayDataSource() throws NamingException {
-        return new JndiTemplate().lookup("java:comp/env/jdbc/AutoKSS", DataSource.class);
+        return new JndiTemplate().lookup("java:comp/env/" + jndiName, DataSource.class);
     }
 }
