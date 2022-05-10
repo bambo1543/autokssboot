@@ -61,6 +61,10 @@ input[readonly].ui-widget {
     margin-bottom: 10px;
 }
 
+.noMargin {
+    margin: 0px;
+}
+
 /* Form */
 .frmLabel {
     /*margin-right: 10px;*/

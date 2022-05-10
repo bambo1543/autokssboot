@@ -12,29 +12,24 @@
         </ui:include>
 
         <h:form id="frmPassword">
-            <p:ajaxStatus styleClass="p-d-block p-mb-4">
             <h:panelGroup id="pnlPassword" rendered="#{userView.visibleSection eq 'password'}">
-                    <div class="col-12">
-                        <p:panelGrid columns="3" layout="grid" style="margin: 5px;" columnClasses="frmLabel,frmInput,frmMessage">
-                            <p:outputLabel for="pwd1" value="#{msgs['entity.user.password']}"/>
-                            <p:password id="pwd1" value="#{userView.editItem.password}" match="pwd2" />
-                            <p:message for="pwd1"/>
+                    <p:panelGrid columns="3" layout="grid" columnClasses="frmLabel,frmInput,frmMessage" style="margin-bottom: 5px;">
+                        <p:outputLabel for="pwd1" value="#{msgs['entity.user.password']}"/>
+                        <p:password id="pwd1" value="#{userView.editItem.password}" match="pwd2" />
+                        <p:message for="pwd1"/>
 
-                            <p:outputLabel for="pwd2" value="#{msgs['entity.user.password.repeat']}"/>
-                            <p:password id="pwd2" value="#{userView.editItem.password}" />
-                            <p:message for="pwd2"/>
-                        </p:panelGrid>
-                    </div>
+                        <p:outputLabel for="pwd2" value="#{msgs['entity.user.password.repeat']}"/>
+                        <p:password id="pwd2" value="#{userView.editItem.password}" />
+                        <p:message for="pwd2"/>
+                    </p:panelGrid>
 
-                    <div class="col-12" style="text-align:left; margin-bottom: 5px; margin-left: 5px;">
+                    <span style="text-align:left; margin-bottom: 5px;">
                         <p:commandButton value="#{msgs['btn.save']}" action="#{userView.savePassword}"
                                          update="pnlCenter growl"/>
                         <p:commandButton value="#{msgs['btn.cancel']}" action="#{userView.cancelPassword}"
                                          update="pnlCenter growl" immediate="true"/>
-                    </div>
+                    </span>
             </h:panelGroup>
-            </p:ajaxStatus>
-
         </h:form>
     </ui:define>
 

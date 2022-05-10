@@ -5,7 +5,7 @@
 				xmlns:f="http://xmlns.jcp.org/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
-				xmlns:my="http://bambo.it/my">
+>
 
     <ui:define name="center">
 		<h:form id="frmconsumption">
@@ -16,25 +16,11 @@
 						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          size="small" lazy="true">
 
-				<ui:insert name="tableHeader">
-					<f:facet name="header">
-						<p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
-							<h:panelGroup>
-								<p:outputLabel value="#{msgs['report.consumption']}" style="font-size: large"/>
-							</h:panelGroup>
-							<h:panelGroup>
-								<p:commandButton value="PDF">
-									<p:dataExporter type="pdf" target="tblconsumption" fileName="#{consumptionReportView.filename}" encoding="iso-8859-1"
-													options="#{consumptionReportView.pdfOptions}" exporter="#{consumptionReportView.pdfExporter}" />
-								</p:commandButton>
-								<p:commandButton value="XLS">
-									<p:dataExporter type="xls" target="tblconsumption" fileName="#{consumptionReportView.filename}" encoding="iso-8859-1"
-													exporter="#{myExcelExporter}"/>
-								</p:commandButton>
-							</h:panelGroup>
-						</p:panelGrid>
-					</f:facet>
-				</ui:insert>
+				<f:facet name="header">
+					<ui:insert name="tableHeader">
+							<n:tableHeader tableId="tblconsumption" headerText="#{msgs['report.consumption']}" view="#{consumptionReportView}" />
+					</ui:insert>
+				</f:facet>
 
 				<p:column field="from" headerText="#{msgs['report.consumption.from']}"
 						  exportFunction="#{consumptionReportView.formatColumn}">

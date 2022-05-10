@@ -7,17 +7,17 @@
       xmlns:p="http://primefaces.org/ui">
 
 <composite:interface>
-    <composite:attribute name="view"/>
-    <composite:attribute name="item"/>
+    <composite:attribute name="view" type="de.promove.autokss.web.common.crud.AbstractUploadCrudView" required="true"/>
+    <composite:attribute name="item" type="de.promove.autokss.model.UploadEntity" />
 </composite:interface>
 
 <composite:implementation>
     <h:panelGroup>
-        <ui:repeat value="#{item.uploads}" var="upload">
+        <ui:repeat value="#{cc.attrs.item.uploads}" var="upload">
             <p:commandButton ajax="false" icon="pi pi-arrow-down" styleClass="ui-button-outlined">
-                <p:fileDownload value="#{view.getUpload(upload.name)}"/>
+                <p:fileDownload value="#{cc.attrs.view.getUpload(upload.name)}"/>
             </p:commandButton>
-            <p:commandButton action="#{view.removeUpload(upload.name)}" update="@form" ajax="true" icon="pi pi-trash"
+            <p:commandButton action="#{cc.attrs.view.removeUpload(upload.name)}" update="@form" ajax="true" icon="pi pi-trash"
                              styleClass="ui-button-outlined"/>
             <p:outputLabel value="#{upload.name}" style="margin-left: 5px"/><br/>
         </ui:repeat>

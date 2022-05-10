@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<composite:interface>
+    <composite:attribute name="tableId" required="true" type="java.lang.String"/>
+    <composite:attribute name="view" type="de.promove.autokss.web.common.crud.AbstractCrudView" required="true"/>
+</composite:interface>
+
+<composite:implementation>
+    <p:commandButton id="btnAdd" icon="pi pi-plus-circle" action="#{cc.attrs.view.add}" update="@form"
+                     disabled="#{!cc.attrs.view.addable}"/>
+    <p:tooltip id="btnAddTooltip" for="btnAdd" value="#{msgs['btn.add.tooltip']}"/>
+
+    <p:commandButton id="btnEdit" icon="pi pi-pencil" action="#{cc.attrs.view.edit}" update="@form"
+                     disabled="#{!cc.attrs.view.editable}"/>
+    <p:tooltip id="btnEditTooltip" for="btnEdit" value="#{msgs['btn.edit.tooltip']}"/>
+
+    <p:commandButton id="btnDelete" icon="pi pi-trash" action="#{cc.attrs.view.delete}" update="@form growl"
+                     disabled="#{!cc.attrs.view.deletable}">
+        <p:confirm header="#{msgs['confirm.dialog.deletion.header']}"
+                   message="#{msgs['confirm.dialog.deletion.message']}" icon="pi pi-exclamation-triangle"/>
+    </p:commandButton>
+    <p:tooltip id="btnDeleteTooltip" for="btnDelete" value="#{msgs['btn.delete.tooltip']}"/>
+
+    <ui:insert name="extraActions"/>
+
+    <p:commandButton id="toggler" type="button" value="#{msgs['table.column.toggler']}" icon="pi pi-align-justify"
+                     style="margin-left: 5px"/>
+    <p:columnToggler datasource="#{cc.attrs.tableId}" trigger="toggler"/>
+
+    <p:commandButton value="PDF">
+        <p:dataExporter id="pdfExporter" type="pdf" target="#{cc.attrs.tableId}" fileName="#{cc.attrs.view.filename}" encoding="iso-8859-1"
+                        exporter="#{cc.attrs.view.pdfExporter}" options="#{cc.attrs.view.pdfOptions}"/>
+    </p:commandButton>
+    <p:commandButton value="XLS">
+        <p:dataExporter id="xlsExporter" type="xls" target="#{cc.attrs.tableId}" fileName="#{cc.attrs.view.filename}" encoding="iso-8859-1"
+                        exporter="#{myExcelExporter}"/>
+    </p:commandButton>
+
+</composite:implementation>
+</html>

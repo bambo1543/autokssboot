@@ -1,11 +1,11 @@
 <ui:composition template="/WEB-INF/templates/template.xhtml"
-				xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-				xmlns:h="http://xmlns.jcp.org/jsf/html"
-				xmlns:f="http://xmlns.jcp.org/jsf/core"
-				xmlns:p="http://primefaces.org/ui"
-				xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
-				xmlns:my="http://bambo.it/my">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
+>
 
     <ui:define name="center">
 		<h:form id="frmmeasures">
@@ -15,25 +15,11 @@
                          paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="10,20,50,100,1000" rowKey="#{item.id}"
                          lazy="true" size="small" resizableColumns="true">
-                <ui:insert name="tableHeader">
-                    <f:facet name="header">
-                        <p:panelGrid columns="2" columnClasses="textLeft,textRight" layout="grid">
-                            <h:panelGroup>
-                                <p:outputLabel value="#{msgs['report.measures']}" style="font-size: large"/>
-                            </h:panelGroup>
-                            <h:panelGroup>
-                                <p:commandButton value="PDF">
-                                    <p:dataExporter type="pdf" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
-                                                    options="#{measureReportView.pdfOptions}" exporter="#{measureReportView.pdfExporter}" />
-                                </p:commandButton>
-                                <p:commandButton value="XLS">
-                                    <p:dataExporter type="xls" target="tblmeasures" fileName="#{measureReportView.filename}" encoding="iso-8859-1"
-                                                    exporter="#{myExcelExporter}"/>
-                                </p:commandButton>
-                            </h:panelGroup>
-                        </p:panelGrid>
-                    </f:facet>
-                </ui:insert>
+                <f:facet name="header">
+                    <ui:insert name="tableHeader">
+                            <n:tableHeader tableId="tblmeasures" headerText="#{msgs['report.measures']}" view="#{measureReportView}" />
+                    </ui:insert>
+                </f:facet>
 
                 <p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
                           exportFunction="#{measureReportView.formatColumn}">

@@ -8,7 +8,7 @@
 	<ui:define name="center">
 		<h:form prependId="false">
 			<h:panelGrid columns="1" styleClass="ui-fluid center ui-noborder">
-				<p:outputLabel value="#{msgs['login.successful']}" rendered="${!empty param['logout']}" />
+				<p:outputLabel value="#{msgs['logout.successful']}" rendered="${!empty param['logout']}" />
 				<p:outputLabel value="#{msgs['login.failed']}" rendered="${!empty param['error']}" styleClass="red" />
 
 				<p:outputLabel value="#{msgs['password.reset.successful']}" rendered="${!empty param['passwordResetSuccessful']}" />

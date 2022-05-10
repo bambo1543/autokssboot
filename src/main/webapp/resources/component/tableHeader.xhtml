@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<composite:interface>
+    <composite:attribute name="headerText"/>
+    <composite:attribute name="tableId" required="true"/>
+    <composite:attribute name="view" required="true"/>
+</composite:interface>
+
+<composite:implementation>
+    <n:leftRightPanel>
+        <f:facet name="left">
+            <p:outputLabel value="#{cc.attrs.headerText}" style="font-size: large"/>
+        </f:facet>
+        <f:facet name="right">
+            <h:panelGroup>
+                <p:commandButton value="PDF">
+                    <p:dataExporter type="pdf" target="tableId" fileName="#{cc.attrs.view.filename}" encoding="iso-8859-1"
+                                    options="#{cc.attrs.view.pdfOptions}" exporter="#{cc.attrs.view.pdfExporter}" />
+                </p:commandButton>
+                <p:commandButton value="XLS">
+                    <p:dataExporter type="xls" target="tableId" fileName="#{cc.attrs.view.filename}" encoding="iso-8859-1"
+                                    exporter="#{myExcelExporter}"/>
+                </p:commandButton>
+            </h:panelGroup>
+        </f:facet>
+    </n:leftRightPanel>
+</composite:implementation>
+
+</html>

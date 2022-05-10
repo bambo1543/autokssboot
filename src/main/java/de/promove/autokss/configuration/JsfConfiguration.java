@@ -1,17 +1,14 @@
 package de.promove.autokss.configuration;
 
 import de.promove.autokss.web.scope.JsfViewScope;
-import org.springframework.beans.factory.config.CustomScopeConfigurer;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.context.ServletContextAware;
-
-import org.springframework.context.annotation.Bean;
-
 import jakarta.faces.webapp.FacesServlet;
 import jakarta.servlet.ServletContext;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.ServletContextAware;
 
 @Configuration
 public class JsfConfiguration implements ServletContextAware, ServletContextInitializer {
@@ -39,13 +36,18 @@ public class JsfConfiguration implements ServletContextAware, ServletContextInit
 
     @Override
     public void onStartup(ServletContext servletContext) {
+//        https://primefaces.github.io/primefaces/11_0_0/#/core/performance
 		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-//		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
 		servletContext.setInitParameter("jakarta.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL", Boolean.TRUE.toString());
-//		servletContext.setInitParameter("jakarta.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
 		servletContext.setInitParameter("jakarta.faces.FACELETS_LIBRARIES", "/WEB-INF/compositions/composition-taglib.xml");
-//        servletContext.setInitParameter("jakarta.faces.PARTIAL_STATE_SAVING", Boolean.FALSE.toString());
-//        servletContext.setInitParameter("jakarta.faces.PROJECT_STAGE", "Production");
+        servletContext.setInitParameter("jakarta.faces.PROJECT_STAGE", "Production");
+        servletContext.setInitParameter("javax.faces.FACELETS_REFRESH_PERIOD", "-1");
+        servletContext.setInitParameter("javax.faces.STATE_SAVING_METHOD", "server");
+        servletContext.setInitParameter("primefaces.SUBMIT", "partial");
+        servletContext.setInitParameter("primefaces.MOVE_SCRIPTS_TO_BOTTOM", "true");
+//		servletContext.setInitParameter("com.sun.faces.expressionFactory", "org.apache.el.ExpressionFactoryImpl");
+//		servletContext.setInitParameter("jakarta.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR", Boolean.TRUE.toString());
+//      servletContext.setInitParameter("jakarta.faces.PARTIAL_STATE_SAVING", Boolean.FALSE.toString());
 
         servletContext.setInitParameter("primefaces.UPLOADER", "native");
         servletContext.setInitParameter("primefaces.THEME", "#{themeSwitcherBean.currentTheme}");

@@ -37,19 +37,25 @@
 		<div class="grid">
 			<h:panelGroup class="col-12" >
 				<h:form id="formHeader">
-					<p:panelGrid columns="2" layout="grid" columnClasses="textLeft,textRight" contentStyle="border-radius: 3px 3px 0 0">
-						<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
-						<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
-							<f:selectItems value="#{themeSwitcherBean.themes}" />
-							<p:ajax event="change"/>
-							<p:column>
-								<span class="ui-theme ui-theme-#{t}" style="width: 30px; height: 20px"/>
-							</p:column>
-							<p:column>
-								<h:outputText value="#{t}"/>
-							</p:column>
-						</p:selectOneMenu>
-					</p:panelGrid>
+					<p:panel style="border-radius: 3px 3px 0 0">
+						<b:leftRightPanel>
+							<f:facet name="left">
+								<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
+							</f:facet>
+							<f:facet name="right">
+								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
+									<f:selectItems value="#{themeSwitcherBean.themes}" />
+									<p:ajax event="change"/>
+									<p:column>
+										<span class="ui-theme ui-theme-#{t}" style="width: 30px; height: 20px"/>
+									</p:column>
+									<p:column>
+										<h:outputText value="#{t}"/>
+									</p:column>
+								</p:selectOneMenu>
+							</f:facet>
+						</b:leftRightPanel>
+					</p:panel>
 				</h:form>
 				<ui:include src="menu.xhtml" />
 			</h:panelGroup>
