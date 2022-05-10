@@ -13,4 +13,19 @@ public enum NavigationOutcome {
         this.outcome = outcome;
     }
 
+    public String getOutcome(boolean redirect, String... parameters) {
+        String result = outcome;
+        if(redirect || parameters.length > 0) {
+            result+="?";
+            if(redirect) {
+                result+="faces-redirect=true&";
+            }
+            for (String parameter : parameters) {
+                result+=parameter + "&";
+            }
+            result = result.substring(0, result.length()-1);
+        }
+        return result;
+    }
+
 }

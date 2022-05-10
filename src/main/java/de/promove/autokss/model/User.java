@@ -39,10 +39,14 @@ public class User extends AbstractNamedBaseEntity implements UserDetails {
     private String lastName;
     private String comment;
 
+    @NotNull
     @Column(nullable=false)
     private boolean enabled;
+    @NotNull
     @Column(nullable=false)
     private boolean locked;
+    @NotNull
+    @Column(nullable = false)
     private Date accountExpire;
     private Date credentialsExpire;
 

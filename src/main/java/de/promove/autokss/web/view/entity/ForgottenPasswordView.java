@@ -4,6 +4,7 @@ import de.promove.autokss.model.User;
 import de.promove.autokss.service.EmailService;
 import de.promove.autokss.service.UserService;
 import de.promove.autokss.web.scope.ViewScope;
+import de.promove.autokss.web.util.MessageFactory;
 import de.promove.autokss.web.util.NavigationOutcome;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,13 +39,13 @@ public class ForgottenPasswordView {
         User user = userService.findUserByUsername(email);
         if(user != null) {
             String password = UUID.randomUUID().toString();
-//            emailService.sendSimpleMessage(email, "Password reset", password);
-            logger.warn(password);
-
+            emailService.sendSimpleMessage(email, MessageFactory.getMessage("password.reset.subject"),
+                    MessageFactory.getMessage("password.reset.message", password));
             user.setPassword(password);
             userService.mergeAndEncode(user);
+            return NavigationOutcome.LOGIN.getOutcome(true, "passwordResetSuccessful=true");
         }
-        return NavigationOutcome.LOGIN.getOutcome();
+        return NavigationOutcome.LOGIN.getOutcome(true, "passwordResetFailed=true");
     }
 
 }
