@@ -1,7 +1,5 @@
 <div xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
      xmlns:h="http://xmlns.jcp.org/jsf/html"
-     xmlns:f="http://xmlns.jcp.org/jsf/core"
      xmlns:p="http://primefaces.org/ui">
 
     <h:form id="formMenu">
@@ -25,7 +23,9 @@
             </p:submenu>
 
             <p:divider layout="vertical"/>
+            <p:menuitem value="#{msgs['settings.menu']}" url="#{request.contextPath}/view/admin/settings.xhtml" rendered="#{securityBean.role == 'ADMIN'}"/>
 
+            <p:divider layout="vertical"/>
             <p:menuitem value="#{msgs['btn.login']}" url="#{request.contextPath}/login.xhtml" rendered="#{not securityBean.loggedIn}"/>
             <p:menuitem value="#{msgs['btn.logout']}" url="#{request.contextPath}/logout" rendered="#{securityBean.loggedIn}"/>
         </p:menubar>

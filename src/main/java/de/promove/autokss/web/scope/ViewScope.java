@@ -12,8 +12,6 @@ import java.lang.annotation.*;
 @Documented
 @Scope(JsfConfiguration.VIEW_SCOPE)
 public @interface ViewScope {
-    @AliasFor(
-            annotation = Scope.class
-    )
+    @AliasFor(annotation = Scope.class)
     ScopedProxyMode proxyMode() default ScopedProxyMode.TARGET_CLASS;
 }

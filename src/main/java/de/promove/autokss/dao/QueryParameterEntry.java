@@ -10,11 +10,10 @@ public class QueryParameterEntry<X, T> {
     public enum Operator {
         GE(">="), LE("<="), GT(">"),  LT("<"), EQ("="), STARTS("*"), CONTAINS("*"), ENDS("*");
 
-        private String operator;
+        private final String operator;
 
         Operator(String operator) {
             this.operator = operator;
-
         }
 
         public String getOperator() {
@@ -35,7 +34,7 @@ public class QueryParameterEntry<X, T> {
 
 	private String attributeName;
 
-    private T value;
+    private final T value;
 
     private Operator operator = Operator.EQ;
 
@@ -59,10 +58,6 @@ public class QueryParameterEntry<X, T> {
         this.attributeName = attribute;
         this.value = value;
         this.operator = operator;
-    }
-
-    public SingularAttribute<X, T> getAttribute() {
-        return attribute;
     }
 
 	public String getAttributeName() {

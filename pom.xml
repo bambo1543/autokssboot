@@ -11,9 +11,9 @@
 
 	<groupId>de.promove</groupId>
 	<artifactId>autokss</artifactId>
-	<version>0.0.5</version>
-	<name>Auto KSS</name>
-	<description>Auto KSS</description>
+	<version>0.0.6-SNAPSHOT</version>
+	<name>autoKSS</name>
+	<description>autoKSS</description>
 	<packaging>war</packaging>
 
 	<properties>
@@ -88,6 +88,16 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>3.13.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.joinfaces</groupId>
+			<artifactId>omnifaces3-spring-boot-starter</artifactId>
+			<version>4.7.0-rc1</version>
 		</dependency>
 
 		<!-- Spring -->
@@ -206,14 +216,6 @@
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
-				<configuration>
-					<escapeString>\</escapeString>
-				</configuration>
 			</plugin>
 		</plugins>
 		<resources>

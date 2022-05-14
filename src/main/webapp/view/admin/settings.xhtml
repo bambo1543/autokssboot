@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/templates/template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+				xmlns:h="http://xmlns.jcp.org/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
+>
+
+	<ui:define name="center">
+		<p:outputLabel value="#{PropertiesConst.HOST}" />
+		<p:outputLabel value="#{HOST}" />
+		<h:form id="frmsettings">
+				<div>
+					<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
+						<p:outputLabel for="@next" value="#{msgs['settings.email.spring.mail.host']}"/>
+						<p:inputText id="host" value="#{adminView.properties[PersistentPropertiesEnum.HOST.key]}" />
+						<p:message for="@previous"/>
+					</p:panelGrid>
+				</div>
+
+				<div style="text-align:left; margin-bottom: 5px; margin-top: 5px;">
+					<p:commandButton value="#{msgs['btn.save']}" action="#{adminView.save}" update="@form growl"/>
+					<p:commandButton value="#{msgs['btn.cancel']}" action="#{adminView.cancel}" update="@form growl"
+									 immediate="true"/>
+				</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

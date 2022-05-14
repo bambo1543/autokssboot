@@ -31,4 +31,10 @@ public class SecurityBean implements Serializable {
         return DateFormat.getDateTimeInstance().format(Date.from(buildProperties.getTime()));
     }
 
+    public String getRole() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().iterator().next().getAuthority();
+    }
+
+
 }

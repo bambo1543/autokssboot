@@ -1,6 +1,7 @@
 package de.promove.autokss.dao;
 
 import jakarta.persistence.metamodel.SingularAttribute;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class QueryOrder {
 
     public enum OrderDirection {ASC(1), DESC(-1), UNSORTED(0);
 
-        private int direction;
+        private final int direction;
 
         OrderDirection(int direction) {
             this.direction = direction;
@@ -27,17 +28,17 @@ public class QueryOrder {
             }
             return null;
         }
-    };
+    }
 
-    private List<QueryOrderEntry> orders = null;
+    private final List<QueryOrderEntry> orders;
 
     private QueryOrder(SingularAttribute name, OrderDirection orderDirection) {
-        this.orders = new ArrayList<QueryOrderEntry>();
+        this.orders = new ArrayList<>();
         this.orders.add(new QueryOrderEntry(name, orderDirection));
     }
 
     private QueryOrder(String name, OrderDirection orderDirection) {
-        this.orders = new ArrayList<QueryOrderEntry>();
+        this.orders = new ArrayList<>();
         this.orders.add(new QueryOrderEntry(name, orderDirection));
     }
 

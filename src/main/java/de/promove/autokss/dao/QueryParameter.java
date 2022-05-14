@@ -1,21 +1,14 @@
 package de.promove.autokss.dao;
 
 import de.promove.autokss.dao.QueryParameterEntry.Operator;
-import de.promove.autokss.service.UserService;
 import de.promove.autokss.util.DateUtils;
-import org.apache.commons.collections.map.HashedMap;
-import org.primefaces.model.FilterMeta;
+import jakarta.persistence.metamodel.SingularAttribute;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
-
-import jakarta.persistence.metamodel.SingularAttribute;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -23,7 +16,7 @@ import java.util.*;
  */
 public class QueryParameter {
 
-    private final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private final Logger logger = LoggerFactory.getLogger(QueryParameter.class);
 
     private final List<QueryParameterEntry> parameters;
 
@@ -33,18 +26,18 @@ public class QueryParameter {
 
 	private final List<String> primitiveNumberTypes = List.of("int", "byte", "short", "long", "float", "double");
 
-	public QueryParameter(Class<?> clazz, Map<String, FilterMeta> filters) {
+	public QueryParameter(Class<?> clazz, Map<String, Filter> filters) {
         this(clazz, filters, Locale.getDefault());
     }
-	public QueryParameter(Class<?> clazz, Map<String, FilterMeta> filters, Locale locale) {
+	public QueryParameter(Class<?> clazz, Map<String, Filter> filters, Locale locale) {
 		this.parameters = new ArrayList<>();
 		for (String filterName : filters.keySet()) {
-            FilterMeta filterMeta = filters.get(filterName);
+            Filter filter = filters.get(filterName);
 
             try {
-                Object filterValue = filterMeta.getFilterValue();
+                Object filterValue = filter.getFilterValue();
 
-                Class<?> type = clazz.getDeclaredField(filterMeta.getField()).getType();
+                Class<?> type = clazz.getDeclaredField(filter.getField()).getType();
                 if(type.equals(String.class)) {
                     String filterString = (String) filterValue;
                     if(!filterString.startsWith("*") && !filterString.endsWith("*")) {
@@ -98,7 +91,7 @@ public class QueryParameter {
 
     private QueryParameter(SingularAttribute name, Object value) {
         this.parameters = new ArrayList<>();
-        this.parameters.add(new QueryParameterEntry(name, value));
+        this.parameters.add(new QueryParameterEntry<>(name, value));
     }
 
     private QueryParameter(SingularAttribute name, Object value, Operator operator) {

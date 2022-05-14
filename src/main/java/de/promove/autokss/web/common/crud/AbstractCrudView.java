@@ -7,6 +7,7 @@ import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.util.ColumnUtils;
+import de.promove.autokss.web.util.FilterConverter;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.MessageFactory;
 import de.promove.autokss.web.util.exporter.MyColoredPdfExporter;
@@ -145,7 +146,7 @@ public abstract class AbstractCrudView<T extends NamedEntity> implements Seriali
 	}
 
 	protected QueryParameter createQueryParameter(Map<String, FilterMeta> filters) {
-		return new QueryParameter(clazz, filters, FacesContext.getCurrentInstance().getViewRoot().getLocale());
+		return new QueryParameter(clazz, FilterConverter.convertPrimefacesFilterMeta(filters), FacesContext.getCurrentInstance().getViewRoot().getLocale());
 	}
 
 	public String getEntityName() {
