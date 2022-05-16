@@ -2,7 +2,6 @@ package de.promove.autokss.service;
 
 import de.promove.autokss.configuration.EmailConfiguration;
 import de.promove.autokss.dao.PersistentPropertiesDao;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,7 @@ public class PersistentPropertiesService {
     @Autowired
     private PersistentPropertiesDao dao;
 
-    public Properties loadProperties(@Nullable String prefix) {
+    public Properties loadProperties(String prefix) {
         return dao.loadProperties(prefix);
     }
 

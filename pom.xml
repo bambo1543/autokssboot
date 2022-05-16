@@ -89,16 +89,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.omnifaces</groupId>
-			<artifactId>omnifaces</artifactId>
-			<version>3.13.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.joinfaces</groupId>
-			<artifactId>omnifaces3-spring-boot-starter</artifactId>
-			<version>4.7.0-rc1</version>
-		</dependency>
 
 		<!-- Spring -->
 		<dependency>
