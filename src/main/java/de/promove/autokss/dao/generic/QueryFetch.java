@@ -1,7 +1,8 @@
-package de.promove.autokss.dao;
+package de.promove.autokss.dao.generic;
 
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.metamodel.Attribute;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package de.promove.autokss.web.view;
 
-import de.promove.autokss.dao.QueryOrder;
+import de.promove.autokss.dao.generic.QueryOrder;
 import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package de.promove.autokss.service;
 
-import de.promove.autokss.dao.QueryOrder;
-import de.promove.autokss.dao.QueryParameter;
-import de.promove.autokss.dao.QueryParameterEntry;
+import de.promove.autokss.dao.generic.QueryOrder;
+import de.promove.autokss.dao.generic.QueryParameter;
+import de.promove.autokss.dao.generic.QueryParameterEntry;
 import de.promove.autokss.model.Maschine;
 import de.promove.autokss.model.Maschine_;
 import de.promove.autokss.model.Messung;
@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 

@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -12,20 +11,20 @@
 
 	<h:head>
 		<f:facet name="first">
-			<meta http-equiv="X-UA-Compatible" content="EmulateIE8"/>
-			<meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
 			<title>AutoKSS</title>
-<!--			<link rel="shortcut icon"  href="#{request.contextPath}/resources/images/shortcutIcon.png"/>-->
-<!--			<link rel="icon" type="image/png" href="#{request.contextPath}/resources/images/favicon-32x32.png"/>-->
-		</f:facet>
 
-<!--		<link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>-->
+			<meta charset="utf-8"/>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0"/>
+			<meta name="apple-mobile-web-app-capable" content="yes"/>
+			<link href="#{resource['images/favicon-32x32.png']}" rel="icon" type="image/png" sizes="32x32"/>
+			<link href="#{resource['images/favicon-16x16.png']}" rel="icon" type="image/png" sizes="16x16"/>
+		</f:facet>
 
 		<h:outputStylesheet library="css" name="primeflex.css"/>
 		<h:outputStylesheet library="css" name="theme.css"/>
 		<h:outputStylesheet library="css" name="myStyle.css"/>
-<!--		<h:outputStylesheet library="css" name="grid.css"/>-->
-		<h:outputStylesheet library="css" name="famfamfam.css"/>
 		<h:outputStylesheet library="primefaces" name="primeicons/primeicons.css"  />
 
 		<ui:insert name="head"/>

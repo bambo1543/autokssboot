@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package de.promove.autokss.dao;
+package de.promove.autokss.dao.generic;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

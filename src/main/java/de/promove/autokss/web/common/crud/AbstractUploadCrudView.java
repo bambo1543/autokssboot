@@ -1,6 +1,6 @@
 package de.promove.autokss.web.common.crud;
 
-import de.promove.autokss.dao.QueryFetch;
+import de.promove.autokss.dao.generic.QueryFetch;
 import de.promove.autokss.model.Upload;
 import de.promove.autokss.model.UploadEntity;
 import de.promove.autokss.web.util.MessageFactory;

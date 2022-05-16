@@ -1,6 +1,6 @@
 package de.promove.autokss.web.view.workflow;
 
-import de.promove.autokss.dao.QueryParameter;
+import de.promove.autokss.dao.generic.QueryParameter;
 import de.promove.autokss.model.*;
 import de.promove.autokss.service.GenericService;
 import de.promove.autokss.web.scope.ViewScope;
@@ -8,13 +8,14 @@ import de.promove.autokss.web.util.FacesUtils;
 import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.NavigationOutcome;
 import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller

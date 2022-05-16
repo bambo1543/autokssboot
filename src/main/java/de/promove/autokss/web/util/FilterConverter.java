@@ -1,7 +1,7 @@
 package de.promove.autokss.web.util;
 
-import de.promove.autokss.dao.Filter;
-import de.promove.autokss.dao.MatchMode;
+import de.promove.autokss.dao.generic.Filter;
+import de.promove.autokss.dao.generic.MatchMode;
 import org.primefaces.model.FilterMeta;
 
 import java.util.HashMap;

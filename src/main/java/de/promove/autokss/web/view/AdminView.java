@@ -16,7 +16,7 @@ public class AdminView {
 
     public Properties getProperties() {
         if(properties == null) {
-            properties = service.loadProperties("admin");
+            properties = service.loadProperties("mail");
         }
         return properties;
     }

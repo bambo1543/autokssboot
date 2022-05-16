@@ -1,8 +1,8 @@
 package de.promove.autokss.web.common.crud;
 
-import de.promove.autokss.dao.QueryFetch;
-import de.promove.autokss.dao.QueryOrder;
-import de.promove.autokss.dao.QueryParameter;
+import de.promove.autokss.dao.generic.QueryFetch;
+import de.promove.autokss.dao.generic.QueryOrder;
+import de.promove.autokss.dao.generic.QueryParameter;
 import de.promove.autokss.model.LockedEntity;
 import de.promove.autokss.model.NamedEntity;
 import de.promove.autokss.service.GenericService;

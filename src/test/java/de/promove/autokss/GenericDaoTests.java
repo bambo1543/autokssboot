@@ -1,9 +1,9 @@
 package de.promove.autokss;
 
-import de.promove.autokss.dao.GenericDao;
-import de.promove.autokss.dao.QueryFetch;
-import de.promove.autokss.dao.QueryParameter;
-import de.promove.autokss.dao.QueryParameterEntry;
+import de.promove.autokss.dao.generic.GenericDao;
+import de.promove.autokss.dao.generic.QueryFetch;
+import de.promove.autokss.dao.generic.QueryParameter;
+import de.promove.autokss.dao.generic.QueryParameterEntry;
 import de.promove.autokss.model.*;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.junit.jupiter.api.Test;

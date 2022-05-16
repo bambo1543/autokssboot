@@ -1,13 +1,11 @@
 package de.promove.autokss.service;
 
-import de.promove.autokss.dao.GenericDao;
-import de.promove.autokss.dao.QueryFetch;
-import de.promove.autokss.dao.QueryOrder;
-import de.promove.autokss.dao.QueryParameter;
+import de.promove.autokss.dao.generic.GenericDao;
+import de.promove.autokss.dao.generic.QueryFetch;
+import de.promove.autokss.dao.generic.QueryOrder;
+import de.promove.autokss.dao.generic.QueryParameter;
 import de.promove.autokss.model.IdEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;

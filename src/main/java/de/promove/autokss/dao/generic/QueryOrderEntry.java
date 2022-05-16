@@ -1,4 +1,4 @@
-package de.promove.autokss.dao;
+package de.promove.autokss.dao.generic;
 
 import jakarta.persistence.metamodel.SingularAttribute;
 

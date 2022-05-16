@@ -1,13 +1,20 @@
 package de.promove.autokss.configuration;
 
+import de.promove.autokss.dao.PersistentPropertiesDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.util.Properties;
 
-//@Configuration
+@Configuration
 public class EmailConfiguration {
+
+    @Autowired
+    private PersistentPropertiesDao dao;
 
     @Value("${spring.mail.host}")
     private String host;
@@ -21,21 +28,30 @@ public class EmailConfiguration {
     @Value("${spring.mail.password}")
     private String password;
 
-//    @Bean
+    private JavaMailSenderImpl mailSender;
+
+    @Bean
     public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(host);
-        mailSender.setPort(port);
+        if(mailSender == null) {
+            mailSender = new JavaMailSenderImpl();
+            updateJavaMailSender();
 
-        mailSender.setUsername(username);
-        mailSender.setPassword(password);
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
+            Properties props = mailSender.getJavaMailProperties();
+            props.put("mail.transport.protocol", "smtp");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.debug", "true");
+        }
 
         return mailSender;
+    }
+
+    public void updateJavaMailSender() {
+        Properties properties = dao.loadProperties("mail");
+
+        mailSender.setHost(properties.getProperty("mail.host", host));
+        mailSender.setPort(Integer.parseInt(properties.getProperty("mail.port", String.valueOf(port))));
+        mailSender.setUsername(properties.getProperty("mail.username", username));
+        mailSender.setPassword(properties.getProperty("mail.password", password));
     }
 }

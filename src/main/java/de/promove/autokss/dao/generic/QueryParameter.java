@@ -1,6 +1,6 @@
-package de.promove.autokss.dao;
+package de.promove.autokss.dao.generic;
 
-import de.promove.autokss.dao.QueryParameterEntry.Operator;
+import de.promove.autokss.dao.generic.QueryParameterEntry.Operator;
 import de.promove.autokss.util.DateUtils;
 import jakarta.persistence.metamodel.SingularAttribute;
 import org.slf4j.Logger;

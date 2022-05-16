@@ -1,6 +1,6 @@
 package de.promove.autokss.web.view.entity;
 
-import de.promove.autokss.dao.QueryFetch;
+import de.promove.autokss.dao.generic.QueryFetch;
 import de.promove.autokss.model.Kuehlschmierstoff;
 import de.promove.autokss.model.Kuehlschmierstoff_;
 import de.promove.autokss.web.common.crud.AbstractUploadCrudView;
