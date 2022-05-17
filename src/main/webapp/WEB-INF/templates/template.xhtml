@@ -39,7 +39,9 @@
 					<p:panel style="border-radius: 3px 3px 0 0">
 						<b:leftRightPanel>
 							<f:facet name="left">
-								<p:link value="autoKSS" outcome="/index.xhtml" style="font-size: xx-large;"/>
+								<p:link outcome="/index.xhtml" >
+									<p:graphicImage library="images" name="autokss_transparent.png" style="width: 121px; height: 45px"/>
+								</p:link>
 							</f:facet>
 							<f:facet name="right">
 								<p:selectOneMenu value="#{themeSwitcherBean.currentTheme}" var="t" style="width:150px" >
