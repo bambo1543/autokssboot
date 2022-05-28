@@ -7,21 +7,19 @@ import de.promove.autokss.model.Maschine;
 import de.promove.autokss.model.Messung;
 import de.promove.autokss.model.Messung_;
 import de.promove.autokss.service.GenericService;
+import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.View;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
-import org.jetbrains.annotations.NotNull;
-import org.primefaces.model.charts.ChartData;
-import org.primefaces.model.charts.line.LineChartDataSet;
-import org.primefaces.model.charts.line.LineChartModel;
+import org.chartistjsf.model.chart.*;
+import org.primefaces.event.ItemSelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @View
 public class ChartView {
@@ -45,6 +43,11 @@ public class ChartView {
         createLineModel();
     }
 
+    public void setMaschine(Maschine maschine) {
+        this.maschine = maschine;
+        createLineModel();
+    }
+
     private void createLineModel() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -1);
@@ -54,44 +57,52 @@ public class ChartView {
                 QueryOrder.by(Messung_.pruefDatum));
 
         lineModel = new LineChartModel();
+        lineModel.setAspectRatio(AspectRatio.GOLDEN_SECTION);
+        lineModel.setAnimateAdvanced(true);
+//        lineModel.setHeight("400px");
+//        lineModel.setChartPadding("{top: 5, right: 5, bottom: 5, left: 5}");
+//        lineModel.setFullWidth(true);
+//        lineModel.setWidth("800px");
+//        lineModel.setHeight("600px");
+//        lineModel.setShowArea(true);
 
-        ChartData data = new ChartData();
-        data.addChartDataSet(createChartDataSet(messungen, Messung::getPh2, "Ph", "rgb(75, 192, 192)"));
-        data.addChartDataSet(createChartDataSet(messungen, Messung::getNitrit2, "Nitrit", "rgb(47, 116, 75)"));
-        data.addChartDataSet(createChartDataSet(messungen, Messung::getRm2, "Öl-Konzentration", "rgb(188, 37, 108)"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getPh2, "Ph", "rgb(75, 192, 192)"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getNitrit2, "Nitrit", "rgb(47, 116, 75)"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getRm2, "Öl-Konzentration", "rgb(188, 37, 108)"));
 
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
-        List<String> labels = messungen.stream().map(date -> dateFormat.format(date.getPruefDatum()))
-                .collect(Collectors.toList());
-        data.setLabels(labels);
+        Axis xAxis = lineModel.getAxis(AxisType.X);
+        xAxis.setType(Axis.Type.FIXED_SCALE_AXIS);
+        xAxis.setDivisor(10);
+        xAxis.setDateFormat("DD.MM.YY");
 
-//        LineChartOptions options = new LineChartOptions();
-//
-//        CartesianScales cScales = new CartesianScales();
-//        CartesianLinearAxes linearAxes = new CartesianLinearAxes();
-//        linearAxes.setId("date-x-axis");
-//        linearAxes.setPosition("bottom");
-//        cScales.addXAxesData(linearAxes);
-//        options.setScales(cScales);
-//        lineModel.setOptions(options);
-
-        lineModel.setData(data);
+        Axis yAxis = lineModel.getAxis(AxisType.Y);
+        yAxis.setType(Axis.Type.FIXED_SCALE_AXIS);
+        yAxis.setDivisor(10);
+        yAxis.setRoundDigits(1);
+        yAxis.setHigh(15.0D);
+        yAxis.setLow(-1.0D);
     }
 
-    @NotNull
-    private LineChartDataSet createChartDataSet(List<Messung> messungen, Function<Messung, Double> function, String label, String borderColor) {
-        LineChartDataSet dataSetPh = new LineChartDataSet();
-        List<Object> collect = messungen.stream().map(function).collect(Collectors.toList());
-        dataSetPh.setData(collect);
-        dataSetPh.setLabel(label);
-        dataSetPh.setXaxisID("date-x-axis");
-        dataSetPh.setBorderColor(borderColor);
-        dataSetPh.setTension(0.1);
-        return dataSetPh;
+    private DateChartSeries createChartDataSet(List<Messung> messungen, Function<Messung, Double> function, String label, String borderColor) {
+        DateChartSeries series = new DateChartSeries();
+        Map<Date, Number> map =new HashMap<>();
+        for (Messung messung : messungen) {
+            map.put(messung.getPruefDatum(), function.apply(messung));
+        }
+//        List<Object> collect = messungen.stream().map(function).collect(Collectors.toList());
+        series.setData(map);
+        series.setName(label);
+        return series;
     }
 
-    public void setMaschine(Maschine maschine) {
-        this.maschine = maschine;
-        createLineModel();
+    public void itemSelect(ItemSelectEvent event) {
+        Map<Timestamp, Double> data = (Map) lineModel.getSeries().get(event.getSeriesIndex()).getData();
+        ArrayList<Timestamp> keys = new ArrayList<>(data.keySet());
+        Collections.sort(keys);
+        Timestamp key = keys.get(event.getItemIndex());
+
+        GrowlMessenger.publish(lineModel.getSeries().get(event.getSeriesIndex()).getName(),
+                DateFormat.getDateInstance().format(key) + ": " + data.get(key));
     }
+
 }
