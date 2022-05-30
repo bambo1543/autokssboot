@@ -63,6 +63,7 @@ public class ChartView {
         lineModel.addSeries(createChartDataSet(messungen, Messung::getPh2, "Ph"));
         lineModel.addSeries(createChartDataSet(messungen, Messung::getNitrit2, "Nitrit"));
         lineModel.addSeries(createChartDataSet(messungen, Messung::getRm2, "Öl-Konzentration"));
+        lineModel.updateYAxisRangeByChartSeries();
 
         Axis xAxis = lineModel.getAxis(AxisType.X);
         xAxis.setType(Axis.Type.FIXED_SCALE_AXIS);
@@ -73,8 +74,6 @@ public class ChartView {
         yAxis.setType(Axis.Type.FIXED_SCALE_AXIS);
         yAxis.setDivisor(10);
         yAxis.setRoundDigits(1);
-        yAxis.setHigh(15.0D);
-        yAxis.setLow(-1.0D);
     }
 
     private DateChartSeries createChartDataSet(List<Messung> messungen, Function<Messung, Double> function, String label) {
