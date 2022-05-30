@@ -11,8 +11,10 @@ import de.promove.autokss.web.util.GrowlMessenger;
 import de.promove.autokss.web.util.View;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
+import lombok.Setter;
 import org.chartistjsf.model.chart.*;
 import org.primefaces.event.ItemSelectEvent;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -31,8 +33,11 @@ public class ChartView {
     @Autowired
     private SelectItemsBean selectItemsBean;
 
-    @Getter
+    @Getter @Setter
     private Maschine maschine;
+
+    @Getter @Setter
+    private boolean animation = true;
 
     @Getter
     private LineChartModel lineModel;
@@ -40,11 +45,6 @@ public class ChartView {
     @PostConstruct
     public void init() {
         maschine = selectItemsBean.getMaschine().get(0);
-        createLineModel();
-    }
-
-    public void setMaschine(Maschine maschine) {
-        this.maschine = maschine;
         createLineModel();
     }
 
@@ -58,17 +58,11 @@ public class ChartView {
 
         lineModel = new LineChartModel();
         lineModel.setAspectRatio(AspectRatio.GOLDEN_SECTION);
-        lineModel.setAnimateAdvanced(true);
-//        lineModel.setHeight("400px");
-//        lineModel.setChartPadding("{top: 5, right: 5, bottom: 5, left: 5}");
-//        lineModel.setFullWidth(true);
-//        lineModel.setWidth("800px");
-//        lineModel.setHeight("600px");
-//        lineModel.setShowArea(true);
+        lineModel.setAnimateAdvanced(animation);
 
-        lineModel.addSeries(createChartDataSet(messungen, Messung::getPh2, "Ph", "rgb(75, 192, 192)"));
-        lineModel.addSeries(createChartDataSet(messungen, Messung::getNitrit2, "Nitrit", "rgb(47, 116, 75)"));
-        lineModel.addSeries(createChartDataSet(messungen, Messung::getRm2, "Öl-Konzentration", "rgb(188, 37, 108)"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getPh2, "Ph"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getNitrit2, "Nitrit"));
+        lineModel.addSeries(createChartDataSet(messungen, Messung::getRm2, "Öl-Konzentration"));
 
         Axis xAxis = lineModel.getAxis(AxisType.X);
         xAxis.setType(Axis.Type.FIXED_SCALE_AXIS);
@@ -83,13 +77,12 @@ public class ChartView {
         yAxis.setLow(-1.0D);
     }
 
-    private DateChartSeries createChartDataSet(List<Messung> messungen, Function<Messung, Double> function, String label, String borderColor) {
+    private DateChartSeries createChartDataSet(List<Messung> messungen, Function<Messung, Double> function, String label) {
         DateChartSeries series = new DateChartSeries();
         Map<Date, Number> map =new HashMap<>();
         for (Messung messung : messungen) {
             map.put(messung.getPruefDatum(), function.apply(messung));
         }
-//        List<Object> collect = messungen.stream().map(function).collect(Collectors.toList());
         series.setData(map);
         series.setName(label);
         return series;
@@ -105,4 +98,10 @@ public class ChartView {
                 DateFormat.getDateInstance().format(key) + ": " + data.get(key));
     }
 
+    public void maschineChanged(SelectEvent event) {
+        createLineModel();
+    }
+    public void animationChanged() {
+        createLineModel();
+    }
 }

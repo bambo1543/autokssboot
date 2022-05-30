@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ct="http://www.chartistjsf.org/charts"
 >
@@ -14,23 +15,25 @@
 
         <h:outputScript library="chartist-plugin" name="legend/chartist-plugin-legend.js" />
         <h:outputStylesheet library="chartist-plugin" name="legend/chartist-plugin-legend.css" />
-        <style>
-            /*.ct-chart .ct-series.ct-series-a .ct-line, .ct-chart .ct-series.ct-series-a .ct-point {*/
-            /*    stroke: aqua;*/
-            /*}*/
-
-        </style>
     </ui:define>
 
     <ui:define name="center">
         <div class="grid">
             <div class="col-offset-1 col-10 col-offset-1 h-30rem text-center">
                 <h:form>
-                    <ct:chart id="lineChart" type="line" model="#{chartView.lineModel}" plugins="chartPlugins" styleClass="indexChart h-28rem">
+                    <p:selectOneMenu value="#{chartView.maschine}" converter="#{maschineConverter}">
+                        <f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" />
+                        <p:ajax event="itemSelect" listener="#{chartView.maschineChanged}" update="lineChart"  />
+                    </p:selectOneMenu>
+
+                    <p:selectBooleanCheckbox itemLabel="Animation" value="#{chartView.animation}" style="padding-left: 10px">
+                        <p:ajax listener="#{chartView.animationChanged}" update="lineChart" />
+                    </p:selectBooleanCheckbox>
+
+                    <ct:chart id="lineChart" type="line" model="#{chartView.lineModel}" plugins="chartPlugins" styleClass="h-28rem">
                         <p:ajax event="itemSelect" listener="#{chartView.itemSelect}" update="growl" />
                     </ct:chart>
                     <script>
-                        //plugins array
                         var chartPlugins =
                             [
                                 Chartist.plugins.tooltip({
