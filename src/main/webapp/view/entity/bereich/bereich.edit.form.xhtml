@@ -1,17 +1,14 @@
 <div xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	 xmlns:h="http://xmlns.jcp.org/jsf/html"
-	 xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
 
 	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
-		<p:outputLabel for="name" value="#{msgs['entity.bereich.name']}" />
-		<p:inputText id="name" value="#{item.name}" />
-		<p:message for="name"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.bereich.name']}" />
+		<p:inputText value="#{item.name}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="description" value="#{msgs['entity.bereich.description']}" />
-		<p:inputText id="description" value="#{item.description}" />
-		<p:message for="description" />
+		<p:outputLabel for="@next" value="#{msgs['entity.bereich.description']}" />
+		<p:inputText value="#{item.description}" />
+		<p:message for="@previous" />
 	</p:panelGrid>
 
 </div>

@@ -1,25 +1,22 @@
 <div xmlns="http://www.w3.org/1999/xhtml"
-	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	 xmlns:h="http://xmlns.jcp.org/jsf/html"
-	 xmlns:f="http://xmlns.jcp.org/jsf/core"
 	 xmlns:p="http://primefaces.org/ui">
 
 	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
-		<p:outputLabel for="name" value="#{msgs['entity.einsatzkonzentration.name']}" />
-		<p:inputText id="name" value="#{item.name}" />
-		<p:message for="name"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.einsatzkonzentration.name']}" />
+		<p:inputText value="#{item.name}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="min" value="#{msgs['entity.einsatzkonzentration.min']}" />
-		<p:inputNumber id="min" value="#{item.min}" />
-		<p:message for="min"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.einsatzkonzentration.min']}" />
+		<p:inputNumber value="#{item.min}" />
+		<p:message for="@previous"/>
 		
-		<p:outputLabel for="max" value="#{msgs['entity.einsatzkonzentration.max']}" />
-		<p:inputNumber id="max" value="#{item.max}" />
-		<p:message for="max"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.einsatzkonzentration.max']}" />
+		<p:inputNumber value="#{item.max}" />
+		<p:message for="@previous"/>
 		
-		<p:outputLabel for="soll" value="#{msgs['entity.einsatzkonzentration.soll']}" />
-		<p:inputNumber id="soll" value="#{item.soll}" />
-		<p:message for="soll"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.einsatzkonzentration.soll']}" />
+		<p:inputNumber value="#{item.soll}" />
+		<p:message for="@previous"/>
 	</p:panelGrid>
 
 </div>

@@ -1,13 +1,12 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:cc="http://xmlns.jcp.org/jsf/composite"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <p:column id="#{field}" field="#{field}" headerText="#{headerText}" sortBy="#{value}" filterMatchMode="exact" exportValue="#{value}" >
         <f:facet name="filter">
-            <p:selectOneMenu onchange="#{onchange}" converter="#{converter}" styleClass="custom-filter">
+            <p:selectOneMenu onchange="#{onchange}" converter="#{converter}" styleClass="custom-filter" style="width: auto">
                 <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
                 <f:selectItems value="#{selectItems}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
             </p:selectOneMenu>

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
 
 import java.util.Collection;
 import java.util.Date;
@@ -72,7 +73,7 @@ public class User extends AbstractNamedBaseEntity implements UserDetails {
 
     @Override
     public String getName() {
-        return getFirstName() + " " + getLastName();
+        return StringUtils.hasText(getFirstName()) ? getFirstName() + " " + getLastName() : getLastName();
     }
 
     @Override

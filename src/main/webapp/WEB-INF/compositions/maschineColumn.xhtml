@@ -1,0 +1,9 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:my="http://bambo.it/my"
+>
+    <my:entityColumn field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}"
+                     value="#{item.maschine.name}" converter="#{maschineConverter}" selectItems="#{selectItemsBean.maschine}"
+                     onchange="#{onchange}"/>
+
+</ui:composition>

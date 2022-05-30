@@ -6,51 +6,51 @@
 >
 
 	<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
-		<p:outputLabel for="name" value="#{msgs['entity.maschine.name']}" />
-		<p:inputText id="name" value="#{item.name}" />
-		<p:message for="name"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.name']}" />
+		<p:inputText value="#{item.name}" />
+		<p:message for="@previous"/>
 		
-		<p:outputLabel for="tankVolumenLiter" value="#{msgs['entity.maschine.tankVolumenLiter']}" />
-		<p:inputNumber id="tankVolumenLiter" value="#{item.tankVolumenLiter}" />
-		<p:message for="tankVolumenLiter"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.tankVolumenLiter']}" />
+		<p:inputNumber value="#{item.tankVolumenLiter}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="wasserstandMaxCm" value="#{msgs['entity.maschine.wasserstandMaxCm']}" />
-		<p:inputNumber id="wasserstandMaxCm" value="#{item.wasserstandMaxCm}" />
-		<p:message for="wasserstandMaxCm"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.wasserstandMaxCm']}" />
+		<p:inputNumber value="#{item.wasserstandMaxCm}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="wasserstandMinCm" value="#{msgs['entity.maschine.wasserstandMinCm']}" />
-		<p:inputNumber id="wasserstandMinCm" value="#{item.wasserstandMinCm}" />
-		<p:message for="wasserstandMinCm"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.wasserstandMinCm']}" />
+		<p:inputNumber value="#{item.wasserstandMinCm}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="cmEntsprichtLiter" value="#{msgs['entity.maschine.cmEntsprichtLiter']}" />
-		<p:inputNumber id="cmEntsprichtLiter" value="#{item.cmEntsprichtLiter}" />
-		<p:message for="cmEntsprichtLiter"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.cmEntsprichtLiter']}" />
+		<p:inputNumber value="#{item.cmEntsprichtLiter}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="letzterEmulsionswechsel" value="#{msgs['entity.maschine.letzterEmulsionswechsel']}" />
-		<p:datePicker id="letzterEmulsionswechsel" value="#{item.letzterEmulsionswechsel}" />
-		<p:message for="letzterEmulsionswechsel"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.letzterEmulsionswechsel']}" />
+		<p:datePicker value="#{item.letzterEmulsionswechsel}" />
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="bereich" value="#{msgs['entity.maschine.bereich']}" />
-		<p:selectOneMenu id="bereich" value="#{item.bereich}" converter="#{bereichConverter}">
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.bereich']}" />
+		<p:selectOneMenu value="#{item.bereich}" converter="#{bereichConverter}">
 			<f:selectItems value="#{selectItemsBean.bereiche}" var="i" itemLabel="#{i.name}" />
 		</p:selectOneMenu>
-		<p:message for="bereich"/>
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="einsatzkonzentration" value="#{msgs['entity.maschine.einsatzkonzentration']}" />
-		<p:selectOneMenu id="einsatzkonzentration" value="#{item.einsatzkonzentration}" converter="#{einsatzkonzentrationConverter}">
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.einsatzkonzentration']}" />
+		<p:selectOneMenu value="#{item.einsatzkonzentration}" converter="#{einsatzkonzentrationConverter}">
 			<f:selectItems value="#{selectItemsBean.einsatzkonzentrationen}" var="i" itemLabel="#{i.name}/min:#{i.min}/max:#{i.max}/soll:#{i.soll}" />
 		</p:selectOneMenu>
-		<p:message for="einsatzkonzentration"/>
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="kuehlschmierstoff" value="#{msgs['entity.maschine.kuehlschmierstoff']}" />
-		<p:selectOneMenu id="kuehlschmierstoff" value="#{item.kuehlschmierstoff}" converter="#{kuehlschmierstoffConverter}">
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.kuehlschmierstoff']}" />
+		<p:selectOneMenu value="#{item.kuehlschmierstoff}" converter="#{kuehlschmierstoffConverter}">
 			<f:selectItems value="#{selectItemsBean.kuehlschmierstoffe}" var="i" itemLabel="#{i.name}" />
 		</p:selectOneMenu>
-		<p:message for="kuehlschmierstoff"/>
+		<p:message for="@previous"/>
 
-		<p:outputLabel for="uploads" value="#{msgs['entity.maschine.uploads']}" />
-		<b:upload id="uploads" view="#{view}" item="#{item}"/>
-		<p:message for="uploads"/>
+		<p:outputLabel for="@next" value="#{msgs['entity.maschine.uploads']}" />
+		<b:upload view="#{view}" item="#{item}"/>
+		<p:message for="@previous"/>
 
 		<f:facet name = "footer">
 			<h:panelGroup style = "display:block; text-align:left">

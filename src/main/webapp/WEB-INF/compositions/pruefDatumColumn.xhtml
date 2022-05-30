@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+    <p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
+              exportFunction="#{view.formatColumn}">
+        <f:facet name="filter">
+            <p:datePicker id="pruefDatePicker" selectionMode="range" onchange="#{onchange}" showButtonBar="true"/>
+        </f:facet>
+        <p:outputLabel value="#{item.pruefDatum}" converter="#{dateOnlyConverter}"/>
+    </p:column>
+
+</ui:composition>

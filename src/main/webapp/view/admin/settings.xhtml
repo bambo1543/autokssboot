@@ -10,23 +10,23 @@
 				<div>
 					<p:panelGrid columns="3" layout="grid" contentStyleClass="roundCorners">
 						<p:outputLabel for="@next" value="#{msgs['settings.mail.host']}"/>
-						<p:inputText id="host" value="#{adminView.properties['mail.host']}" />
+						<p:inputText value="#{adminView.properties['mail.host']}" />
 						<p:message for="@previous"/>
 
 						<p:outputLabel for="@next" value="#{msgs['settings.mail.port']}"/>
-						<p:inputText id="port" value="#{adminView.properties['mail.port']}" />
+						<p:inputText value="#{adminView.properties['mail.port']}" />
 						<p:message for="@previous"/>
 
 						<p:outputLabel for="@next" value="#{msgs['settings.mail.username']}"/>
-						<p:inputText id="username" value="#{adminView.properties['mail.username']}" />
+						<p:inputText value="#{adminView.properties['mail.username']}" />
 						<p:message for="@previous"/>
 
 						<p:outputLabel for="@next" value="#{msgs['settings.mail.password']}"/>
-						<p:password id="pwd1" value="#{adminView.properties['mail.password']}" match="pwd2" redisplay="true" required="true"/>
+						<p:password value="#{adminView.properties['mail.password']}" match="pwd2" redisplay="true" required="true"/>
 						<p:message for="@previous" />
 
 						<p:outputLabel for="@next" value="#{msgs['settings.mail.password.repeat']}" />
-						<p:password id="pwd2" value="#{adminView.properties['mail.password']}" redisplay="true" required="true"/>
+						<p:password value="#{adminView.properties['mail.password']}" redisplay="true" required="true"/>
 						<p:message for="@previous" />
 					</p:panelGrid>
 				</div>

@@ -11,6 +11,18 @@
         <source>entityColumn.xhtml</source>
     </tag>
     <tag>
+        <tag-name>pruefDatumColumn</tag-name>
+        <source>pruefDatumColumn.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>prueferColumn</tag-name>
+        <source>prueferColumn.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>maschineColumn</tag-name>
+        <source>maschineColumn.xhtml</source>
+    </tag>
+    <tag>
         <tag-name>inputNumberPercent</tag-name>
         <source>inputNumberPercent.xhtml</source>
     </tag>

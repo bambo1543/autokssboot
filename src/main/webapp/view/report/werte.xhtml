@@ -5,7 +5,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:n="http://xmlns.jcp.org/jsf/composite/component"
->
+                xmlns:my="http://bambo.it/my">
 
     <ui:define name="center">
 		<h:form id="frmwerte">
@@ -21,35 +21,9 @@
                     </ui:insert>
                 </f:facet>
 
-                <p:column field="pruefDatum" headerText="#{msgs['entity.messung.pruefDatum.headerText']}" sortOrder="desc"
-                          exportFunction="#{werteReportView.formatColumn}">
-                    <f:facet name="filter">
-                        <p:datePicker id="pruefDatePicker" selectionMode="range" onchange="PF('tblwerte').filter()" showButtonBar="true"/>
-                    </f:facet>
-                    <h:outputText value="#{item.pruefDatum}" converter="#{dateOnlyConverter}"/>
-                </p:column>
-                <p:column field="pruefer" headerText="#{msgs['entity.messung.pruefer.headerText']}" filterMatchMode="exact"
-                          sortBy="#{item.pruefer.email}" exportValue="#{item.pruefer.name}">
-                    <f:facet name="filter">
-                        <p:selectOneMenu onchange="PF('tblwerte').filter()" styleClass="custom-filter" converter="#{userConverter}" style="width: auto">
-                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
-                            <f:selectItems value="#{selectItemsBean.user}" var="i" itemLabel="#{i.email}" itemValue="#{i}"/>
-                        </p:selectOneMenu>
-                    </f:facet>
-
-                    <h:outputText value="#{item.pruefer.email}" />
-                </p:column>
-                <p:column field="maschine" headerText="#{msgs['entity.messung.maschine.headerText']}" filterMatchMode="exact"
-                          sortBy="#{item.maschine.name}" exportValue="#{item.maschine.name}">
-                    <f:facet name="filter">
-                        <p:selectOneMenu onchange="PF('tblwerte').filter()" styleClass="custom-filter" converter="#{maschineConverter}" style="width: auto">
-                            <f:selectItem itemLabel="#{msgs['selectItem.all.label']}" itemValue="#{null}" noSelectionOption="true" />
-                            <f:selectItems value="#{selectItemsBean.maschine}" var="i" itemLabel="#{i.name}" itemValue="#{i}"/>
-                        </p:selectOneMenu>
-                    </f:facet>
-
-                    <h:outputText value="#{item.maschine.name}"/>
-                </p:column>
+                <my:pruefDatumColumn onchange="PF('tblwerte').filter()" view="#{werteReportView}"/>
+                <my:prueferColumn onchange="PF('tblwerte').filter()"/>
+                <my:maschineColumn onchange="PF('tblwerte').filter()"/>
 
                 <p:column headerText="#{msgs['report.werte.sollRM']}" style="text-align: right;" exportFunction="#{werteReportView.formatColumn}">
                     <h:outputText value="#{item.rmSoll}">
