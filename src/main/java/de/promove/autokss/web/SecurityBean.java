@@ -1,5 +1,6 @@
 package de.promove.autokss.web;
 
+import de.promove.autokss.model.Role;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
@@ -36,5 +37,8 @@ public class SecurityBean implements Serializable {
         return authentication.getAuthorities().iterator().next().getAuthority();
     }
 
+    public boolean isAdmin() {
+        return Role.ADMIN.getName().equals(getRole());
+    }
 
 }
