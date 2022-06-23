@@ -1,14 +1,13 @@
 package de.promove.autokss.dao;
 
+import de.promove.autokss.dao.generic.GenericDao;
 import de.promove.autokss.dao.generic.QueryParameter;
 import de.promove.autokss.dao.generic.QueryParameterEntry;
 import de.promove.autokss.model.PersistentProperties;
 import de.promove.autokss.model.PersistentProperties_;
-import de.promove.autokss.service.GenericService;
 import de.promove.autokss.service.encryption.Decrypt;
 import de.promove.autokss.service.encryption.Encrypt;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Nullable;
@@ -18,8 +17,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 @Repository
-@Transactional
-public class PersistentPropertiesDao extends GenericService {
+public class PersistentPropertiesDao extends GenericDao {
 
     @Decrypt
     public Properties loadProperties(@Nullable String prefix) {

@@ -1,5 +1,6 @@
 package de.promove.autokss.web.view;
 
+import de.promove.autokss.dao.MessungDao;
 import de.promove.autokss.dao.generic.QueryOrder;
 import de.promove.autokss.dao.generic.QueryParameter;
 import de.promove.autokss.dao.generic.QueryParameterEntry;
@@ -31,6 +32,9 @@ public class ChartView {
     private GenericService service;
 
     @Autowired
+    private MessungDao messungDao;
+
+    @Autowired
     private SelectItemsBean selectItemsBean;
 
     @Getter @Setter
@@ -49,7 +53,10 @@ public class ChartView {
     }
 
     private void createLineModel() {
+        Date lastMessungDate = messungDao.getLastMessungDate();
+
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(lastMessungDate);
         calendar.add(Calendar.YEAR, -1);
         List<Messung> messungen = service.list(Messung.class, QueryParameter.with(Messung_.pruefDatum, QueryParameterEntry.Operator.GE, calendar.getTime())
                 .and(Messung_.locked, Boolean.TRUE)

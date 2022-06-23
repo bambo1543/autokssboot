@@ -15,39 +15,20 @@
  */
 package de.promove.autokss.web.theme;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.io.Serializable;
 
+@Data
+@AllArgsConstructor
 public class Theme implements Serializable {
     
     private String name;
     
-    private String image;
-    
-    public Theme() {}
+    private boolean dark;
 
-    public Theme(String name, String image) {
+    public Theme(String name) {
         this.name = name;
-        this.image = image;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

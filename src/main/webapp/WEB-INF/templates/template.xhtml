@@ -41,7 +41,8 @@
 						<b:leftRightPanel>
 							<f:facet name="left">
 								<p:link outcome="/index.xhtml" >
-									<p:graphicImage library="images" name="autokss_transparent.png" style="width: 121px; height: 45px"/>
+									<p:graphicImage library="images" name="autokss_transparent.png" style="width: 121px; height: 45px" rendered="#{!themeSwitcherBean.currentThemeIsDark()}"/>
+									<p:graphicImage library="images" name="autokss_transparent_invert.png" style="width: 121px; height: 45px" rendered="#{themeSwitcherBean.currentThemeIsDark()}"/>
 								</p:link>
 							</f:facet>
 							<f:facet name="right">
