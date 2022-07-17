@@ -51,6 +51,9 @@ public class Maschine extends AbstractNamedBaseEntity implements UploadEntity {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<Upload> uploads = new HashSet<>();
 
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Sensor> sensoren = new HashSet<>();
+
     public Maschine(String name, Bereich bereich) {
         this.name = name;
         this.bereich = bereich;

@@ -241,10 +241,10 @@
 
     <profiles>
         <profile>
-            <id>EMBEDDED</id>
+            <id>dev</id>
             <properties>
                 <!--				<spring.profiles.active>hsqldb</spring.profiles.active>-->
-                <spring.profiles.active>mariadb</spring.profiles.active>
+                <spring.profiles.active>dev</spring.profiles.active>
 
                 <flyway.url>jdbc:mariadb://localhost:3306/autokss</flyway.url>
                 <flyway.user>root</flyway.user>
@@ -282,9 +282,9 @@
             </dependencies>
         </profile>
         <profile>
-            <id>JNDI</id>
+            <id>prod</id>
             <properties>
-                <spring.profiles.active>jndi-mariadb</spring.profiles.active>
+                <spring.profiles.active>prod</spring.profiles.active>
             </properties>
             <dependencies>
                 <dependency>
